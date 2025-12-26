@@ -6,11 +6,12 @@ import { Prisma } from '@prisma/client'
 // GET - Récupérer une réservation par ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const reservation = await prisma.reservation.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         client: true,
         vehicle: true,
@@ -38,14 +39,15 @@ export async function GET(
 // PATCH - Mettre à jour une réservation
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body: UpdateReservationInput = await request.json()
 
     // Vérifier que la réservation existe
     const existingReservation = await prisma.reservation.findUnique({
-      where: { id: params.id },
+      where: { id },
     })
 
     if (!existingReservation) {
@@ -91,7 +93,7 @@ export async function PATCH(
     }
 
     const reservation = await prisma.reservation.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData,
       include: {
         client: true,
@@ -119,11 +121,12 @@ export async function PATCH(
 // DELETE - Supprimer une réservation
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const reservation = await prisma.reservation.findUnique({
-      where: { id: params.id },
+      where: { id },
     })
 
     if (!reservation) {
@@ -134,7 +137,7 @@ export async function DELETE(
     }
 
     await prisma.reservation.delete({
-      where: { id: params.id },
+      where: { id },
     })
 
     return NextResponse.json(
