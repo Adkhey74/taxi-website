@@ -1,7 +1,11 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Car, MapPin, Clock, Shield } from "lucide-react"
+import { useI18n } from "@/lib/i18n/context"
 
 export function Presentation() {
+  const { t } = useI18n()
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,8 +23,8 @@ export function Presentation() {
                   <div className="bg-primary/10 rounded-3xl p-8 inline-block mb-6 border border-primary/20">
                     <Car className="h-32 w-32 text-primary mx-auto" />
                   </div>
-                  <p className="text-foreground font-bold text-xl mb-2">Flotte Premium</p>
-                  <p className="text-muted-foreground text-sm">Mercedes V-Class & Skoda Kodiaq</p>
+                  <p className="text-foreground font-bold text-xl mb-2">{t("presentation.premiumFleet")}</p>
+                  <p className="text-muted-foreground text-sm">{t("presentation.vehiclesModels")}</p>
                 </div>
               </div>
             </div>
@@ -30,31 +34,27 @@ export function Presentation() {
               <Card className="border border-border/50 shadow-xl bg-card/50 backdrop-blur-sm">
                 <CardContent className="p-8 lg:p-10">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                    <span className="text-sm font-semibold text-primary">À propos</span>
+                    <span className="text-sm font-semibold text-primary">{t("presentation.about")}</span>
                   </div>
                   
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 tracking-tight leading-tight">
-                    Hern Taxi vous propose
+                    {t("presentation.title")}
                     <span className="block mt-2 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
-                      ses services
+                      {t("presentation.titleHighlight")}
                     </span>
                   </h2>
                   
                   <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
                     <p>
-                      <strong className="text-foreground">Hern Taxi</strong> vous propose ses services afin d&apos;effectuer tous vos déplacements 
-                      en toute simplicité. L&apos;avantage d&apos;un service toutes distances toute l&apos;année est avant tout 
-                      la <strong className="text-foreground">flexibilité</strong>.
+                      {t("presentation.description1")}
                     </p>
                     
                     <p>
-                      Ainsi qu&apos;elle que soient les conditions de circulation ou les motifs de votre déplacement, 
-                      vous trouverez un chauffeur taxi disponible et attentif à vos besoins en nous contactant.
+                      {t("presentation.description2")}
                     </p>
                     
                     <p>
-                      Outre la région parisienne et l&apos;Île-de-France, nous pouvons vous conduire également 
-                      partout en France et même dans les pays limitrophes.
+                      {t("presentation.description3")}
                     </p>
                   </div>
 
@@ -64,28 +64,28 @@ export function Presentation() {
                       <div className="bg-primary/10 p-2 rounded-lg border border-primary/20">
                         <MapPin className="h-5 w-5 text-primary" />
                       </div>
-                      <span className="text-sm font-semibold text-foreground">Tout type de transport</span>
+                      <span className="text-sm font-semibold text-foreground">{t("presentation.allTransportTypes")}</span>
                     </div>
                     
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors">
                       <div className="bg-primary/10 p-2 rounded-lg border border-primary/20">
                         <Clock className="h-5 w-5 text-primary" />
                       </div>
-                      <span className="text-sm font-semibold text-foreground">Disponible 24h/24</span>
+                      <span className="text-sm font-semibold text-foreground">{t("presentation.available24h")}</span>
                     </div>
                     
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors">
                       <div className="bg-primary/10 p-2 rounded-lg border border-primary/20">
                         <Shield className="h-5 w-5 text-primary" />
                       </div>
-                      <span className="text-sm font-semibold text-foreground">Chauffeurs agréés</span>
+                      <span className="text-sm font-semibold text-foreground">{t("presentation.licensedDrivers")}</span>
                     </div>
                     
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors">
                       <div className="bg-primary/10 p-2 rounded-lg border border-primary/20">
                         <Car className="h-5 w-5 text-primary" />
                       </div>
-                      <span className="text-sm font-semibold text-foreground">Véhicules modernes</span>
+                      <span className="text-sm font-semibold text-foreground">{t("presentation.modernVehicles")}</span>
                     </div>
                   </div>
 
@@ -93,7 +93,7 @@ export function Presentation() {
                   <div className="mt-8 p-5 bg-primary/5 rounded-xl border border-primary/10 hover:border-primary/20 hover:bg-primary/10 transition-all duration-200">
                     <div className="flex items-center justify-between cursor-pointer group">
                       <span className="font-semibold text-foreground">
-                        Un taxi depuis et vers toute la région parisienne
+                        {t("presentation.parisRegion")}
                       </span>
                       <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 shadow-sm">
                         <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">

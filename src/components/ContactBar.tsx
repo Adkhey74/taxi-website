@@ -39,7 +39,7 @@ export function ContactBar() {
             size="icon"
             onClick={() => setIsVisible(false)}
             className="h-8 w-8 shrink-0"
-            aria-label="Fermer"
+            aria-label={t("contactBar.close")}
           >
             <X className="h-4 w-4" />
           </Button>

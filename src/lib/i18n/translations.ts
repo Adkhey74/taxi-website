@@ -96,10 +96,196 @@ export const translations = {
       confirm: "Confirmer la réservation",
       submitting: "Envoi en cours...",
       required: "*",
+      errorCreating: "Erreur lors de la création de la réservation",
+      errorOccurred: "Une erreur est survenue",
     },
     // ContactBar
     contactBar: {
       callUs: "Appelez-nous",
+      close: "Fermer",
+    },
+    // Header dropdown
+    headerDropdown: {
+      ourServices: "Nos Services",
+      discoverServices: "Découvrez tous nos services de transport : aéroport, ville, longue distance...",
+      vehicles: "Véhicules",
+      discoverFleet: "Découvrez notre flotte premium",
+      advantages: "Avantages",
+      whyChooseUs: "Pourquoi nous choisir",
+    },
+    // Presentation
+    presentation: {
+      premiumFleet: "Flotte Premium",
+      vehiclesModels: "Mercedes V-Class & Skoda Kodiaq",
+      about: "À propos",
+      title: "Hern Taxi vous propose",
+      titleHighlight: "ses services",
+      description1: "Hern Taxi vous propose ses services afin d'effectuer tous vos déplacements en toute simplicité. L'avantage d'un service toutes distances toute l'année est avant tout la flexibilité.",
+      description2: "Ainsi qu'elle que soient les conditions de circulation ou les motifs de votre déplacement, vous trouverez un chauffeur taxi disponible et attentif à vos besoins en nous contactant.",
+      description3: "Outre la région parisienne et l'Île-de-France, nous pouvons vous conduire également partout en France et même dans les pays limitrophes.",
+      allTransportTypes: "Tout type de transport",
+      available24h: "Disponible 24h/24",
+      licensedDrivers: "Chauffeurs agréés",
+      modernVehicles: "Véhicules modernes",
+      parisRegion: "Un taxi depuis et vers toute la région parisienne",
+    },
+    // Services data
+    servicesData: {
+      aeroport: {
+        title: "Aéroport",
+        description: "Transferts vers et depuis l'aéroport avec suivi des vols en temps réel",
+        features: ["Suivi des vols", "Attente gratuite", "Bagages inclus"],
+        price: "À partir de 45€",
+      },
+      ville: {
+        title: "Transport en ville",
+        description: "Déplacements urbains et banlieue avec chauffeurs expérimentés",
+        features: ["Ponctualité garantie", "Confort assuré", "Tarifs clairs"],
+        price: "À partir de 15€",
+      },
+      "longue-distance": {
+        title: "Longue distance",
+        description: "Voyages inter-villes et déplacements professionnels",
+        features: ["Véhicules confortables", "WiFi gratuit", "Arrêts possibles"],
+        price: "Sur devis",
+      },
+      evenement: {
+        title: "Événements",
+        description: "Transport pour mariages, soirées d'entreprise et événements spéciaux",
+        features: ["Véhicules premium", "Chauffeur en tenue", "Décoration possible"],
+        price: "Sur devis",
+      },
+      express: {
+        title: "Service express",
+        description: "Transport urgent et course express en moins de 15 minutes",
+        features: ["Arrivée rapide", "Priorité absolue", "Service premium"],
+        price: "À partir de 25€",
+      },
+      forfait: {
+        title: "Forfait journée",
+        description: "Location de véhicule avec chauffeur pour la journée entière",
+        features: ["8h de service", "Kilométrage illimité", "Pause chauffeur"],
+        price: "À partir de 280€",
+      },
+    },
+    // Advantages data
+    advantagesData: {
+      conventionne: {
+        title: "Taxi Conventionné",
+        description: "Service agréé et conventionné pour tous vos besoins de transport",
+      },
+      available24h: {
+        title: "Disponible 24h/24",
+        description: "Service continu toute l'année, même les jours fériés",
+      },
+      tarifs: {
+        title: "Tarifs Réglementés",
+        description: "Tarifs officiels et transparents, pas de surprise",
+      },
+      chauffeurs: {
+        title: "Chauffeurs Expérimentés",
+        description: "Professionnels formés et expérimentés pour votre sécurité",
+      },
+      premium: {
+        title: "Service Premium",
+        description: "Confort et qualité garantis pour tous vos déplacements",
+      },
+      reservation: {
+        title: "Réservation Facile",
+        description: "Réservation à l'avance ou à la dernière minute",
+      },
+    },
+    // Vehicles
+    vehicles: {
+      ourFleet: "Notre Flotte",
+      title: "Véhicules",
+      titleHighlight: "Premium",
+      description: "Des véhicules modernes et confortables pour tous vos déplacements",
+      mercedes: {
+        name: "Mercedes V-Class",
+        capacity: "1 à 7 passagers",
+        description: "Véhicule premium pour tous vos déplacements",
+        features: ["Confort supérieur", "Climatisation", "Sièges cuir", "Espace bagages"],
+      },
+      skoda: {
+        name: "Skoda Kodiaq",
+        capacity: "1 à 6 passagers",
+        description: "SUV moderne pour vos trajets urbains et longue distance",
+        features: ["4x4 disponible", "Confort optimal", "Technologie avancée", "Fiabilité"],
+      },
+      features: {
+        security: {
+          title: "Sécurité",
+          description: "Véhicules entretenus et contrôlés régulièrement",
+        },
+        capacity: {
+          title: "Capacité",
+          description: "De 1 à 7 passagers selon vos besoins",
+        },
+        comfort: {
+          title: "Confort",
+          description: "Climatisation, WiFi, sièges confortables",
+        },
+        availability: {
+          title: "Disponibilité",
+          description: "Flotte disponible 24h/24, 7j/7",
+        },
+      },
+    },
+    // About
+    about: {
+      badge: "À propos",
+      title: "À propos de",
+      titleHighlight: "Hern Taxi",
+      heroDescription: "Depuis plus de 10 ans, nous offrons un service de transport de qualité avec une équipe de chauffeurs professionnels et expérimentés.",
+      history: {
+        title: "Notre Histoire",
+        paragraph1: "Fondée en 2014, Hern Taxi est née de la volonté de proposer un service de transport fiable et professionnel dans la région parisienne. Notre équipe de chauffeurs expérimentés et nos véhicules modernes nous permettent de répondre à tous vos besoins de déplacement.",
+        paragraph2: "Que ce soit pour un transfert vers l'aéroport, un déplacement en ville ou un voyage longue distance, nous nous engageons à vous offrir un service de qualité avec ponctualité, confort et sécurité.",
+        paragraph3: "Aujourd'hui, nous sommes fiers de compter plus de 50 chauffeurs professionnels et une flotte de véhicules modernes pour vous servir 24h/24, 7j/7.",
+      },
+      values: {
+        badge: "Nos Valeurs",
+        title: "Ce qui nous",
+        titleHighlight: "définit",
+        ponctualite: {
+          title: "Ponctualité",
+          description: "Nous respectons vos horaires et nous engageons à être toujours à l'heure",
+        },
+        securite: {
+          title: "Sécurité",
+          description: "Véhicules entretenus régulièrement et chauffeurs formés à la sécurité routière",
+        },
+        qualite: {
+          title: "Qualité",
+          description: "Service premium avec véhicules confortables et chauffeurs professionnels",
+        },
+        serviceClient: {
+          title: "Service client",
+          description: "Équipe dédiée disponible 24h/24 pour répondre à vos besoins",
+        },
+        experience: {
+          title: "Expérience",
+          description: "Plus de 10 ans d'expérience dans le transport de personnes",
+        },
+        disponibilite: {
+          title: "Disponibilité",
+          description: "Service 24h/24, 7j/7, même les jours fériés",
+        },
+      },
+      stats: {
+        title: "Nos Performances",
+        drivers: "Chauffeurs professionnels",
+        clients: "Clients satisfaits",
+        availability: "Disponibilité",
+        experience: "Années d'expérience",
+      },
+      cta: {
+        title: "Prêt à voyager avec nous ?",
+        description: "Contactez-nous dès maintenant pour réserver votre transport ou obtenir un devis personnalisé.",
+        bookNow: "Réserver maintenant",
+        requestQuote: "Demander un devis",
+      },
     },
     // Footer
     footer: {
@@ -117,6 +303,9 @@ export const translations = {
       legal: "Mentions légales",
       privacy: "Confidentialité",
       terms: "CGV",
+      prices: "Tarifs",
+      faq: "FAQ",
+      mobile: "Mobile",
     },
     // Contact
     contact: {
@@ -250,10 +439,196 @@ export const translations = {
       confirm: "Confirm reservation",
       submitting: "Submitting...",
       required: "*",
+      errorCreating: "Error creating reservation",
+      errorOccurred: "An error occurred",
     },
     // ContactBar
     contactBar: {
       callUs: "Call us",
+      close: "Close",
+    },
+    // Header dropdown
+    headerDropdown: {
+      ourServices: "Our Services",
+      discoverServices: "Discover all our transport services: airport, city, long distance...",
+      vehicles: "Vehicles",
+      discoverFleet: "Discover our premium fleet",
+      advantages: "Advantages",
+      whyChooseUs: "Why choose us",
+    },
+    // Presentation
+    presentation: {
+      premiumFleet: "Premium Fleet",
+      vehiclesModels: "Mercedes V-Class & Skoda Kodiaq",
+      about: "About",
+      title: "Hern Taxi offers you",
+      titleHighlight: "its services",
+      description1: "Hern Taxi offers you its services to carry out all your trips with complete simplicity. The advantage of an all-distance service all year round is above all flexibility.",
+      description2: "Whatever the traffic conditions or the reasons for your trip, you will find an available and attentive taxi driver by contacting us.",
+      description3: "In addition to the Paris region and Île-de-France, we can also take you anywhere in France and even to neighboring countries.",
+      allTransportTypes: "All types of transport",
+      available24h: "Available 24/7",
+      licensedDrivers: "Licensed drivers",
+      modernVehicles: "Modern vehicles",
+      parisRegion: "A taxi from and to the entire Paris region",
+    },
+    // Services data
+    servicesData: {
+      aeroport: {
+        title: "Airport",
+        description: "Transfers to and from the airport with real-time flight tracking",
+        features: ["Flight tracking", "Free waiting", "Luggage included"],
+        price: "From €45",
+      },
+      ville: {
+        title: "City transport",
+        description: "Urban and suburban trips with experienced drivers",
+        features: ["Guaranteed punctuality", "Comfort assured", "Clear rates"],
+        price: "From €15",
+      },
+      "longue-distance": {
+        title: "Long distance",
+        description: "Inter-city trips and business travel",
+        features: ["Comfortable vehicles", "Free WiFi", "Possible stops"],
+        price: "On quote",
+      },
+      evenement: {
+        title: "Events",
+        description: "Transport for weddings, corporate events and special events",
+        features: ["Premium vehicles", "Dressed driver", "Possible decoration"],
+        price: "On quote",
+      },
+      express: {
+        title: "Express service",
+        description: "Urgent transport and express ride in less than 15 minutes",
+        features: ["Fast arrival", "Absolute priority", "Premium service"],
+        price: "From €25",
+      },
+      forfait: {
+        title: "Day package",
+        description: "Vehicle rental with driver for the entire day",
+        features: ["8h of service", "Unlimited mileage", "Driver break"],
+        price: "From €280",
+      },
+    },
+    // Advantages data
+    advantagesData: {
+      conventionne: {
+        title: "Conventional Taxi",
+        description: "Approved and conventional service for all your transport needs",
+      },
+      available24h: {
+        title: "Available 24/7",
+        description: "Continuous service all year round, even on holidays",
+      },
+      tarifs: {
+        title: "Regulated Rates",
+        description: "Official and transparent rates, no surprises",
+      },
+      chauffeurs: {
+        title: "Experienced Drivers",
+        description: "Trained and experienced professionals for your safety",
+      },
+      premium: {
+        title: "Premium Service",
+        description: "Comfort and quality guaranteed for all your trips",
+      },
+      reservation: {
+        title: "Easy Booking",
+        description: "Booking in advance or at the last minute",
+      },
+    },
+    // Vehicles
+    vehicles: {
+      ourFleet: "Our Fleet",
+      title: "Vehicles",
+      titleHighlight: "Premium",
+      description: "Modern and comfortable vehicles for all your trips",
+      mercedes: {
+        name: "Mercedes V-Class",
+        capacity: "1 to 7 passengers",
+        description: "Premium vehicle for all your trips",
+        features: ["Superior comfort", "Air conditioning", "Leather seats", "Luggage space"],
+      },
+      skoda: {
+        name: "Skoda Kodiaq",
+        capacity: "1 to 6 passengers",
+        description: "Modern SUV for your urban and long-distance trips",
+        features: ["4x4 available", "Optimal comfort", "Advanced technology", "Reliability"],
+      },
+      features: {
+        security: {
+          title: "Security",
+          description: "Vehicles maintained and checked regularly",
+        },
+        capacity: {
+          title: "Capacity",
+          description: "From 1 to 7 passengers according to your needs",
+        },
+        comfort: {
+          title: "Comfort",
+          description: "Air conditioning, WiFi, comfortable seats",
+        },
+        availability: {
+          title: "Availability",
+          description: "Fleet available 24/7",
+        },
+      },
+    },
+    // About
+    about: {
+      badge: "About",
+      title: "About",
+      titleHighlight: "Hern Taxi",
+      heroDescription: "For more than 10 years, we have been offering a quality transport service with a team of professional and experienced drivers.",
+      history: {
+        title: "Our History",
+        paragraph1: "Founded in 2014, Hern Taxi was born from the desire to offer a reliable and professional transport service in the Paris region. Our team of experienced drivers and our modern vehicles allow us to meet all your travel needs.",
+        paragraph2: "Whether it's a transfer to the airport, a city trip or a long-distance journey, we are committed to offering you a quality service with punctuality, comfort and safety.",
+        paragraph3: "Today, we are proud to have more than 50 professional drivers and a fleet of modern vehicles to serve you 24/7.",
+      },
+      values: {
+        badge: "Our Values",
+        title: "What",
+        titleHighlight: "defines us",
+        ponctualite: {
+          title: "Punctuality",
+          description: "We respect your schedules and commit to always being on time",
+        },
+        securite: {
+          title: "Security",
+          description: "Vehicles maintained regularly and drivers trained in road safety",
+        },
+        qualite: {
+          title: "Quality",
+          description: "Premium service with comfortable vehicles and professional drivers",
+        },
+        serviceClient: {
+          title: "Customer service",
+          description: "Dedicated team available 24/7 to meet your needs",
+        },
+        experience: {
+          title: "Experience",
+          description: "More than 10 years of experience in passenger transport",
+        },
+        disponibilite: {
+          title: "Availability",
+          description: "Service 24/7, even on holidays",
+        },
+      },
+      stats: {
+        title: "Our Performance",
+        drivers: "Professional drivers",
+        clients: "Satisfied clients",
+        availability: "Availability",
+        experience: "Years of experience",
+      },
+      cta: {
+        title: "Ready to travel with us?",
+        description: "Contact us now to book your transport or get a personalized quote.",
+        bookNow: "Book now",
+        requestQuote: "Request a quote",
+      },
     },
     // Footer
     footer: {
@@ -271,6 +646,9 @@ export const translations = {
       legal: "Legal notice",
       privacy: "Privacy",
       terms: "Terms",
+      prices: "Prices",
+      faq: "FAQ",
+      mobile: "Mobile",
     },
     // Contact
     contact: {

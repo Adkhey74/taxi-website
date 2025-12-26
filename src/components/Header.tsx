@@ -25,7 +25,7 @@ export function Header() {
               <span className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors block leading-tight">
                 Hern Taxi
               </span>
-              <span className="text-xs text-muted-foreground font-medium">Transport professionnel</span>
+              <span className="text-xs text-muted-foreground font-medium">{t("footer.tagline")}</span>
             </div>
           </Link>
 
@@ -52,10 +52,10 @@ export function Header() {
                             className="flex h-full w-full select-none flex-col justify-end rounded-xl bg-gradient-to-b from-primary/5 via-primary/10 to-primary/5 p-6 no-underline outline-none focus:shadow-lg border border-primary/10 hover:border-primary/20 transition-all duration-200"
                             href="/services">
                             <div className="mb-2 mt-4 text-lg font-bold text-foreground">
-                              Nos Services
+                              {t("headerDropdown.ourServices")}
                             </div>
                             <p className="text-sm leading-relaxed text-muted-foreground">
-                              Découvrez tous nos services de transport : aéroport, ville, longue distance...
+                              {t("headerDropdown.discoverServices")}
                             </p>
                           </Link>
                         </NavigationMenuLink>
@@ -64,17 +64,17 @@ export function Header() {
                         <Link
                           href="/vehicles"
                           className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground border border-transparent hover:border-primary/10">
-                          <div className="text-sm font-semibold leading-none">Véhicules</div>
+                          <div className="text-sm font-semibold leading-none">{t("headerDropdown.vehicles")}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
-                            Découvrez notre flotte premium
+                            {t("headerDropdown.discoverFleet")}
                           </p>
                         </Link>
                         <Link
                           href="/advantages"
                           className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground border border-transparent hover:border-primary/10">
-                          <div className="text-sm font-semibold leading-none">Avantages</div>
+                          <div className="text-sm font-semibold leading-none">{t("headerDropdown.advantages")}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
-                            Pourquoi nous choisir
+                            {t("headerDropdown.whyChooseUs")}
                           </p>
                         </Link>
                       </div>

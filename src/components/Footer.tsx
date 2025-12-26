@@ -1,7 +1,11 @@
+"use client"
+
 import Link from "next/link"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { useI18n } from "@/lib/i18n/context"
 
 export function Footer() {
+  const { t } = useI18n()
   return (
     <footer className="bg-foreground text-background border-t border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -14,12 +18,11 @@ export function Footer() {
               </div>
               <div>
                 <span className="text-2xl font-bold block leading-tight">Hern Taxi</span>
-                <span className="text-xs text-background/70 font-medium">Transport professionnel</span>
+                <span className="text-xs text-background/70 font-medium">{t("footer.tagline")}</span>
               </div>
             </Link>
             <p className="text-background/80 text-sm leading-relaxed">
-              Service de taxi professionnel pour tous vos déplacements. 
-              Fiabilité, ponctualité et confort garantis.
+              {t("footer.description")}
             </p>
             <div className="flex gap-3">
               <a href="tel:0123456789" className="bg-background/10 hover:bg-background/20 p-3 rounded-lg transition-all duration-200 border border-background/20 hover:border-background/30">
@@ -33,36 +36,36 @@ export function Footer() {
 
           {/* Services */}
           <div className="space-y-5">
-            <h3 className="text-lg font-bold text-background">Nos Services</h3>
+            <h3 className="text-lg font-bold text-background">{t("footer.services")}</h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/services" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Transfert aéroport
+                  {t("services.serviceTypes.aeroport")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Transport en ville
+                  {t("services.serviceTypes.ville")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Longue distance
+                  {t("services.serviceTypes.longue-distance")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Événements
+                  {t("services.serviceTypes.evenement")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Service express
+                  {t("services.serviceTypes.express")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Forfait journée
+                  {t("services.serviceTypes.forfait")}
                 </Link>
               </li>
             </ul>
@@ -70,36 +73,36 @@ export function Footer() {
 
           {/* Liens utiles */}
           <div className="space-y-5">
-            <h3 className="text-lg font-bold text-background">Liens utiles</h3>
+            <h3 className="text-lg font-bold text-background">{t("footer.usefulLinks")}</h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/about" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  À propos
+                  {t("header.about")}
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Contact
+                  {t("header.contact")}
                 </Link>
               </li>
               <li>
                 <Link href="/vehicles" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Véhicules
+                  {t("header.vehicles")}
                 </Link>
               </li>
               <li>
                 <Link href="/advantages" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Avantages
+                  {t("header.advantages")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  Tarifs
+                  {t("footer.prices")}
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-background/80 hover:text-background transition-colors duration-200 inline-block hover:translate-x-1">
-                  FAQ
+                  {t("footer.faq")}
                 </Link>
               </li>
             </ul>
@@ -107,7 +110,7 @@ export function Footer() {
 
           {/* Contact */}
           <div className="space-y-5">
-            <h3 className="text-lg font-bold text-background">Contact</h3>
+            <h3 className="text-lg font-bold text-background">{t("footer.contact")}</h3>
             <div className="space-y-4 text-sm">
               <div className="flex items-center gap-3">
                 <div className="bg-background/10 p-2 rounded-lg border border-background/20">
@@ -115,7 +118,7 @@ export function Footer() {
                 </div>
                 <div>
                   <a href="tel:0123456789" className="text-background font-semibold hover:text-primary transition-colors">01 23 45 67 89</a>
-                  <p className="text-background/70 text-xs">24h/24 - 7j/7</p>
+                  <p className="text-background/70 text-xs">{t("footer.availability")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -124,7 +127,7 @@ export function Footer() {
                 </div>
                 <div>
                   <a href="tel:0658686548" className="text-background font-semibold hover:text-primary transition-colors">06 58 68 65 48</a>
-                  <p className="text-background/70 text-xs">Mobile</p>
+                  <p className="text-background/70 text-xs">{t("footer.mobile")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -133,7 +136,7 @@ export function Footer() {
                 </div>
                 <div>
                   <p className="text-background font-semibold">contact@hern-taxi.fr</p>
-                  <p className="text-background/70 text-xs">Réponse sous 2h</p>
+                  <p className="text-background/70 text-xs">{t("footer.responseTime")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -141,8 +144,8 @@ export function Footer() {
                   <MapPin className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <p className="text-background font-semibold">Paris et région parisienne</p>
-                  <p className="text-background/70 text-xs">Rayon de 50km</p>
+                  <p className="text-background font-semibold">{t("footer.serviceArea")}</p>
+                  <p className="text-background/70 text-xs">{t("footer.serviceRadius")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -150,8 +153,8 @@ export function Footer() {
                   <Clock className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <p className="text-background font-semibold">24h/24 - 7j/7</p>
-                  <p className="text-background/70 text-xs">Tous les jours</p>
+                  <p className="text-background font-semibold">{t("footer.availability")}</p>
+                  <p className="text-background/70 text-xs">{t("footer.allDays")}</p>
                 </div>
               </div>
             </div>
@@ -161,17 +164,17 @@ export function Footer() {
         <div className="border-t border-background/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-background/70 text-sm text-center md:text-left">
-              © 2024 Hern Taxi. Tous droits réservés.
+              {t("footer.copyright")}
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/mentions-legales" className="text-background/70 hover:text-background transition-colors duration-200">
-                Mentions légales
+                {t("footer.legal")}
               </Link>
               <Link href="/confidentialite" className="text-background/70 hover:text-background transition-colors duration-200">
-                Confidentialité
+                {t("footer.privacy")}
               </Link>
               <Link href="/cgv" className="text-background/70 hover:text-background transition-colors duration-200">
-                CGV
+                {t("footer.terms")}
               </Link>
             </div>
           </div>

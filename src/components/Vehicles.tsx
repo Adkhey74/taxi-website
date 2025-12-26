@@ -1,43 +1,53 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Car, Users, Wifi, Shield, Clock } from "lucide-react"
-
-const vehicles = [
-  {
-    name: "Mercedes V-Class",
-    capacity: "1 à 7 passagers",
-    description: "Véhicule premium pour tous vos déplacements",
-    features: ["Confort supérieur", "Climatisation", "Sièges cuir", "Espace bagages"],
-    icon: Car,
-    color: "bg-gradient-to-br from-slate-700 to-slate-900",
-    image: "/api/placeholder/400/250"
-  },
-  {
-    name: "Skoda Kodiaq",
-    capacity: "1 à 6 passagers", 
-    description: "SUV moderne pour vos trajets urbains et longue distance",
-    features: ["4x4 disponible", "Confort optimal", "Technologie avancée", "Fiabilité"],
-    icon: Car,
-    color: "bg-gradient-to-br from-blue-600 to-cyan-600",
-    image: "/api/placeholder/400/250"
-  }
-]
+import { useI18n } from "@/lib/i18n/context"
 
 export function Vehicles() {
+  const { t } = useI18n()
+  
+  const vehicles = [
+    {
+      name: t("vehicles.mercedes.name") as string,
+      capacity: t("vehicles.mercedes.capacity") as string,
+      description: t("vehicles.mercedes.description") as string,
+      features: (() => {
+        const features = t("vehicles.mercedes.features")
+        return Array.isArray(features) ? features : []
+      })(),
+      icon: Car,
+      color: "bg-gradient-to-br from-slate-700 to-slate-900",
+      image: "/api/placeholder/400/250"
+    },
+    {
+      name: t("vehicles.skoda.name") as string,
+      capacity: t("vehicles.skoda.capacity") as string, 
+      description: t("vehicles.skoda.description") as string,
+      features: (() => {
+        const features = t("vehicles.skoda.features")
+        return Array.isArray(features) ? features : []
+      })(),
+      icon: Car,
+      color: "bg-gradient-to-br from-blue-600 to-cyan-600",
+      image: "/api/placeholder/400/250"
+    }
+  ]
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <span className="text-sm font-semibold text-primary">Notre Flotte</span>
+            <span className="text-sm font-semibold text-primary">{t("vehicles.ourFleet")}</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            Véhicules
+            {t("vehicles.title")}
             <span className="block mt-2 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
-              Premium
+              {t("vehicles.titleHighlight")}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Des véhicules modernes et confortables pour tous vos déplacements
+            {t("vehicles.description")}
           </p>
         </div>
 
@@ -90,32 +100,32 @@ export function Vehicles() {
             <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
               <Shield className="h-10 w-10 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2 text-foreground">Sécurité</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">Véhicules entretenus et contrôlés régulièrement</p>
+            <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.security.title")}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.security.description")}</p>
           </div>
           
           <div className="text-center group">
             <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
               <Users className="h-10 w-10 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2 text-foreground">Capacité</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">De 1 à 7 passagers selon vos besoins</p>
+            <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.capacity.title")}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.capacity.description")}</p>
           </div>
           
           <div className="text-center group">
             <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
               <Wifi className="h-10 w-10 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2 text-foreground">Confort</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">Climatisation, WiFi, sièges confortables</p>
+            <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.comfort.title")}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.comfort.description")}</p>
           </div>
           
           <div className="text-center group">
             <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
               <Clock className="h-10 w-10 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2 text-foreground">Disponibilité</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">Flotte disponible 24h/24, 7j/7</p>
+            <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.availability.title")}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.availability.description")}</p>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { translations, Locale } from "./translations"
 type I18nContextType = {
   locale: Locale
   setLocale: (locale: Locale) => void
-  t: (key: string) => string
+  t: (key: string) => string | string[]
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
@@ -27,7 +27,7 @@ export function I18nProvider({ children, defaultLocale = "fr" }: { children: Rea
     localStorage.setItem("locale", newLocale)
   }
 
-  const t = (key: string): string => {
+  const t = (key: string): string | string[] => {
     const keys = key.split(".")
     let value: unknown = translations[locale]
 
@@ -48,7 +48,10 @@ export function I18nProvider({ children, defaultLocale = "fr" }: { children: Rea
       }
     }
 
-    return typeof value === "string" ? value : key
+    if (typeof value === "string" || Array.isArray(value)) {
+      return value
+    }
+    return key
   }
 
   return (

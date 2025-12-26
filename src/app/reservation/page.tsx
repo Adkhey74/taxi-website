@@ -77,7 +77,7 @@ function ReservationForm() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || "Erreur lors de la création de la réservation")
+        throw new Error(data.error || t("reservation.errorCreating"))
       }
 
       setSubmitStatus("success")
@@ -102,7 +102,7 @@ function ReservationForm() {
       }, 3000)
     } catch (error) {
       setSubmitStatus("error")
-      setErrorMessage(error instanceof Error ? error.message : "Une erreur est survenue")
+      setErrorMessage(error instanceof Error ? error.message : t("reservation.errorOccurred"))
     } finally {
       setIsSubmitting(false)
     }

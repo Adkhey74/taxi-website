@@ -6,47 +6,48 @@ import { CheckCircle, Clock, Euro, Shield, Star, Phone } from "lucide-react"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
 
-const advantages = [
-  {
-    icon: CheckCircle,
-    title: "Taxi Conventionné",
-    description: "Service agréé et conventionné pour tous vos besoins de transport",
-    color: "bg-gradient-to-br from-green-500 to-green-600"
-  },
-  {
-    icon: Clock,
-    title: "Disponible 24h/24",
-    description: "Service continu toute l'année, même les jours fériés",
-    color: "bg-gradient-to-br from-blue-500 to-blue-600"
-  },
-  {
-    icon: Euro,
-    title: "Tarifs Réglementés",
-    description: "Tarifs officiels et transparents, pas de surprise",
-    color: "bg-gradient-to-br from-yellow-500 to-orange-500"
-  },
-  {
-    icon: Shield,
-    title: "Chauffeurs Expérimentés",
-    description: "Professionnels formés et expérimentés pour votre sécurité",
-    color: "bg-gradient-to-br from-purple-500 to-purple-600"
-  },
-  {
-    icon: Star,
-    title: "Service Premium",
-    description: "Confort et qualité garantis pour tous vos déplacements",
-    color: "bg-gradient-to-br from-orange-500 to-red-500"
-  },
-  {
-    icon: Phone,
-    title: "Réservation Facile",
-    description: "Réservation à l'avance ou à la dernière minute",
-    color: "bg-gradient-to-br from-teal-500 to-teal-600"
-  }
-]
 
 export function Advantages() {
   const { t } = useI18n()
+  
+  const advantages = [
+    {
+      icon: CheckCircle,
+      titleKey: "advantagesData.conventionne.title",
+      descriptionKey: "advantagesData.conventionne.description",
+      color: "bg-gradient-to-br from-green-500 to-green-600"
+    },
+    {
+      icon: Clock,
+      titleKey: "advantagesData.available24h.title",
+      descriptionKey: "advantagesData.available24h.description",
+      color: "bg-gradient-to-br from-blue-500 to-blue-600"
+    },
+    {
+      icon: Euro,
+      titleKey: "advantagesData.tarifs.title",
+      descriptionKey: "advantagesData.tarifs.description",
+      color: "bg-gradient-to-br from-yellow-500 to-orange-500"
+    },
+    {
+      icon: Shield,
+      titleKey: "advantagesData.chauffeurs.title",
+      descriptionKey: "advantagesData.chauffeurs.description",
+      color: "bg-gradient-to-br from-purple-500 to-purple-600"
+    },
+    {
+      icon: Star,
+      titleKey: "advantagesData.premium.title",
+      descriptionKey: "advantagesData.premium.description",
+      color: "bg-gradient-to-br from-orange-500 to-red-500"
+    },
+    {
+      icon: Phone,
+      titleKey: "advantagesData.reservation.title",
+      descriptionKey: "advantagesData.reservation.description",
+      color: "bg-gradient-to-br from-teal-500 to-teal-600"
+    }
+  ]
   
   return (
     <section className="py-24 bg-gradient-to-b from-muted/30 to-background">
@@ -75,9 +76,9 @@ export function Advantages() {
                   <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
                     <IconComponent className="h-10 w-10 text-primary" />
                   </div>
-                  <CardTitle className="text-xl text-foreground mb-2">{advantage.title}</CardTitle>
+                  <CardTitle className="text-xl text-foreground mb-2">{t(advantage.titleKey)}</CardTitle>
                   <CardDescription className="text-base text-muted-foreground leading-relaxed">
-                    {advantage.description}
+                    {t(advantage.descriptionKey)}
                   </CardDescription>
                 </CardHeader>
               </Card>
