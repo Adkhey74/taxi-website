@@ -183,7 +183,7 @@ function ReservationForm() {
                       onChange={handleChange}
                       required
                       className="h-11"
-                      placeholder={t("reservation.firstNamePlaceholder")}
+                      placeholder={t("reservation.firstNamePlaceholder") as string}
                     />
                   </div>
                   <div className="space-y-2">
@@ -197,7 +197,7 @@ function ReservationForm() {
                       onChange={handleChange}
                       required
                       className="h-11"
-                      placeholder={t("reservation.lastNamePlaceholder")}
+                      placeholder={t("reservation.lastNamePlaceholder") as string}
                     />
                   </div>
                 </div>
@@ -215,7 +215,7 @@ function ReservationForm() {
                       onChange={handleChange}
                       required
                       className="h-11"
-                      placeholder={t("reservation.emailPlaceholder")}
+                      placeholder={t("reservation.emailPlaceholder") as string}
                     />
                   </div>
                   <div className="space-y-2">
@@ -230,7 +230,7 @@ function ReservationForm() {
                       onChange={handleChange}
                       required
                       className="h-11"
-                      placeholder={t("reservation.phonePlaceholder")}
+                      placeholder={t("reservation.phonePlaceholder") as string}
                     />
                   </div>
                 </div>
@@ -275,7 +275,7 @@ function ReservationForm() {
                     onChange={handleChange}
                     required
                     className="h-11"
-                    placeholder={t("reservation.pickupAddressPlaceholder")}
+                    placeholder={t("reservation.pickupAddressPlaceholder") as string}
                   />
                 </div>
 
@@ -290,7 +290,7 @@ function ReservationForm() {
                     onChange={handleChange}
                     required
                     className="h-11"
-                    placeholder={t("reservation.dropoffAddressPlaceholder")}
+                    placeholder={t("reservation.dropoffAddressPlaceholder") as string}
                   />
                 </div>
 
@@ -370,7 +370,7 @@ function ReservationForm() {
                       value={formData.flightNumber}
                       onChange={handleChange}
                       className="h-11"
-                      placeholder={t("reservation.flightNumberPlaceholder")}
+                      placeholder={t("reservation.flightNumberPlaceholder") as string}
                     />
                   </div>
                 )}
@@ -385,7 +385,7 @@ function ReservationForm() {
                     value={formData.notes}
                     onChange={handleChange}
                     rows={4}
-                    placeholder={t("reservation.notesPlaceholder")}
+                    placeholder={t("reservation.notesPlaceholder") as string}
                     className="resize-none"
                   />
                 </div>
