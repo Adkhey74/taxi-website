@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { CreateReservationInput, UpdateReservationInput } from '@/types/reservation'
-import { ReservationStatus } from '@prisma/client'
+import { CreateReservationInput } from '@/types/reservation'
+import { ReservationStatus, Prisma } from '@prisma/client'
 
 // GET - Récupérer toutes les réservations ou filtrer
 export async function GET(request: NextRequest) {
@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     const clientId = searchParams.get('clientId')
     const date = searchParams.get('date')
 
-    const where: any = {}
+    const where: Prisma.ReservationWhereInput = {}
     
     if (status) {
       where.status = status as ReservationStatus

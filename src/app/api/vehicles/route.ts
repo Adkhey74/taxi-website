@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { Prisma } from '@prisma/client'
 
 // GET - Récupérer tous les véhicules
 export async function GET(request: NextRequest) {
@@ -7,7 +8,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const availableOnly = searchParams.get('available') === 'true'
 
-    const where: any = {}
+    const where: Prisma.VehicleWhereInput = {}
     
     if (availableOnly) {
       where.isAvailable = true

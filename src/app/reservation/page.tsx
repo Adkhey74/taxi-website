@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, Clock, MapPin, Users, Luggage, Plane, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
+import { Calendar, Clock, MapPin, Users, Plane, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
 
@@ -48,6 +48,7 @@ export default function ReservationPage() {
     if (serviceParam && serviceTypes.some(s => s.value === serviceParam)) {
       setFormData(prev => ({ ...prev, serviceType: serviceParam as ServiceType }))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -107,7 +108,6 @@ export default function ReservationPage() {
     }
   }
 
-  const selectedService = serviceTypes.find(s => s.value === formData.serviceType)
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-background to-muted/30 py-12 lg:py-20">

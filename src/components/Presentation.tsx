@@ -42,18 +42,18 @@ export function Presentation() {
                   
                   <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
                     <p>
-                      <strong className="text-foreground">Hern Taxi</strong> vous propose ses services afin d'effectuer tous vos déplacements 
-                      en toute simplicité. L'avantage d'un service toutes distances toute l'année est avant tout 
+                      <strong className="text-foreground">Hern Taxi</strong> vous propose ses services afin d&apos;effectuer tous vos déplacements 
+                      en toute simplicité. L&apos;avantage d&apos;un service toutes distances toute l&apos;année est avant tout 
                       la <strong className="text-foreground">flexibilité</strong>.
                     </p>
                     
                     <p>
-                      Ainsi qu'elle que soient les conditions de circulation ou les motifs de votre déplacement, 
+                      Ainsi qu&apos;elle que soient les conditions de circulation ou les motifs de votre déplacement, 
                       vous trouverez un chauffeur taxi disponible et attentif à vos besoins en nous contactant.
                     </p>
                     
                     <p>
-                      Outre la région parisienne et l'Île-de-France, nous pouvons vous conduire également 
+                      Outre la région parisienne et l&apos;Île-de-France, nous pouvons vous conduire également 
                       partout en France et même dans les pays limitrophes.
                     </p>
                   </div>

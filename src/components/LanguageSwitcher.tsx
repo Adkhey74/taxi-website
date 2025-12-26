@@ -1,7 +1,6 @@
 "use client"
 
 import { useI18n } from "@/lib/i18n/context"
-import { Button } from "@/components/ui/button"
 import { Globe } from "lucide-react"
 import {
   NavigationMenu,

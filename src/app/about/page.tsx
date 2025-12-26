@@ -2,12 +2,8 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Star, Shield, Clock, Users, Award, Phone, MapPin, Car } from "lucide-react"
+import { Star, Shield, Clock, Users, Award, Phone } from "lucide-react"
 import Link from "next/link"
-import { useI18n } from "@/lib/i18n/context"
-
-export default function AboutPage() {
-  const { t } = useI18n()
   
   return (
     <main className="min-h-screen bg-background">
@@ -58,12 +54,12 @@ export default function AboutPage() {
                     et nos véhicules modernes nous permettent de répondre à tous vos besoins de déplacement.
                   </p>
                   <p>
-                    Que ce soit pour un transfert vers l'aéroport, un déplacement en ville ou un voyage 
+                    Que ce soit pour un transfert vers l&apos;aéroport, un déplacement en ville ou un voyage 
                     longue distance, nous nous engageons à vous offrir un service de qualité avec ponctualité, 
                     confort et sécurité.
                   </p>
                   <p>
-                    Aujourd'hui, nous sommes fiers de compter plus de 50 chauffeurs professionnels et 
+                    Aujourd&apos;hui, nous sommes fiers de compter plus de 50 chauffeurs professionnels et 
                     une flotte de véhicules modernes pour vous servir <strong className="text-foreground">24h/24, 7j/7</strong>.
                   </p>
                 </div>
@@ -96,7 +92,7 @@ export default function AboutPage() {
                 </div>
                 <CardTitle className="text-xl text-foreground mb-2">Ponctualité</CardTitle>
                 <CardDescription className="text-base text-muted-foreground leading-relaxed">
-                  Nous respectons vos horaires et nous engageons à être toujours à l'heure
+                  Nous respectons vos horaires et nous engageons à être toujours à l&apos;heure
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -144,7 +140,7 @@ export default function AboutPage() {
                 </div>
                 <CardTitle className="text-xl text-foreground mb-2">Expérience</CardTitle>
                 <CardDescription className="text-base text-muted-foreground leading-relaxed">
-                  Plus de 10 ans d'expérience dans le transport de personnes
+                  Plus de 10 ans d&apos;expérience dans le transport de personnes
                 </CardDescription>
               </CardHeader>
             </Card>

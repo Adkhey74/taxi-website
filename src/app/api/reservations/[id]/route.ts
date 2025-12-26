@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { UpdateReservationInput } from '@/types/reservation'
+import { Prisma } from '@prisma/client'
 
 // GET - Récupérer une réservation par ID
 export async function GET(
@@ -55,7 +56,7 @@ export async function PATCH(
     }
 
     // Préparer les données de mise à jour
-    const updateData: any = {}
+    const updateData: Prisma.ReservationUpdateInput = {}
 
     if (body.status) {
       updateData.status = body.status
