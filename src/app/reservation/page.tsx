@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,7 @@ import { Calendar, Clock, MapPin, Users, Plane, CheckCircle, AlertCircle, Loader
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
 
-export default function ReservationPage() {
+function ReservationForm() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const { t } = useI18n()
@@ -424,6 +424,25 @@ export default function ReservationPage() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function ReservationPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-gradient-to-b from-background to-muted/30 py-12 lg:py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-muted rounded w-1/3 mx-auto mb-4"></div>
+              <div className="h-4 bg-muted rounded w-1/2 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    }>
+      <ReservationForm />
+    </Suspense>
   )
 }
 
