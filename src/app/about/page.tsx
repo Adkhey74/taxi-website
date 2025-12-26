@@ -200,7 +200,7 @@ export default function AboutPage() {
               <div className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
                 10+
               </div>
-              <div className="text-background/80 text-lg font-medium">Années d'expérience</div>
+              <div className="text-background/80 text-lg font-medium">Années d&apos;expérience</div>
             </div>
           </div>
         </div>
