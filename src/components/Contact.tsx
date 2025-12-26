@@ -41,13 +41,13 @@ export function Contact() {
                     <label htmlFor="firstName" className="block text-sm font-semibold text-foreground">
                       {t("contact.firstName")}
                     </label>
-                    <Input id="firstName" placeholder={t("contact.firstNamePlaceholder")} className="h-11" />
+                    <Input id="firstName" placeholder={t("contact.firstNamePlaceholder") as string} className="h-11" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="lastName" className="block text-sm font-semibold text-foreground">
                       {t("contact.lastName")}
                     </label>
-                    <Input id="lastName" placeholder={t("contact.lastNamePlaceholder")} className="h-11" />
+                    <Input id="lastName" placeholder={t("contact.lastNamePlaceholder") as string} className="h-11" />
                   </div>
                 </div>
 
@@ -55,14 +55,14 @@ export function Contact() {
                   <label htmlFor="email" className="block text-sm font-semibold text-foreground">
                     {t("contact.email")}
                   </label>
-                  <Input id="email" type="email" placeholder={t("contact.emailPlaceholder")} className="h-11" />
+                  <Input id="email" type="email" placeholder={t("contact.emailPlaceholder") as string} className="h-11" />
                 </div>
 
                 <div className="space-y-2">
                   <label htmlFor="phone" className="block text-sm font-semibold text-foreground">
                     {t("contact.phone")}
                   </label>
-                  <Input id="phone" type="tel" placeholder={t("contact.phonePlaceholder")} className="h-11" />
+                  <Input id="phone" type="tel" placeholder={t("contact.phonePlaceholder") as string} className="h-11" />
                 </div>
 
                 <div className="space-y-2">
@@ -89,7 +89,7 @@ export function Contact() {
                   </label>
                   <Textarea 
                     id="message" 
-                    placeholder={t("contact.messagePlaceholder")} 
+                    placeholder={t("contact.messagePlaceholder") as string} 
                     rows={5}
                     className="resize-none"
                   />
