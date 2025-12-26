@@ -4,7 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Star, Shield, Clock, Users, Award, Phone } from "lucide-react"
 import Link from "next/link"
-  
+
+export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
