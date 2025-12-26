@@ -3,7 +3,6 @@
 import { MessageCircle } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 
-const WHATSAPP_NUMBER = "33658686548"
 const WHATSAPP_LINK_FR = "https://api.whatsapp.com/send?phone=33658686548&text=Bonjour%20je%20souhaite%20r%C3%A9server%20un%20taxi."
 const WHATSAPP_LINK_EN = "https://api.whatsapp.com/send?phone=33658686548&text=Hello%20I%20would%20like%20to%20book%20a%20taxi."
 

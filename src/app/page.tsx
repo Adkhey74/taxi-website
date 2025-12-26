@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle, Car, Shield, Clock, Star } from "lucide-react"
+import { Phone, MessageCircle, Car, Shield, Clock } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {

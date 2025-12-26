@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Phone, MessageCircle, MapPin, CheckCircle, Send } from "lucide-react"
 import { useState } from "react"
-import Link from "next/link"
 
 export default function ZonesContactPage() {
   const { t } = useI18n()
@@ -38,7 +37,7 @@ export default function ZonesContactPage() {
       setSubmitStatus("success")
       setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" })
       setTimeout(() => setSubmitStatus(null), 3000)
-    } catch (error) {
+    } catch {
       setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)

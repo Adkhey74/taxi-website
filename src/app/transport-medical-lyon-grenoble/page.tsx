@@ -97,7 +97,7 @@ export default function TransportMedicalLyonGrenoblePage() {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-6">Besoin d'un transport vers Lyon ou Grenoble ?</h2>
+            <h2 className="text-2xl font-bold mb-6">Besoin d&apos;un transport vers Lyon ou Grenoble ?</h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 py-7 text-lg">
                 <Link href="/zones-contact" className="flex items-center">
