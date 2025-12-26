@@ -102,7 +102,7 @@ function ReservationForm() {
       }, 3000)
     } catch (error) {
       setSubmitStatus("error")
-      setErrorMessage(error instanceof Error ? error.message : t("reservation.errorOccurred"))
+      setErrorMessage(error instanceof Error ? error.message : t("reservation.errorOccurred") as string)
     } finally {
       setIsSubmitting(false)
     }
