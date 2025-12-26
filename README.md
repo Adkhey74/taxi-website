@@ -5,10 +5,14 @@ Site vitrine professionnel pour une entreprise de transport en taxi, développé
 ## 🚀 Fonctionnalités
 
 - **Page d'accueil** avec section hero, services et contact
+- **Système de réservation** complet avec base de données
+- **Internationalisation** (FR/EN) avec sélecteur de langue
 - **Navigation** responsive avec menu déroulant
 - **Services détaillés** : aéroport, ville, longue distance, événements, express, forfait journée
 - **Page de contact** avec formulaire de demande de devis
+- **Page de réservation** avec formulaire complet
 - **Page à propos** avec historique et valeurs de l'entreprise
+- **API REST** pour la gestion des réservations
 - **Design responsive** optimisé pour mobile, tablette et desktop
 - **Interface moderne** avec shadcn/ui et TailwindCSS
 
@@ -19,6 +23,9 @@ Site vitrine professionnel pour une entreprise de transport en taxi, développé
 - **TailwindCSS** - Framework CSS utility-first
 - **shadcn/ui** - Composants UI modernes et accessibles
 - **Lucide React** - Icônes SVG optimisées
+- **Prisma** - ORM pour la gestion de base de données
+- **PostgreSQL** - Base de données relationnelle
+- **i18n** - Système d'internationalisation (FR/EN)
 
 ## 📦 Installation
 
@@ -88,10 +95,23 @@ Le site est entièrement responsive et optimisé pour :
 
 ## 🚀 Déploiement
 
-Le projet est prêt pour le déploiement sur :
-- **Vercel** (recommandé)
+### Railway (Recommandé pour ce projet)
+
+Le projet est configuré pour être déployé sur Railway avec support de la base de données PostgreSQL.
+
+**Voir le guide complet** : [RAILWAY-DEPLOY.md](./RAILWAY-DEPLOY.md)
+
+**Déploiement rapide :**
+1. Créez un compte sur [Railway](https://railway.app)
+2. Connectez votre dépôt GitHub
+3. Ajoutez un service PostgreSQL
+4. Railway détectera automatiquement Next.js et déploiera l'application
+
+### Autres plateformes
+
+Le projet peut également être déployé sur :
+- **Vercel** (recommandé pour Next.js sans DB)
 - **Netlify**
-- **Railway**
 - **Docker**
 
 ```bash
@@ -101,6 +121,10 @@ npm run build
 # Démarrage en production
 npm start
 ```
+
+### Base de données
+
+Le projet utilise Prisma avec PostgreSQL. Voir [MIGRATION-GUIDE.md](./MIGRATION-GUIDE.md) pour la configuration locale.
 
 ## 📄 Licence
 
