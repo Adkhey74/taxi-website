@@ -73,11 +73,19 @@ export async function PATCH(
     }
 
     if (body.vehicleId !== undefined) {
-      updateData.vehicleId = body.vehicleId
+      if (body.vehicleId === null) {
+        updateData.vehicle = { disconnect: true }
+      } else {
+        updateData.vehicle = { connect: { id: body.vehicleId } }
+      }
     }
 
     if (body.driverId !== undefined) {
-      updateData.driverId = body.driverId
+      if (body.driverId === null) {
+        updateData.driver = { disconnect: true }
+      } else {
+        updateData.driver = { connect: { id: body.driverId } }
+      }
     }
 
     if (body.estimatedPrice !== undefined) {
