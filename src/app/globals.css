@@ -45,71 +45,85 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.99 0 0);
-  --foreground: oklch(0.15 0.02 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.02 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.02 260);
-  --primary: oklch(0.45 0.15 250);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.01 260);
-  --secondary-foreground: oklch(0.25 0.02 260);
-  --muted: oklch(0.96 0.01 260);
-  --muted-foreground: oklch(0.5 0.01 260);
-  --accent: oklch(0.95 0.02 260);
-  --accent-foreground: oklch(0.25 0.02 260);
-  --destructive: oklch(0.55 0.22 25);
-  --border: oklch(0.9 0.01 260);
-  --input: oklch(0.95 0.01 260);
-  --ring: oklch(0.45 0.15 250);
-  --chart-1: oklch(0.65 0.2 250);
-  --chart-2: oklch(0.6 0.15 180);
-  --chart-3: oklch(0.55 0.2 60);
-  --chart-4: oklch(0.7 0.15 300);
-  --chart-5: oklch(0.75 0.15 20);
-  --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.15 0.02 260);
-  --sidebar-primary: oklch(0.45 0.15 250);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.96 0.01 260);
-  --sidebar-accent-foreground: oklch(0.25 0.02 260);
-  --sidebar-border: oklch(0.9 0.01 260);
-  --sidebar-ring: oklch(0.45 0.15 250);
+  /* Premium palette noir/blanc */
+  /* Noir premium (couleur principale) */
+  --primary: #000000;
+  --primary-foreground: #FFFFFF;
+  /* Accent gris foncé */
+  --accent: #1A1A1A;
+  --accent-foreground: #FFFFFF;
+  /* Blanc pur (fond principal) */
+  --background: #FFFFFF;
+  --card: #FFFFFF;
+  --popover: #FFFFFF;
+  /* Gris très clair (fonds secondaires) */
+  --muted: #FAFAFA;
+  --secondary: #FAFAFA;
+  /* Noir (texte principal) */
+  --foreground: #000000;
+  --card-foreground: #000000;
+  --popover-foreground: #000000;
+  /* Gris texte secondaire */
+  --muted-foreground: #6B7280;
+  --secondary-foreground: #000000;
+  /* Bordures */
+  --border: #E5E5E5;
+  --input: #FFFFFF;
+  --ring: #000000;
+  /* Destructive */
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  /* Charts */
+  --chart-1: #000000;
+  --chart-2: #1A1A1A;
+  --chart-3: #6B7280;
+  --chart-4: #E5E5E5;
+  --chart-5: #FAFAFA;
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #FAFAFA;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #E5E5E5;
+  --sidebar-ring: #000000;
 }
 
 .dark {
-  --background: oklch(0.12 0.02 260);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.18 0.02 260);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.18 0.02 260);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.65 0.15 250);
-  --primary-foreground: oklch(0.12 0.02 260);
-  --secondary: oklch(0.22 0.02 260);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.02 260);
-  --muted-foreground: oklch(0.65 0.01 260);
-  --accent: oklch(0.25 0.02 260);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.65 0.2 25);
-  --border: oklch(0.25 0.02 260);
-  --input: oklch(0.25 0.02 260);
-  --ring: oklch(0.65 0.15 250);
-  --chart-1: oklch(0.7 0.2 250);
-  --chart-2: oklch(0.65 0.15 180);
-  --chart-3: oklch(0.6 0.2 60);
-  --chart-4: oklch(0.75 0.15 300);
-  --chart-5: oklch(0.8 0.15 20);
-  --sidebar: oklch(0.15 0.02 260);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.65 0.15 250);
-  --sidebar-primary-foreground: oklch(0.12 0.02 260);
-  --sidebar-accent: oklch(0.22 0.02 260);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.25 0.02 260);
-  --sidebar-ring: oklch(0.65 0.15 250);
+  /* Dark mode premium - inversion noir/blanc */
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --card: #1A1A1A;
+  --card-foreground: #FFFFFF;
+  --popover: #1A1A1A;
+  --popover-foreground: #FFFFFF;
+  --primary: #FFFFFF;
+  --primary-foreground: #000000;
+  --secondary: #2A2A2A;
+  --secondary-foreground: #FFFFFF;
+  --muted: #2A2A2A;
+  --muted-foreground: #9CA3AF;
+  --accent: #2A2A2A;
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #2A2A2A;
+  --input: #1A1A1A;
+  --ring: #FFFFFF;
+  --chart-1: #FFFFFF;
+  --chart-2: #2A2A2A;
+  --chart-3: #6B7280;
+  --chart-4: #1A1A1A;
+  --chart-5: #000000;
+  --sidebar: #000000;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #2A2A2A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2A2A2A;
+  --sidebar-ring: #FFFFFF;
 }
 
 @layer base {
@@ -141,5 +155,53 @@
   
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-muted-foreground/50;
+  }
+}
+
+@layer utilities {
+  /* Bouton premium "Réserver maintenant" */
+  .btn-premium {
+    background-color: #0B1F33;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-premium:hover {
+    background-color: #C9A24D;
+    color: #0B1F33;
+  }
+  
+  /* Bouton secondaire premium */
+  .btn-premium-outline {
+    background-color: #FFFFFF;
+    border: 2px solid #0B1F33;
+    color: #0B1F33;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-premium-outline:hover {
+    background-color: #ECEFF3;
+    border-color: #0B1F33;
+  }
+  
+  /* Lien premium */
+  .link-premium {
+    color: #0B1F33;
+    transition: color 0.3s ease;
+  }
+  
+  .link-premium:hover {
+    color: #C9A24D;
+  }
+  
+  /* Fond section alternée */
+  .bg-section-alt {
+    background-color: #ECEFF3;
+  }
+  
+  /* Fond carte premium */
+  .bg-card-premium {
+    background-color: #FFFFFF;
+    border: 1px solid #ECEFF3;
   }
 }

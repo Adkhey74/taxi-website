@@ -13,7 +13,7 @@ export function Header() {
   const { t } = useI18n()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80 shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background backdrop-blur-md supports-[backdrop-filter]:bg-background/95 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo à gauche */}
@@ -21,8 +21,8 @@ export function Header() {
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 shadow-lg shadow-primary/20 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all duration-300 group-hover:scale-105">
               <span className="text-2xl font-bold text-primary-foreground">H</span>
             </div>
-            <div>
-              <span className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors block leading-tight">
+            <div className="flex flex-col">
+              <span className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-nowrap">
                 Hern Taxi
               </span>
               <span className="text-xs text-muted-foreground font-medium">{t("footer.tagline")}</span>
@@ -35,63 +35,65 @@ export function Header() {
               <NavigationMenuList className="space-x-1">
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/" className="group inline-flex h-11 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none data-[active]:bg-accent data-[active]:text-accent-foreground">
+                    <Link href="/" className="group inline-flex h-11 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus:outline-none data-[active]:bg-muted data-[active]:text-foreground">
                       {t("header.home")}
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="h-11 px-4 text-sm font-semibold data-[state=open]:bg-accent data-[state=open]:text-accent-foreground">
-                    {t("header.services")}
+                  <NavigationMenuTrigger className="h-11 px-4 text-sm font-semibold data-[state=open]:bg-muted data-[state=open]:text-foreground">
+                    {t("header.medical")}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px]">
-                      <div className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <Link
-                            className="flex h-full w-full select-none flex-col justify-end rounded-xl bg-gradient-to-b from-primary/5 via-primary/10 to-primary/5 p-6 no-underline outline-none focus:shadow-lg border border-primary/10 hover:border-primary/20 transition-all duration-200"
-                            href="/services">
-                            <div className="mb-2 mt-4 text-lg font-bold text-foreground">
-                              {t("headerDropdown.ourServices")}
-                            </div>
-                            <p className="text-sm leading-relaxed text-muted-foreground">
-                              {t("headerDropdown.discoverServices")}
-                            </p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </div>
-                      <div className="grid gap-2">
+                  <NavigationMenuContent className="bg-card border border-border shadow-lg">
+                    <div className="grid gap-3 p-6 w-[300px]">
+                      <NavigationMenuLink asChild>
                         <Link
-                          href="/vehicles"
-                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground border border-transparent hover:border-primary/10">
-                          <div className="text-sm font-semibold leading-none">{t("headerDropdown.vehicles")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
-                            {t("headerDropdown.discoverFleet")}
-                          </p>
+                          href="/transport-medical-cpam"
+                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
+                        >
+                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.medicalCPAM")}</div>
                         </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
                         <Link
-                          href="/advantages"
-                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground border border-transparent hover:border-primary/10">
-                          <div className="text-sm font-semibold leading-none">{t("headerDropdown.advantages")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
-                            {t("headerDropdown.whyChooseUs")}
-                          </p>
+                          href="/transport-medical-lyon-grenoble"
+                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
+                        >
+                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.medicalLyonGrenoble")}</div>
                         </Link>
-                      </div>
+                      </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="h-11 px-4 text-sm font-semibold data-[state=open]:bg-muted data-[state=open]:text-foreground">
+                    {t("header.transfers")}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="bg-card border border-border shadow-lg">
+                    <div className="grid gap-3 p-6 w-[300px]">
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href="/taxi-aeroport"
+                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
+                        >
+                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.airport")}</div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href="/transfert-stations-ski"
+                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
+                        >
+                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.ski")}</div>
+                        </Link>
+                      </NavigationMenuLink>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/about" className="group inline-flex h-11 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none data-[active]:bg-accent data-[active]:text-accent-foreground">
-                      {t("header.about")}
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link href="/contact" className="group inline-flex h-11 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none data-[active]:bg-accent data-[active]:text-accent-foreground">
-                      {t("header.contact")}
+                    <Link href="/zones-contact" className="group inline-flex h-11 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus:outline-none data-[active]:bg-muted data-[active]:text-foreground">
+                      {t("header.zonesContact")}
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
@@ -106,8 +108,8 @@ export function Header() {
               size="sm" 
               className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground border-0 shadow-md hover:shadow-lg transition-all duration-200 font-semibold h-10 px-4"
             >
-              <Link href="/reservation" className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-primary-foreground [&_circle]:hidden" />
+              <Link href="/zones-contact#contact" className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 [&_circle]:hidden" />
                 <span className="hidden lg:inline">{t("header.bookNow")}</span>
                 <span className="lg:hidden">{t("header.book")}</span>
               </Link>
@@ -138,45 +140,47 @@ export function Header() {
             <div className="px-4 py-6 space-y-2">
               <Link
                 href="/"
-                className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200 font-medium"
+                className="block px-4 py-3 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t("header.home")}
               </Link>
+              <div className="px-4 py-2 text-sm font-semibold text-muted-foreground">{t("header.medical")}</div>
               <Link
-                href="/services"
-                className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200 font-medium"
+                href="/transport-medical-cpam"
+                className="block px-6 py-2 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium text-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t("header.services")}
+                {t("header.medicalCPAM")}
               </Link>
               <Link
-                href="/vehicles"
-                className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200 font-medium"
+                href="/transport-medical-lyon-grenoble"
+                className="block px-6 py-2 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium text-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t("header.vehicles")}
+                {t("header.medicalLyonGrenoble")}
+              </Link>
+              <div className="px-4 py-2 text-sm font-semibold text-muted-foreground">{t("header.transfers")}</div>
+              <Link
+                href="/taxi-aeroport"
+                className="block px-6 py-2 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium text-sm"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("header.airport")}
               </Link>
               <Link
-                href="/advantages"
-                className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200 font-medium"
+                href="/transfert-stations-ski"
+                className="block px-6 py-2 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium text-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t("header.advantages")}
+                {t("header.ski")}
               </Link>
               <Link
-                href="/about"
-                className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200 font-medium"
+                href="/zones-contact"
+                className="block px-4 py-3 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t("header.about")}
-              </Link>
-              <Link
-                href="/contact"
-                className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200 font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t("header.contact")}
+                {t("header.zonesContact")}
               </Link>
               
               {/* Bouton Réserver mobile */}
@@ -185,8 +189,8 @@ export function Header() {
                   asChild 
                   className="w-full gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-11 shadow-md hover:shadow-lg transition-all duration-200"
                 >
-                  <Link href="/reservation" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2">
-                    <Calendar className="h-4 w-4 text-primary-foreground [&_circle]:hidden" />
+                  <Link href="/zones-contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2">
+                    <Calendar className="h-4 w-4 [&_circle]:hidden" />
                     {t("header.bookNow")}
                   </Link>
                 </Button>
