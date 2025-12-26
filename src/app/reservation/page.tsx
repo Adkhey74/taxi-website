@@ -16,12 +16,12 @@ function ReservationForm() {
   const { t } = useI18n()
   
   const serviceTypes: { value: ServiceType; label: string; icon: typeof Plane }[] = [
-    { value: "aeroport", label: t("services.serviceTypes.aeroport"), icon: Plane },
-    { value: "ville", label: t("services.serviceTypes.ville"), icon: MapPin },
-    { value: "longue-distance", label: t("services.serviceTypes.longue-distance"), icon: MapPin },
-    { value: "evenement", label: t("services.serviceTypes.evenement"), icon: Users },
-    { value: "express", label: t("services.serviceTypes.express"), icon: Clock },
-    { value: "forfait", label: t("services.serviceTypes.forfait"), icon: Calendar },
+    { value: "aeroport", label: t("services.serviceTypes.aeroport") as string, icon: Plane },
+    { value: "ville", label: t("services.serviceTypes.ville") as string, icon: MapPin },
+    { value: "longue-distance", label: t("services.serviceTypes.longue-distance") as string, icon: MapPin },
+    { value: "evenement", label: t("services.serviceTypes.evenement") as string, icon: Users },
+    { value: "express", label: t("services.serviceTypes.express") as string, icon: Clock },
+    { value: "forfait", label: t("services.serviceTypes.forfait") as string, icon: Calendar },
   ]
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)
