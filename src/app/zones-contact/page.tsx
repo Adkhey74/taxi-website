@@ -518,7 +518,7 @@ export default function ZonesContactPage() {
 
             <div className="mt-12 text-center">
               <p className="text-muted-foreground mb-6">
-                {t("zonesContact.zones.note")}
+                {t("zonesContact.reservation.transferNote")}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div className="bg-muted/50 rounded-xl p-6">
