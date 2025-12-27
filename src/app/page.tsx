@@ -12,7 +12,10 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center bg-background overflow-hidden">
+      <section className="relative min-h-[80vh] flex items-center bg-black overflow-hidden">
+        {/* Fond noir en arrière-plan pour éviter le fond gris */}
+        <div className="absolute inset-0 bg-black z-0" />
+        
         {/* Video background */}
         <video
           autoPlay
