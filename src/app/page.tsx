@@ -4,6 +4,7 @@ import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
 import { Phone, MessageCircle, Car, Shield, Clock } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Home() {
   const { t } = useI18n()
@@ -86,16 +87,36 @@ export default function Home() {
       {/* Tourism & Ski Section */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
-              {t("home.tourism.title")}
-            </h2>
-            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              {t("home.tourism.description")}
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {t("home.tourism.features")}
-            </p>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Image */}
+              <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/images/gallery/ski.jpg"
+                  alt="Stations de ski en Savoie"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              
+              {/* Contenu */}
+              <div className="space-y-6">
+                <h2 className="text-3xl sm:text-4xl font-bold">
+                  {t("home.tourism.title")}
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {t("home.tourism.description")}
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {t("home.tourism.features")}
+                </p>
+                <Button asChild className="mt-4">
+                  <Link href="/transfert-stations-ski" className="flex items-center">
+                    {t("home.tourism.learnMore")}
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -103,16 +124,31 @@ export default function Home() {
       {/* Vehicles & Comfort Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
-              {t("home.vehicles.title")}
-            </h2>
-            <p className="text-lg text-muted-foreground mb-4 leading-relaxed text-center">
-              {t("home.vehicles.description")}
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed text-center">
-              {t("home.vehicles.seat")}
-            </p>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Contenu */}
+              <div className="space-y-6 order-2 lg:order-1">
+                <h2 className="text-3xl sm:text-4xl font-bold">
+                  {t("home.vehicles.title")}
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {t("home.vehicles.description")}
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {t("home.vehicles.seat")}
+                </p>
+              </div>
+              
+              {/* Image véhicule */}
+              <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl order-1 lg:order-2">
+                <Image
+                  src="/images/vehicles/Mercedes-Classe-V-transport-avec-chauffeur-transfert-aeroport-gare-1.jpeg"
+                  alt="Mercedes Classe V - Véhicule de transport"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

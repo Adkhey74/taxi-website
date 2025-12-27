@@ -31,7 +31,7 @@ export function Header() {
 
           {/* Navigation au centre - Desktop */}
           <nav className="hidden lg:flex flex-1 justify-center">
-            <NavigationMenu>
+            <NavigationMenu viewport={false}>
               <NavigationMenuList className="space-x-1">
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>

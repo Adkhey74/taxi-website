@@ -9,7 +9,7 @@ export const translations = {
       transfers: "Transferts",
       airport: "Taxi Aéroport",
       ski: "Transfert stations de ski",
-      zonesContact: "Zones desservies & Contact",
+      zonesContact: "Contact",
       bookNow: "Réserver maintenant",
       book: "Réserver",
     },
@@ -45,6 +45,7 @@ export const translations = {
         title: "Tourisme & stations de ski",
         description: "Chaque saison, nous accompagnons de nombreux touristes français et internationaux vers les stations de ski de Tarentaise et Haute-Tarentaise.",
         features: "Nos transferts stations de ski sont adaptés aux bagages, skis et conditions hivernales, avec un service fiable, ponctuel et professionnel.",
+        learnMore: "En savoir plus",
       },
       vehicles: {
         title: "Véhicules & confort",
@@ -67,6 +68,7 @@ export const translations = {
       coverage: "Le transport médical peut être pris en charge par la CPAM uniquement sur prescription médicale, selon les conditions de l'Assurance Maladie.",
       noCoverage: "Aucune prise en charge n'est automatique.",
       warning: "❌ Aucun aéroport – aucun tourisme – aucun transport de groupe sur cette page.",
+      ctaTitle: "Besoin d'un transport médical ?",
     },
     // Transport médical Lyon & Grenoble
     medicalLyonGrenoble: {
@@ -88,6 +90,7 @@ export const translations = {
         hopital3: "Groupe Hospitalier Mutualiste de Grenoble",
       },
       prescription: "Tous les trajets sont réalisés sur prescription médicale, dans le cadre du transport médical assis (VSL).",
+      ctaTitle: "Besoin d'un transport vers Lyon ou Grenoble ?",
     },
     // Taxi Aéroport
     airport: {
@@ -104,6 +107,7 @@ export const translations = {
       },
       vehicles: "Véhicules jusqu'à 8 passagers avec bagages.",
       seat: "Siège bébé et rehausseur disponibles gratuitement sur demande.",
+      ctaTitle: "Réservez votre transfert aéroport",
     },
     // Transfert stations de ski
     ski: {
@@ -126,25 +130,27 @@ export const translations = {
       international: "Service adapté au tourisme international.",
       vehicles: "Véhicules jusqu'à 8 passagers.",
       seat: "Siège bébé et rehausseur disponibles gratuitement sur demande.",
+      ctaTitle: "Réservez votre transfert vers les stations",
     },
     // Zones desservies & Contact
     zonesContact: {
       title: "Zones desservies – Taxi toutes distances",
+      description: "",
       zones: {
         local: {
-          title: "Zone locale :",
+          title: "Zone locale",
           motte: "La Motte-Servolex",
           chambery: "Chambéry",
           aix: "Aix-les-Bains",
         },
         region: {
-          title: "Région :",
+          title: "Région",
           savoie: "Savoie",
           tarentaise: "Tarentaise",
           hauteTarentaise: "Haute-Tarentaise",
         },
         longDistance: {
-          title: "Longues distances :",
+          title: "Longues distances",
           lyon: "Lyon",
           grenoble: "Grenoble",
           france: "France entière",
@@ -160,13 +166,18 @@ export const translations = {
         form: "📝 Via le formulaire de contact",
         specify: "Merci de préciser :",
         date: "Date et heure",
+        dateTime: "Date et heure",
+        dateTimeDesc: "Précisez la date et l'heure souhaitées",
         pickup: "Adresse de départ",
         destination: "Destination",
         passengers: "Nombre de passagers (maximum 8)",
+        passengersDesc: "Maximum 8 passagers par véhicule",
         luggage: "Bagages / skis",
         medical: "Transport médical si concerné",
         seat: "Besoin d'un siège bébé ou d'un rehausseur",
         service: "Service disponible 24h/24 et 7j/7.",
+        special: "Équipements spéciaux",
+        transferNote: "Transferts aéroport et stations de ski sur réservation.",
       },
       contact: {
         title: "Contact",
@@ -201,6 +212,10 @@ export const translations = {
     reservation: {
       title: "Réservez votre",
       titleHighlight: "transport",
+      bookingTitle: "Réservez votre course",
+      serviceType: "Type de service",
+      clientInfo: "Vos coordonnées",
+      reservationDetails: "Détails de la course",
       firstName: "Prénom",
       firstNamePlaceholder: "Votre prénom",
       lastName: "Nom",
@@ -209,20 +224,50 @@ export const translations = {
       emailPlaceholder: "votre@email.com",
       phone: "Téléphone",
       phonePlaceholder: "01 23 45 67 89",
-      pickupAddress: "Adresse de prise en charge",
-      pickupAddressPlaceholder: "123 Rue de Paris, 75001 Paris",
-      dropoffAddress: "Adresse de destination",
-      dropoffAddressPlaceholder: "Aéroport Charles de Gaulle",
+      pickupAddress: "Adresse de départ",
+      pickupAddressPlaceholder: "123 Rue de la République, Chambéry",
+      dropoffAddress: "Destination",
+      dropoffAddressPlaceholder: "Aéroport de Chambéry",
       date: "Date",
       time: "Heure",
-      passengers: "Nombre de passagers",
-      luggage: "Nombre de bagages",
-      notes: "Notes supplémentaires",
-      notesPlaceholder: "Informations complémentaires",
+      passengers: "Passagers",
+      luggage: "Bagages",
+      notes: "Informations complémentaires",
+      notesPlaceholder: "Siège bébé, équipements spéciaux...",
       confirm: "Confirmer la réservation",
+      submit: "Envoyer la réservation",
       submitting: "Envoi en cours...",
+      sending: "Envoi...",
+      cancel: "Annuler",
+      helpNeeded: "Besoin d'aide ?",
+      preferContact: "Vous préférez nous contacter directement ?",
+      callNow: "Appeler maintenant",
       required: "*",
       errorOccurred: "Une erreur est survenue",
+      description: "Formulaire simple et rapide - Réponse sous 24h",
+      serviceTypes: {
+        ville: "Transport en ville",
+        aeroport: "Taxi aéroport",
+        longueDistance: "Longue distance",
+        evenement: "Événement",
+        express: "Service express",
+        forfait: "Forfait journée",
+      },
+    },
+    // Common texts
+    common: {
+      loading: "Chargement...",
+    },
+    // Common CTA texts
+    cta: {
+      needMedical: "Besoin d'un transport médical ?",
+      needLyonGrenoble: "Besoin d'un transport vers Lyon ou Grenoble ?",
+      bookAirport: "Réservez votre transfert aéroport",
+      bookSki: "Réservez votre transfert vers les stations",
+      contactUs: "Contactez-nous",
+      learnMore: "En savoir plus",
+      book: "Réserver",
+      whatsapp: "WhatsApp",
     },
   },
   en: {
@@ -235,7 +280,7 @@ export const translations = {
       transfers: "Transfers",
       airport: "Airport Taxi",
       ski: "Ski Resort Transfer",
-      zonesContact: "Service Areas & Contact",
+      zonesContact: "Contact",
       bookNow: "Book now",
       book: "Book",
     },
@@ -271,6 +316,7 @@ export const translations = {
         title: "Tourism & ski resorts",
         description: "Each season, we accompany many French and international tourists to the ski resorts of Tarentaise and Haute-Tarentaise.",
         features: "Our ski resort transfers are adapted to luggage, skis and winter conditions, with a reliable, punctual and professional service.",
+        learnMore: "Learn more",
       },
       vehicles: {
         title: "Vehicles & comfort",
@@ -293,6 +339,7 @@ export const translations = {
       coverage: "Medical transport may be covered by CPAM only on medical prescription, according to Health Insurance conditions.",
       noCoverage: "No coverage is automatic.",
       warning: "❌ No airport – no tourism – no group transport on this page.",
+      ctaTitle: "Need medical transport?",
     },
     // Transport médical Lyon & Grenoble
     medicalLyonGrenoble: {
@@ -314,6 +361,7 @@ export const translations = {
         hopital3: "Grenoble Mutual Hospital Group",
       },
       prescription: "All trips are made on medical prescription, within the framework of seated medical transport (VSL).",
+      ctaTitle: "Need transport to Lyon or Grenoble?",
     },
     // Taxi Aéroport
     airport: {
@@ -330,6 +378,7 @@ export const translations = {
       },
       vehicles: "Vehicles for up to 8 passengers with luggage.",
       seat: "Baby seat and booster seat available free of charge on request.",
+      ctaTitle: "Book your airport transfer",
     },
     // Transfert stations de ski
     ski: {
@@ -352,25 +401,27 @@ export const translations = {
       international: "Service adapted to international tourism.",
       vehicles: "Vehicles for up to 8 passengers.",
       seat: "Baby seat and booster seat available free of charge on request.",
+      ctaTitle: "Book your ski resort transfer",
     },
     // Zones desservies & Contact
     zonesContact: {
       title: "Service areas – All distance taxi",
+      description: "",
       zones: {
         local: {
-          title: "Local area:",
+          title: "Local area",
           motte: "La Motte-Servolex",
           chambery: "Chambéry",
           aix: "Aix-les-Bains",
         },
         region: {
-          title: "Region:",
+          title: "Region",
           savoie: "Savoie",
           tarentaise: "Tarentaise",
           hauteTarentaise: "Haute-Tarentaise",
         },
         longDistance: {
-          title: "Long distances:",
+          title: "Long distances",
           lyon: "Lyon",
           grenoble: "Grenoble",
           france: "All of France",
@@ -386,13 +437,18 @@ export const translations = {
         form: "📝 Via the contact form",
         specify: "Please specify:",
         date: "Date and time",
+        dateTime: "Date and time",
+        dateTimeDesc: "Specify the desired date and time",
         pickup: "Pickup address",
         destination: "Destination",
         passengers: "Number of passengers (maximum 8)",
+        passengersDesc: "Maximum 8 passengers per vehicle",
         luggage: "Luggage / skis",
         medical: "Medical transport if applicable",
         seat: "Need for a baby seat or booster seat",
         service: "Service available 24/7.",
+        special: "Special equipment",
+        transferNote: "Airport and ski resort transfers by reservation.",
       },
       contact: {
         title: "Contact",
@@ -449,6 +505,7 @@ export const translations = {
       submitting: "Submitting...",
       required: "*",
       errorOccurred: "An error occurred",
+      description: "Simple and quick form - Response within 24h",
     },
   },
 } as const

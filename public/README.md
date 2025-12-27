@@ -53,3 +53,8 @@ Utilisez le composant `Image` de Next.js pour les images afin de bénéficier de
 import Image from 'next/image'
 ```
 
+## 📸 Guide détaillé des images
+
+Pour savoir exactement quelles images mettre et où, consultez le guide complet :
+👉 **[GUIDE_IMAGES.md](./images/GUIDE_IMAGES.md)**
+
