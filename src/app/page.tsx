@@ -24,7 +24,10 @@ export default function Home() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="https://res.cloudinary.com/dufmpr5dh/video/upload/v1766857307/Fait_moi_une_1080p_202512262254_zxnjuk.mp4" type="video/mp4" />
+          <source 
+            src="https://res.cloudinary.com/dufmpr5dh/video/upload/q_auto:good,w_1280,h_720,f_auto/v1766857307/Fait_moi_une_1080p_202512262254_zxnjuk.mp4" 
+            type="video/mp4" 
+          />
         </video>
         
         {/* Overlay pour améliorer la lisibilité du texte */}
