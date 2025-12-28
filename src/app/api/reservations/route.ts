@@ -2,8 +2,35 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { CreateReservationInput } from '@/types/reservation'
 import { ReservationStatus, Prisma, Client } from '@prisma/client'
+import { Resend } from 'resend'
 
-// Fonction pour envoyer l'email de confirmation
+// Fonction pour formater la date en français
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('fr-FR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date)
+}
+
+// Fonction pour formater l'heure
+const formatTime = (time: string) => {
+  const [hours, minutes] = time.split(':')
+  return `${hours}h${minutes}`
+}
+
+// Labels des types de service
+const serviceTypeLabels: Record<string, string> = {
+  'aeroport': 'Taxi aéroport',
+  'ville': 'Transport en ville',
+  'longue-distance': 'Longue distance',
+  'evenement': 'Événement',
+  'express': 'Service express',
+  'forfait': 'Forfait journée',
+}
+
+// Fonction pour envoyer l'email de confirmation au client
 async function sendReservationConfirmationEmail(
   reservation: {
     id: string
@@ -14,72 +41,150 @@ async function sendReservationConfirmationEmail(
     pickupTime: string
     passengers: number
     luggage: number
+    flightNumber?: string | null
+    notes?: string | null
     client: Client
   },
   client: Client
 ) {
-  // Format de date en français
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat('fr-FR', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(date)
+  // Vérifier si Resend est configuré
+  if (!process.env.RESEND_API_KEY) {
+    console.log('⚠️ RESEND_API_KEY non configurée - Email non envoyé')
+    console.log('Email de confirmation à envoyer à:', client.email)
+    return
   }
 
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':')
-    return `${hours}h${minutes}`
-  }
-
-  const serviceTypeLabels: Record<string, string> = {
-    'aeroport': 'Taxi aéroport',
-    'ville': 'Transport en ville',
-    'longue-distance': 'Longue distance',
-    'evenement': 'Événement',
-    'express': 'Service express',
-    'forfait': 'Forfait journée',
-  }
-
-  const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
-
-  // Pour l'instant, on utilise mailto car nous n'avons pas de service d'email configuré
-  // En production, vous devriez utiliser Resend, SendGrid, ou un autre service d'email
-  // Exemple avec Resend (à configurer):
-  /*
   const resend = new Resend(process.env.RESEND_API_KEY)
-  
-  await resend.emails.send({
-    from: 'Hern Taxi <reservations@hern-taxi.fr>',
-    to: client.email,
-    subject: `Confirmation de réservation #${reservation.id.slice(0, 8)}`,
-    html: `
-      <h2>Confirmation de votre réservation</h2>
-      <p>Bonjour ${client.firstName} ${client.lastName},</p>
-      <p>Votre réservation a bien été enregistrée.</p>
-      <h3>Détails de la réservation :</h3>
-      <ul>
-        <li><strong>Service :</strong> ${serviceType}</li>
-        <li><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</li>
-        <li><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</li>
-        <li><strong>Départ :</strong> ${reservation.pickupAddress}</li>
-        <li><strong>Destination :</strong> ${reservation.dropoffAddress}</li>
-        <li><strong>Passagers :</strong> ${reservation.passengers}</li>
-        <li><strong>Bagages :</strong> ${reservation.luggage}</li>
-      </ul>
-      <p>Nous vous contacterons rapidement pour confirmer votre réservation.</p>
-      <p>Cordialement,<br>L'équipe Hern Taxi</p>
-    `,
-  })
-  */
+  const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
+  const fromEmail = process.env.FROM_EMAIL || 'reservations@hern-taxi.fr'
+  const reservationId = reservation.id.slice(0, 8).toUpperCase()
 
-  // Pour l'instant, on log juste l'email qui serait envoyé
-  console.log('Email de confirmation à envoyer à:', client.email)
-  console.log('Réservation ID:', reservation.id)
-  
-  // TODO: Configurer un service d'email réel (Resend, SendGrid, etc.)
-  // et décommenter le code ci-dessus
+  try {
+    await resend.emails.send({
+      from: `Hern Taxi <${fromEmail}>`,
+      to: client.email,
+      subject: `Confirmation de réservation #${reservationId}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
+            Confirmation de votre réservation
+          </h2>
+          <p>Bonjour ${client.firstName} ${client.lastName},</p>
+          <p>Votre réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
+          
+          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
+            <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
+            <p><strong>Service :</strong> ${serviceType}</p>
+            <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
+            <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
+            <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
+            <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
+            <p><strong>Passagers :</strong> ${reservation.passengers}</p>
+            <p><strong>Bagages :</strong> ${reservation.luggage}</p>
+            ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
+            ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
+          </div>
+          
+          <p>Pour toute question, n'hésitez pas à nous contacter :</p>
+          <p>
+            📞 <strong>01 23 45 67 89</strong><br>
+            📱 <strong>06 58 68 65 48</strong>
+          </p>
+          
+          <p style="margin-top: 30px;">Cordialement,<br><strong>L'équipe Hern Taxi</strong></p>
+        </div>
+      `,
+    })
+    console.log('✅ Email de confirmation envoyé à:', client.email)
+  } catch (error) {
+    console.error('❌ Erreur lors de l\'envoi de l\'email de confirmation:', error)
+    throw error
+  }
+}
+
+// Fonction pour envoyer une notification à l'entreprise
+async function sendReservationNotificationEmail(
+  reservation: {
+    id: string
+    serviceType: string
+    pickupAddress: string
+    dropoffAddress: string
+    pickupDate: Date
+    pickupTime: string
+    passengers: number
+    luggage: number
+    flightNumber?: string | null
+    notes?: string | null
+    client: Client
+  },
+  client: Client
+) {
+  // Vérifier si Resend est configuré
+  if (!process.env.RESEND_API_KEY) {
+    console.log('⚠️ RESEND_API_KEY non configurée - Email de notification non envoyé')
+    return
+  }
+
+  // Vérifier si l'email de l'entreprise est configuré
+  const companyEmail = process.env.COMPANY_EMAIL
+  if (!companyEmail) {
+    console.log('⚠️ COMPANY_EMAIL non configurée - Email de notification non envoyé')
+    return
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY)
+  const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
+  const fromEmail = process.env.FROM_EMAIL || 'reservations@hern-taxi.fr'
+  const reservationId = reservation.id.slice(0, 8).toUpperCase()
+
+  try {
+    await resend.emails.send({
+      from: `Système de réservation <${fromEmail}>`,
+      to: companyEmail,
+      subject: `🆕 Nouvelle réservation #${reservationId} - ${serviceType}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
+            Nouvelle réservation reçue
+          </h2>
+          
+          <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+            <p style="margin: 0;"><strong>⚠️ Action requise :</strong> Une nouvelle réservation nécessite votre attention.</p>
+          </div>
+          
+          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1a1a1a; margin-top: 0;">Informations client :</h3>
+            <p><strong>Nom :</strong> ${client.firstName} ${client.lastName}</p>
+            <p><strong>Email :</strong> ${client.email}</p>
+            <p><strong>Téléphone :</strong> ${client.phone}</p>
+          </div>
+          
+          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
+            <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
+            <p><strong>Service :</strong> ${serviceType}</p>
+            <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
+            <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
+            <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
+            <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
+            <p><strong>Passagers :</strong> ${reservation.passengers}</p>
+            <p><strong>Bagages :</strong> ${reservation.luggage}</p>
+            ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
+            ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
+          </div>
+          
+          <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Cette notification a été envoyée automatiquement par le système de réservation.
+          </p>
+        </div>
+      `,
+    })
+    console.log('✅ Email de notification envoyé à:', companyEmail)
+  } catch (error) {
+    console.error('❌ Erreur lors de l\'envoi de l\'email de notification:', error)
+    // Ne pas faire échouer la création de réservation si l'email de notification échoue
+  }
 }
 
 // GET - Récupérer toutes les réservations ou filtrer
@@ -208,11 +313,15 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Envoyer un email de confirmation (de manière asynchrone, ne pas bloquer la réponse)
+    // Envoyer les emails (de manière asynchrone, ne pas bloquer la réponse)
     try {
+      // Email de confirmation au client
       await sendReservationConfirmationEmail(reservation, client)
+      
+      // Email de notification à l'entreprise
+      await sendReservationNotificationEmail(reservation, client)
     } catch (emailError) {
-      console.error('Error sending confirmation email:', emailError)
+      console.error('Error sending emails:', emailError)
       // Ne pas faire échouer la création de réservation si l'email échoue
     }
 

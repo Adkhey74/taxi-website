@@ -16,7 +16,7 @@ export default function TransportMedicalCPAMPage() {
         {/* Image background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/gallery/emergency.jpeg"
+            src="https://res.cloudinary.com/dufmpr5dh/image/upload/v1766938706/emergency_qtwa47.jpg"
             alt="Transport médical conventionné CPAM"
             fill
             className="object-cover"
@@ -72,12 +72,6 @@ export default function TransportMedicalCPAMPage() {
               </p>
               <p className="text-muted-foreground leading-relaxed font-semibold">
                 {t("medicalCPAM.noCoverage")}
-              </p>
-            </div>
-
-            <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-6">
-              <p className="text-destructive font-semibold text-lg">
-                {t("medicalCPAM.warning")}
               </p>
             </div>
           </div>

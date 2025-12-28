@@ -41,39 +41,26 @@ export default function Home() {
             <p className="text-xl sm:text-2xl mb-4 text-white/90 font-semibold drop-shadow-md">
               {t("home.subtitle")}
             </p>
-            <p className="text-lg text-white/80 mb-10 drop-shadow-md">
+            <p className="text-lg text-white/80 mb-6 drop-shadow-md">
               {t("home.service24h")}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Button 
-                size="lg" 
-                asChild 
-                className="group relative bg-black text-white font-bold px-7 py-6 text-base rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.6)] hover:scale-105 transition-all duration-300 h-auto overflow-hidden border-2 border-black hover:border-white/20"
+            {/* Numéros de téléphone */}
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <a 
+                href="tel:0123456789" 
+                className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 transition-all duration-300 text-white font-semibold shadow-lg hover:shadow-xl backdrop-blur-sm"
               >
-                <Link href="/zones-contact" className="flex items-center justify-center relative z-10">
-                  <Phone className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                  {t("header.bookNow")}
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="group relative border-2 border-white/80 bg-white/10 backdrop-blur-md hover:bg-white/20 hover:border-white text-white px-7 py-6 text-base font-semibold rounded-lg shadow-[0_8px_30px_rgba(255,255,255,0.1)] hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-300 h-auto overflow-hidden" 
-                asChild
+                <Phone className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                <span className="text-lg">01 23 45 67 89</span>
+              </a>
+              <a 
+                href="tel:0658686548" 
+                className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 transition-all duration-300 text-white font-semibold shadow-lg hover:shadow-xl backdrop-blur-sm"
               >
-                <a 
-                  href="https://api.whatsapp.com/send?phone=33658686548&text=Bonjour%20je%20souhaite%20r%C3%A9server%20un%20taxi." 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center justify-center relative z-10"
-                >
-                  <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                  WhatsApp
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                </a>
-              </Button>
+                <Phone className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                <span className="text-lg">06 58 68 65 48</span>
+              </a>
             </div>
           </div>
         </div>
@@ -98,7 +85,7 @@ export default function Home() {
               {/* Image */}
               <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="/images/gallery/ski.jpg"
+                  src="https://res.cloudinary.com/dufmpr5dh/image/upload/v1766938706/ski_iuqmrd.jpg"
                   alt="Stations de ski en Savoie"
                   fill
                   className="object-cover"

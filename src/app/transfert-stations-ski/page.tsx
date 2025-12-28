@@ -16,7 +16,7 @@ export default function TransfertStationsSkiPage() {
         {/* Image background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/gallery/ski.jpg"
+            src="https://res.cloudinary.com/dufmpr5dh/image/upload/v1766938706/ski_iuqmrd.jpg"
             alt="Stations de ski"
             fill
             className="object-cover"
