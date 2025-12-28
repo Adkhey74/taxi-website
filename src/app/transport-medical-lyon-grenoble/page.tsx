@@ -16,7 +16,7 @@ export default function TransportMedicalLyonGrenoblePage() {
         {/* Image background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://res.cloudinary.com/dufmpr5dh/image/upload/v1766938706/emergency_qtwa47.jpg"
+            src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1920,c_limit/v1766938706/emergency_qtwa47.jpg"
             alt="Transport médical longue distance vers Lyon et Grenoble"
             fill
             className="object-cover"

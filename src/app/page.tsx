@@ -85,7 +85,7 @@ export default function Home() {
               {/* Image */}
               <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="https://res.cloudinary.com/dufmpr5dh/image/upload/v1766938706/ski_iuqmrd.jpg"
+                  src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1280,c_limit/v1766938706/ski_iuqmrd.jpg"
                   alt="Stations de ski en Savoie"
                   fill
                   className="object-cover"

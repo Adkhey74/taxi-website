@@ -16,7 +16,7 @@ export default function TaxiAeroportPage() {
         {/* Image background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://res.cloudinary.com/dufmpr5dh/image/upload/v1766938705/aeroport_i3lxia.jpg"
+            src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1920,c_limit/v1766938705/aeroport_i3lxia.jpg"
             alt="Aéroport"
             fill
             className="object-cover"
