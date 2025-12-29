@@ -76,10 +76,10 @@ export function Contact() {
                     <option value="">{t("contact.selectService")}</option>
                     <option value="aeroport">{t("reservation.serviceTypes.aeroport")}</option>
                     <option value="ville">{t("reservation.serviceTypes.ville")}</option>
-                    <option value="longue-distance">{t("reservation.serviceTypes.longueDistance")}</option>
-                    <option value="evenement">{t("reservation.serviceTypes.evenement")}</option>
                     <option value="express">{t("reservation.serviceTypes.express")}</option>
                     <option value="forfait">{t("reservation.serviceTypes.forfait")}</option>
+                    <option value="medical">{t("reservation.serviceTypes.medical")}</option>
+                    <option value="ski">{t("reservation.serviceTypes.ski")}</option>
                   </select>
                 </div>
 

@@ -285,10 +285,10 @@ export const translations = {
       serviceTypes: {
         ville: "Transport en ville",
         aeroport: "Taxi aéroport",
-        longueDistance: "Longue distance",
-        evenement: "Événement",
         express: "Service express",
         forfait: "Forfait journée",
+        medical: "Transport médical",
+        ski: "Transfert stations de ski",
       },
     },
     // Common texts
@@ -604,10 +604,10 @@ export const translations = {
       serviceTypes: {
         ville: "City transport",
         aeroport: "Airport taxi",
-        longueDistance: "Long distance",
-        evenement: "Event",
         express: "Express service",
         forfait: "Day package",
+        medical: "Medical transport",
+        ski: "Ski resort transfer",
       },
     },
   },

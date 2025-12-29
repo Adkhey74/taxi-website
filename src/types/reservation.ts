@@ -3,10 +3,10 @@ import { ReservationStatus } from '@prisma/client'
 export type ServiceType = 
   | 'aeroport'
   | 'ville'
-  | 'longue-distance'
-  | 'evenement'
   | 'express'
   | 'forfait'
+  | 'medical'
+  | 'ski'
 
 export interface CreateReservationInput {
   // Informations client

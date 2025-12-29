@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, MessageCircle, CheckCircle, AlertCircle, Loader2, Calendar, Clock, MapPin, Users, Plane, Luggage } from "lucide-react"
+import { Phone, MessageCircle, CheckCircle, AlertCircle, Loader2, Calendar, Clock, MapPin, Plane, Luggage, Heart, Mountain, Users } from "lucide-react"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
 import { toast } from "sonner"
@@ -112,10 +112,10 @@ function ReservationForm() {
   const serviceOptions = [
     { value: "ville", labelKey: "reservation.serviceTypes.ville", icon: MapPin },
     { value: "aeroport", labelKey: "reservation.serviceTypes.aeroport", icon: Plane },
-    { value: "longue-distance", labelKey: "reservation.serviceTypes.longueDistance", icon: MapPin },
-    { value: "evenement", labelKey: "reservation.serviceTypes.evenement", icon: Users },
     { value: "express", labelKey: "reservation.serviceTypes.express", icon: Clock },
     { value: "forfait", labelKey: "reservation.serviceTypes.forfait", icon: Calendar },
+    { value: "medical", labelKey: "reservation.serviceTypes.medical", icon: Heart },
+    { value: "ski", labelKey: "reservation.serviceTypes.ski", icon: Mountain },
   ]
 
   return (
@@ -178,14 +178,14 @@ function ReservationForm() {
                           key={service.value}
                           type="button"
                           onClick={() => setFormData(prev => ({ ...prev, serviceType: service.value as ServiceType }))}
-                          className={`p-4 rounded-xl border-2 transition-all ${
+                          className={`p-3 rounded-xl border-2 transition-all ${
                             isSelected
                               ? "border-primary bg-primary/5 text-primary"
                               : "border-border bg-background hover:border-primary/50 hover:bg-muted/50"
                           }`}
                         >
-                          <Icon className="h-6 w-6 mx-auto mb-2" />
-                          <div className="text-sm font-semibold text-center">{t(service.labelKey) as string}</div>
+                          <Icon className="h-5 w-5 mx-auto mb-1.5" />
+                          <div className="text-xs font-semibold text-center leading-tight">{t(service.labelKey) as string}</div>
                         </button>
                       )
                     })}

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, MessageCircle, MapPin, CheckCircle, Calendar, Clock, Users, Plane, Luggage, AlertCircle, Loader2 } from "lucide-react"
+import { Phone, MessageCircle, MapPin, CheckCircle, Calendar, Clock, Plane, Luggage, AlertCircle, Loader2, Heart, Mountain, Users } from "lucide-react"
 import { useState, Suspense, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
@@ -37,7 +37,7 @@ function ReservationFormSection() {
 
   useEffect(() => {
     const serviceParam = searchParams.get("service")
-    if (serviceParam && ["ville", "aeroport", "longue-distance", "evenement"].includes(serviceParam)) {
+    if (serviceParam && ["ville", "aeroport", "medical", "ski"].includes(serviceParam)) {
       setFormData(prev => ({ ...prev, serviceType: serviceParam as ServiceType }))
     }
   }, [searchParams])
@@ -112,8 +112,8 @@ function ReservationFormSection() {
   const serviceOptions = [
     { value: "ville", labelKey: "reservation.serviceTypes.ville", icon: MapPin },
     { value: "aeroport", labelKey: "reservation.serviceTypes.aeroport", icon: Plane },
-    { value: "longue-distance", labelKey: "reservation.serviceTypes.longueDistance", icon: MapPin },
-    { value: "evenement", labelKey: "reservation.serviceTypes.evenement", icon: Users },
+    { value: "medical", labelKey: "reservation.serviceTypes.medical", icon: Heart },
+    { value: "ski", labelKey: "reservation.serviceTypes.ski", icon: Mountain },
   ]
 
   return (
@@ -174,14 +174,14 @@ function ReservationFormSection() {
                       key={service.value}
                       type="button"
                       onClick={() => setFormData(prev => ({ ...prev, serviceType: service.value as ServiceType }))}
-                      className={`p-4 rounded-xl border-2 transition-all duration-200 ${
+                      className={`p-3 rounded-xl border-2 transition-all duration-200 ${
                         isSelected
                           ? "border-primary bg-primary text-primary-foreground shadow-md scale-105"
                           : "border-border bg-background hover:border-primary/50 hover:bg-muted/50 hover:scale-105"
                       }`}
                     >
-                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-2" />
-                      <div className="text-xs sm:text-sm font-semibold text-center leading-tight">{t(service.labelKey) as string}</div>
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5 mx-auto mb-1.5" />
+                      <div className="text-[10px] sm:text-xs font-semibold text-center leading-tight">{t(service.labelKey) as string}</div>
                     </button>
                   )
                 })}
