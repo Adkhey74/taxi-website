@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { CreateReservationInput } from '@/types/reservation'
 import { ReservationStatus, Prisma, Client } from '@prisma/client'
 import sgMail from '@sendgrid/mail'
 
@@ -332,9 +331,27 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
   }
 }
 
+interface ReservationRequestBody {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  serviceType: string
+  pickupAddress: string
+  dropoffAddress: string
+  pickupDate: string
+  pickupTime: string
+  passengers?: number
+  luggage?: number
+  flightNumber?: string | null
+  notes?: string | null
+  vehicleId?: string | null
+  recaptchaToken?: string
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const body: any = await request.json()
+    const body: ReservationRequestBody = await request.json()
 
     // Vérifier le captcha
     if (body.recaptchaToken) {

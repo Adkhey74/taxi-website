@@ -11,8 +11,6 @@ import { motion } from "framer-motion"
 export default function Home() {
   const { t } = useI18n()
   const [videoLoaded, setVideoLoaded] = useState(false)
-  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({})
-  const imageRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
   const videoRef = useRef<HTMLVideoElement>(null)
 
   // Fallback pour la vidéo - s'affiche après 500ms même si l'événement ne se déclenche pas
@@ -24,34 +22,6 @@ export default function Home() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Observer pour les images
-  useEffect(() => {
-    const observers: IntersectionObserver[] = []
-
-    Object.keys(imageRefs.current).forEach((key) => {
-      const element = imageRefs.current[key]
-      if (!element) return
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setImagesLoaded((prev) => ({ ...prev, [key]: true }))
-              observer.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.1 }
-      )
-
-      observer.observe(element)
-      observers.push(observer)
-    })
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect())
-    }
-  }, [])
 
   return (
     <main>
