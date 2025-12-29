@@ -70,11 +70,6 @@ export function Footer() {
                   {t("header.zonesContact")}
                 </Link>
               </li>
-              <li>
-                <Link href="/zones-contact#contact" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-200 inline-block hover:translate-x-1">
-                  {t("footer.contact")}
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -142,9 +137,6 @@ export function Footer() {
               </Link>
               <Link href="/confidentialite" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200">
                 {t("footer.privacy")}
-              </Link>
-              <Link href="/cgv" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200">
-                {t("footer.terms")}
               </Link>
             </div>
           </div>

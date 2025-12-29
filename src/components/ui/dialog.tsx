@@ -30,7 +30,7 @@ const Dialog = ({ open, onOpenChange, children }: DialogProps) => {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 sm:flex sm:items-center sm:justify-center">
       <div
         className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         style={{
@@ -45,15 +45,40 @@ const Dialog = ({ open, onOpenChange, children }: DialogProps) => {
 
 const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
   ({ children, className, ...props }, ref) => {
+    const [isMobile, setIsMobile] = React.useState(true)
+
+    React.useEffect(() => {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 640)
+      }
+      if (typeof window !== 'undefined') {
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+      }
+    }, [])
+
     return (
       <div
         ref={ref}
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg gap-4 border bg-background shadow-lg rounded-lg overflow-hidden",
+          "fixed z-50 grid w-full gap-4 border bg-background shadow-lg overflow-hidden",
           className
         )}
         style={{
-          transform: "translate(-50%, -50%)",
+          ...(isMobile ? {
+            inset: 0,
+            height: '100%'
+          } : {
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            maxWidth: '80rem', // lg:max-w-5xl
+            maxHeight: 'calc(100vh - 2rem)',
+            height: 'auto',
+            borderRadius: '0.5rem'
+          }),
           animation: "modalFadeIn 0.3s ease-out"
         }}
         {...props}
@@ -114,13 +139,13 @@ const DialogClose = ({
   <button
     type="button"
     className={cn(
-      "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none",
+      "absolute right-2 top-2 sm:right-4 sm:top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none p-1.5 sm:p-1",
       className
     )}
     onClick={onClose}
     {...props}
   >
-    <X className="h-4 w-4" />
+    <X className="h-4 w-4 sm:h-4 sm:w-4" />
     <span className="sr-only">Close</span>
   </button>
 )

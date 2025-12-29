@@ -73,14 +73,14 @@ async function sendReservationConfirmationEmail(
         email: fromEmail,
         name: 'Hern Taxi'
       },
-      subject: `Confirmation de réservation #${reservationId}`,
+      subject: `Confirmation de demande de réservation #${reservationId}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
-            Confirmation de votre réservation
+            Confirmation de votre demande de réservation
           </h2>
           <p>Bonjour ${client.firstName} ${client.lastName},</p>
-          <p>Votre réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
+          <p>Votre demande de réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
