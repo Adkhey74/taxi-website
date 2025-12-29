@@ -306,31 +306,6 @@ export async function GET(request: NextRequest) {
 }
 
 // POST - Créer une nouvelle réservation
-// Fonction pour vérifier le token reCAPTCHA
-async function verifyRecaptcha(token: string): Promise<boolean> {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY
-  if (!secretKey) {
-    console.warn('⚠️ RECAPTCHA_SECRET_KEY non configuré, validation captcha ignorée')
-    return true // En développement, on peut ignorer si la clé n'est pas configurée
-  }
-
-  try {
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `secret=${secretKey}&response=${token}`,
-    })
-
-    const data = await response.json()
-    return data.success === true
-  } catch (error) {
-    console.error('Erreur lors de la vérification reCAPTCHA:', error)
-    return false
-  }
-}
-
 interface ReservationRequestBody {
   firstName: string
   lastName: string
@@ -346,31 +321,11 @@ interface ReservationRequestBody {
   flightNumber?: string | null
   notes?: string | null
   vehicleId?: string | null
-  recaptchaToken?: string
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: ReservationRequestBody = await request.json()
-
-    // Vérifier le captcha
-    if (body.recaptchaToken) {
-      const isValidCaptcha = await verifyRecaptcha(body.recaptchaToken)
-      if (!isValidCaptcha) {
-        return NextResponse.json(
-          { error: 'Vérification captcha échouée. Veuillez réessayer.' },
-          { status: 400 }
-        )
-      }
-    } else {
-      // En production, on peut exiger le captcha
-      if (process.env.NODE_ENV === 'production') {
-        return NextResponse.json(
-          { error: 'Vérification captcha requise' },
-          { status: 400 }
-        )
-      }
-    }
 
     // Validation des champs requis
     if (!body.firstName || !body.lastName || !body.email || !body.phone) {
