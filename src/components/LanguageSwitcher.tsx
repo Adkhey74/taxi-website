@@ -1,16 +1,14 @@
 "use client"
 
 import { useI18n } from "@/lib/i18n/context"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+import { useState, useRef, useEffect } from "react"
+import { ChevronDown } from "lucide-react"
 import "flag-icons/css/flag-icons.min.css"
 
 export function LanguageSwitcher() {
   const { locale, setLocale } = useI18n()
+  const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   const languages = [
     { 
@@ -29,21 +27,46 @@ export function LanguageSwitcher() {
 
   const currentLanguage = languages.find(l => l.code === locale)
 
+  // Fermer le menu si on clique en dehors
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isOpen])
+
   return (
-    <NavigationMenu viewport={false}>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger className="h-10 px-2 sm:px-3">
-          <span className={`fi fi-${currentLanguage?.flagCode} mr-1 sm:mr-2`}></span>
-          <span className="hidden sm:inline font-semibold">
-            {currentLanguage?.codeLabel}
-          </span>
-        </NavigationMenuTrigger>
-        <NavigationMenuContent className="right-0 left-auto md:left-1/2 md:-translate-x-1/2 md:right-auto">
-          <div className="p-2 w-44">
+    <div className="relative" ref={menuRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="h-10 px-2 sm:px-3 inline-flex items-center justify-center rounded-md bg-background border border-input hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none transition-colors"
+      >
+        <span className={`fi fi-${currentLanguage?.flagCode} mr-1 sm:mr-2`}></span>
+        <span className="hidden sm:inline font-semibold">
+          {currentLanguage?.codeLabel}
+        </span>
+        <ChevronDown className={`ml-1 h-3 w-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-44 bg-card border border-border rounded-md shadow-lg z-50 overflow-hidden">
+          <div className="p-2">
             {languages.map((lang) => (
               <button
                 key={lang.code}
-                onClick={() => setLocale(lang.code)}
+                onClick={() => {
+                  setLocale(lang.code)
+                  setIsOpen(false)
+                }}
                 className={`w-full text-left px-4 py-2.5 rounded-lg transition-colors ${
                   locale === lang.code
                     ? "bg-primary text-primary-foreground"
@@ -63,9 +86,9 @@ export function LanguageSwitcher() {
               </button>
             ))}
           </div>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-    </NavigationMenu>
+        </div>
+      )}
+    </div>
   )
 }
 
