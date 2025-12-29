@@ -127,15 +127,11 @@ export default function ConfidentialitePage() {
                     Vos données personnelles sont conservées pour les durées suivantes :
                   </p>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Données de réservation :</strong> [Durée de conservation, ex: 3 ans] à compter de la 
+                    <li><strong>Données de réservation :</strong> 3 ans à compter de la 
                     dernière utilisation, conformément aux obligations légales et comptables</li>
                     <li><strong>Données de contact :</strong> Jusqu'à ce que vous exerciez votre droit de suppression 
-                    ou jusqu'à la fin de la période de conservation légale</li>
+                    ou jusqu'à la fin de la période de conservation légale (3 ans)</li>
                   </ul>
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    <strong>Note :</strong> Veuillez remplacer [Durée de conservation] par la durée réelle de conservation 
-                    que vous avez définie (généralement 3 ans pour les obligations comptables).
-                  </p>
                 </div>
               </section>
 
