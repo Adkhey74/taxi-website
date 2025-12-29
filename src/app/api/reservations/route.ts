@@ -3,7 +3,8 @@ import { prisma } from '@/lib/prisma'
 import { ReservationStatus, Prisma, Client } from '@prisma/client'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Initialiser Resend uniquement si la clé API est présente
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 // Fonction pour formater la date en français
 const formatDate = (date: Date) => {
@@ -50,11 +51,11 @@ async function sendReservationConfirmationEmail(
   },
   client: Client
 ) {
-  // Vérifier si Resend est configuré
-  if (!process.env.RESEND_API_KEY) {
-    console.error('⚠️ RESEND_API_KEY non configurée dans les variables d\'environnement')
+  // Désactivé temporairement - vérifier si Resend est configuré
+  if (!resend || !process.env.RESEND_API_KEY) {
+    console.log('⚠️ Envoi d\'emails désactivé - RESEND_API_KEY non configurée')
     console.log('Email de confirmation à envoyer à:', client.email)
-    throw new Error('RESEND_API_KEY non configurée')
+    return // Retourner sans erreur
   }
 
   const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
@@ -135,9 +136,10 @@ async function sendReservationNotificationEmail(
   },
   client: Client
 ) {
-  // Vérifier si Resend est configuré
-  if (!process.env.RESEND_API_KEY) {
-    console.log('⚠️ RESEND_API_KEY non configurée - Email de notification non envoyé')
+  // Désactivé temporairement - vérifier si Resend est configuré
+  if (!resend || !process.env.RESEND_API_KEY) {
+    console.log('⚠️ Envoi d\'emails désactivé - RESEND_API_KEY non configurée')
+    console.log('Email de notification à envoyer à:', process.env.COMPANY_EMAIL || 'non configuré')
     return
   }
 
