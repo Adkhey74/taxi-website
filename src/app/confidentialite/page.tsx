@@ -323,7 +323,7 @@ export default function ConfidentialitePage() {
                 <h2 className="text-2xl font-bold mb-4 text-foreground">12. Dernière mise à jour</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
-                    La présente politique de confidentialité a été mise à jour le [date de mise à jour].
+                    La présente politique de confidentialité a été mise à jour le 29/12/2025.
                   </p>
                 </div>
               </section>

@@ -19,13 +19,14 @@ export default function MentionsLegalesPage() {
               <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">1. Éditeur du site</h2>
                 <div className="space-y-2 text-foreground/90">
-                  <p><strong>Dénomination sociale :</strong> [Nom de l'entreprise]</p>
-                  <p><strong>Forme juridique :</strong> [SARL / EURL / Auto-entrepreneur / etc.]</p>
-                  <p><strong>Siège social :</strong> [Adresse complète du siège social]</p>
-                  <p><strong>SIRET :</strong> [Numéro SIRET]</p>
-                  <p><strong>RCS :</strong> [Numéro RCS et ville du greffe]</p>
-                  <p><strong>Capital social :</strong> [Montant du capital social]</p>
-                  <p><strong>TVA intracommunautaire :</strong> [Numéro de TVA si applicable]</p>
+                  <p><strong>Dénomination sociale :</strong> HERN TAXI</p>
+                  <p><strong>Forme juridique :</strong> SASU (Société par Actions Simplifiée Unipersonnelle)</p>
+                  <p><strong>Siège social :</strong> 25 Allée des Pétavins, 73420 Drumettaz-Clarafond</p>
+                  <p><strong>SIREN :</strong> 888 343 290</p>
+                  <p><strong>SIRET :</strong> 888 343 290 00019</p>
+                  <p><strong>RCS :</strong> 888 343 290 R.C.S. Chambéry (inscrit le 26/08/2020)</p>
+                  <p><strong>Capital social :</strong> 1 000,00 €</p>
+                  <p><strong>TVA intracommunautaire :</strong> FR84888343290</p>
                 </div>
               </section>
 
@@ -33,8 +34,8 @@ export default function MentionsLegalesPage() {
               <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">2. Directeur de publication</h2>
                 <div className="space-y-2 text-foreground/90">
-                  <p><strong>Nom :</strong> [Nom du directeur de publication]</p>
-                  <p><strong>Fonction :</strong> [Fonction]</p>
+                  <p><strong>Nom :</strong> HERNOUNE Farouk</p>
+                  <p><strong>Fonction :</strong> Président</p>
                 </div>
               </section>
 
@@ -73,13 +74,11 @@ export default function MentionsLegalesPage() {
               <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">4. Hébergement</h2>
                 <div className="space-y-2 text-foreground/90">
-                  <p><strong>Hébergeur :</strong> [Nom de l'hébergeur]</p>
-                  <p><strong>Adresse :</strong> [Adresse de l'hébergeur]</p>
-                  <p><strong>Téléphone :</strong> [Numéro de téléphone de l'hébergeur]</p>
-                  <p><strong>Site web :</strong> [URL du site de l'hébergeur]</p>
+                  <p><strong>Hébergeur :</strong> Railway</p>
+                  <p><strong>Adresse :</strong> Railway Corporation, 548 Market St, San Francisco, CA 94104, États-Unis</p>
+                  <p><strong>Site web :</strong> https://railway.app</p>
                   <p className="text-sm text-muted-foreground mt-4">
-                    Note : Si vous utilisez Railway, Vercel, ou un autre service d'hébergement, 
-                    veuillez remplacer ces informations par les données de votre hébergeur.
+                    Le site est hébergé par Railway, un service d'hébergement cloud.
                   </p>
                 </div>
               </section>
@@ -195,7 +194,7 @@ export default function MentionsLegalesPage() {
                 <h2 className="text-2xl font-bold mb-4 text-foreground">9. Dernière mise à jour</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
-                    Les présentes mentions légales ont été mises à jour le [date de mise à jour].
+                    Les présentes mentions légales ont été mises à jour le 29/12/2025.
                   </p>
                 </div>
               </section>
