@@ -52,6 +52,12 @@ export const translations = {
         description: "Véhicules spacieux et confortables jusqu'à 8 passagers avec bagages.",
         seat: "Siège bébé et rehausseur disponibles gratuitement sur demande.",
       },
+      medical: {
+        title: "Transport médical conventionné CPAM",
+        description: "Taxi conventionné CPAM spécialisé dans le transport médical assis (VSL), réalisé uniquement sur prescription médicale. Service disponible 24h/24 et 7j/7.",
+        features: "Nous assurons également des transports médicaux longue distance vers les pôles hospitaliers de Lyon et Grenoble pour les soins spécialisés.",
+        learnMore: "En savoir plus",
+      },
     },
     // Transport médical CPAM
     medicalCPAM: {
@@ -353,6 +359,12 @@ export const translations = {
         title: "Vehicles & comfort",
         description: "Spacious and comfortable vehicles for up to 8 passengers with luggage.",
         seat: "Baby seat and booster seat available free of charge on request.",
+      },
+      medical: {
+        title: "CPAM certified medical transport",
+        description: "CPAM certified taxi specialized in seated medical transport (VSL), performed only on medical prescription. Service available 24/7.",
+        features: "We also provide long-distance medical transport to the hospital centers of Lyon and Grenoble for specialized care.",
+        learnMore: "Learn more",
       },
     },
     // Transport médical CPAM
