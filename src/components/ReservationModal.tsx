@@ -1,12 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog"
-import { Phone, MessageCircle, CheckCircle, AlertCircle, Loader2, Calendar, Clock, MapPin, Users, Plane, Luggage } from "lucide-react"
+import { CheckCircle, AlertCircle, Loader2, Calendar, Clock, MapPin, Users, Plane, Luggage } from "lucide-react"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
 import { toast } from "sonner"
@@ -20,7 +19,6 @@ interface ReservationModalProps {
 
 export function ReservationModal({ open, onOpenChange, initialServiceType }: ReservationModalProps) {
   const { t } = useI18n()
-  const router = useRouter()
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)

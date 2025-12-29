@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { CheckCircle, Clock, Euro, Shield, Star, Phone } from "lucide-react"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
+import { motion } from "framer-motion"
 
 
 export function Advantages() {
@@ -71,23 +72,41 @@ export function Advantages() {
           {advantages.map((advantage, index) => {
             const IconComponent = advantage.icon
             return (
-              <Card key={index} className="border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group hover:-translate-y-1 hover:border-primary/30">
-                <CardHeader className="text-center pb-4">
-                  <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
-                    <IconComponent className="h-10 w-10 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl text-foreground mb-2">{t(advantage.titleKey)}</CardTitle>
-                  <CardDescription className="text-base text-muted-foreground leading-relaxed">
-                    {t(advantage.descriptionKey)}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <Card className="border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group hover:-translate-y-1 hover:border-primary/30 h-full">
+                  <CardHeader className="text-center pb-4">
+                    <motion.div 
+                      className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <IconComponent className="h-10 w-10 text-primary" />
+                    </motion.div>
+                    <CardTitle className="text-xl text-foreground mb-2">{t(advantage.titleKey)}</CardTitle>
+                    <CardDescription className="text-base text-muted-foreground leading-relaxed">
+                      {t(advantage.descriptionKey)}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
             )
           })}
         </div>
 
         {/* Section CTA */}
-        <div className="mt-20">
+        <motion.div 
+          className="mt-20"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <div className="bg-gradient-to-br from-foreground via-foreground/95 to-foreground rounded-3xl p-12 lg:p-16 text-background relative overflow-hidden">
             <div className="absolute inset-0 opacity-[0.05]" style={{
               backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
@@ -96,34 +115,58 @@ export function Advantages() {
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
             <div className="relative z-10 text-center">
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <motion.h3 
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 {t("advantages.cta.title")}
                 <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl text-primary">
                   {t("advantages.cta.subtitle")}
                 </span>
-              </h3>
-              <p className="text-xl text-background/80 mb-10 max-w-3xl mx-auto leading-relaxed">
+              </motion.h3>
+              <motion.p 
+                className="text-xl text-background/80 mb-10 max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
                 {t("advantages.cta.description")}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="outline" className="flex items-center justify-center gap-2 bg-background/10 backdrop-blur-sm border-2 border-background/20 hover:bg-background/20 hover:border-background/30 transition-all duration-300 text-background font-semibold h-12 px-6">
-                  <Phone className="h-5 w-5" />
-                  <span>01 23 45 67 89</span>
-                </Button>
-                <Button variant="outline" className="flex items-center justify-center gap-2 bg-background/10 backdrop-blur-sm border-2 border-background/20 hover:bg-background/20 hover:border-background/30 transition-all duration-300 text-background font-semibold h-12 px-6">
-                  <Phone className="h-5 w-5" />
-                  <span>06 58 68 65 48</span>
-                </Button>
-                <Button asChild className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 h-12 px-6">
-                  <Link href="/reservation" className="flex items-center justify-center gap-2">
-                    <Euro className="h-5 w-5" />
-                    <span>{t("advantages.cta.bookNow")}</span>
-                  </Link>
-                </Button>
-              </div>
+              </motion.p>
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button variant="outline" className="flex items-center justify-center gap-2 bg-background/10 backdrop-blur-sm border-2 border-background/20 hover:bg-background/20 hover:border-background/30 transition-all duration-300 text-background font-semibold h-12 px-6">
+                    <Phone className="h-5 w-5" />
+                    <span>01 23 45 67 89</span>
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button variant="outline" className="flex items-center justify-center gap-2 bg-background/10 backdrop-blur-sm border-2 border-background/20 hover:bg-background/20 hover:border-background/30 transition-all duration-300 text-background font-semibold h-12 px-6">
+                    <Phone className="h-5 w-5" />
+                    <span>06 58 68 65 48</span>
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 h-12 px-6">
+                    <Link href="/reservation" className="flex items-center justify-center gap-2">
+                      <Euro className="h-5 w-5" />
+                      <span>{t("advantages.cta.bookNow")}</span>
+                    </Link>
+                  </Button>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

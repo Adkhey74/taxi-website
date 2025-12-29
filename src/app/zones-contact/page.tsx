@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Phone, MessageCircle, MapPin, CheckCircle, Calendar, Clock, Users, Plane, Luggage, AlertCircle, Loader2 } from "lucide-react"
@@ -13,7 +13,6 @@ import { toast } from "sonner"
 
 function ReservationFormSection() {
   const { t } = useI18n()
-  const router = useRouter()
   const searchParams = useSearchParams()
 
   const [formData, setFormData] = useState<CreateReservationInput>({

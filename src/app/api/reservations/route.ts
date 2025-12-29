@@ -115,18 +115,19 @@ async function sendReservationConfirmationEmail(
       headers: response?.headers,
       body: response?.body
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const sendGridError = error as { message?: string; code?: string; response?: { statusCode?: number; body?: { errors?: Array<{ message?: string }> } } }
     console.error('❌ Erreur lors de l\'envoi de l\'email de confirmation:', error)
     console.error('📋 Détails:', {
-      message: error?.message,
-      code: error?.code,
-      statusCode: error?.response?.statusCode,
-      body: error?.response?.body
+      message: sendGridError?.message,
+      code: sendGridError?.code,
+      statusCode: sendGridError?.response?.statusCode,
+      body: sendGridError?.response?.body
     })
     
     // Vérifier si c'est une erreur de vérification d'email
-    if (error?.response?.body?.errors) {
-      error.response.body.errors.forEach((err: any) => {
+    if (sendGridError?.response?.body?.errors) {
+      sendGridError.response.body.errors.forEach((err) => {
         console.error('❌ Erreur SendGrid:', err.message)
         if (err.message?.includes('verified') || err.message?.includes('sender')) {
           console.error('⚠️ IMPORTANT: Vous devez vérifier votre email d\'envoi dans SendGrid')
@@ -229,18 +230,19 @@ async function sendReservationNotificationEmail(
       headers: response?.headers,
       body: response?.body
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const sendGridError = error as { message?: string; code?: string; response?: { statusCode?: number; body?: { errors?: Array<{ message?: string }> } } }
     console.error('❌ Erreur lors de l\'envoi de l\'email de notification:', error)
     console.error('📋 Détails:', {
-      message: error?.message,
-      code: error?.code,
-      statusCode: error?.response?.statusCode,
-      body: error?.response?.body
+      message: sendGridError?.message,
+      code: sendGridError?.code,
+      statusCode: sendGridError?.response?.statusCode,
+      body: sendGridError?.response?.body
     })
     
     // Vérifier si c'est une erreur de vérification d'email
-    if (error?.response?.body?.errors) {
-      error.response.body.errors.forEach((err: any) => {
+    if (sendGridError?.response?.body?.errors) {
+      sendGridError.response.body.errors.forEach((err) => {
         console.error('❌ Erreur SendGrid:', err.message)
         if (err.message?.includes('verified') || err.message?.includes('sender')) {
           console.error('⚠️ IMPORTANT: Vous devez vérifier votre email d\'envoi dans SendGrid')

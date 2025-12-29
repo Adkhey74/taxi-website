@@ -68,15 +68,25 @@ export function AddressAutocomplete({
       let addressSuggestions: AddressSuggestion[] = []
 
       if (banData.features && banData.features.length > 0) {
+        interface BANFeature {
+          properties: {
+            label: string
+            score?: number
+          }
+        }
+        interface ScoredSuggestion extends AddressSuggestion {
+          score: number
+        }
+        
         addressSuggestions = banData.features
-          .map((feature: any) => ({
+          .map((feature: BANFeature) => ({
             label: feature.properties.label,
             value: feature.properties.label,
             score: feature.properties.score || 0,
           }))
-          .sort((a: any, b: any) => b.score - a.score)
+          .sort((a: ScoredSuggestion, b: ScoredSuggestion) => b.score - a.score)
           .slice(0, 6)
-          .map((item: any) => ({
+          .map((item: ScoredSuggestion) => ({
             label: item.label,
             value: item.value,
           }))
@@ -91,7 +101,10 @@ export function AddressAutocomplete({
           const nominatimData = await nominatimResponse.json()
 
           if (nominatimData && nominatimData.length > 0) {
-            const nominatimSuggestions = nominatimData.map((item: any) => ({
+            interface NominatimItem {
+              display_name: string
+            }
+            const nominatimSuggestions = (nominatimData as NominatimItem[]).map((item) => ({
               label: item.display_name,
               value: item.display_name,
             }))
@@ -103,7 +116,7 @@ export function AddressAutocomplete({
             )
             addressSuggestions = [...addressSuggestions, ...newSuggestions].slice(0, 6)
           }
-        } catch (nominatimError) {
+        } catch {
           // Ignorer les erreurs Nominatim, on garde les résultats BAN
         }
       }

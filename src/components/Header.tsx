@@ -8,6 +8,7 @@ import { useState } from "react"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { useI18n } from "@/lib/i18n/context"
 import { useReservationModal } from "@/contexts/ReservationModalContext"
+import { motion } from "framer-motion"
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -15,21 +16,36 @@ export function Header() {
   const { openModal } = useReservationModal()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background backdrop-blur-md supports-[backdrop-filter]:bg-background/95 shadow-sm">
+    <motion.header 
+      className="sticky top-0 z-50 w-full border-b border-border bg-background backdrop-blur-md supports-[backdrop-filter]:bg-background/95 shadow-sm"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo à gauche */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 shadow-lg shadow-primary/20 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all duration-300 group-hover:scale-105">
-              <span className="text-2xl font-bold text-primary-foreground">H</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-nowrap">
-                Hern Taxi
-              </span>
-              <span className="text-xs text-muted-foreground font-medium">{t("footer.tagline")}</span>
-            </div>
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Link href="/" className="flex items-center space-x-3 group">
+              <motion.div 
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 shadow-lg shadow-primary/20 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all duration-300 group-hover:scale-105"
+                whileHover={{ scale: 1.05, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <span className="text-2xl font-bold text-primary-foreground">H</span>
+              </motion.div>
+              <div className="flex flex-col">
+                <span className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-nowrap">
+                  Hern Taxi
+                </span>
+                <span className="text-xs text-muted-foreground font-medium">{t("footer.tagline")}</span>
+              </div>
+            </Link>
+          </motion.div>
 
           {/* Navigation au centre - Desktop */}
           <nav className="hidden lg:flex flex-1 justify-center">
@@ -205,6 +221,6 @@ export function Header() {
           </div>
         )}
       </div>
-    </header>
+    </motion.header>
   );
 }
