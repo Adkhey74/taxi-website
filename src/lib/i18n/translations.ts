@@ -40,7 +40,7 @@ export const translations = {
       service24h: "Service 24h/24 et 7j/7",
       description1: "Notre société de taxi propose des services de transport fiables, ponctuels et confortables pour les particuliers, patients, professionnels et touristes.",
       description2: "Nous assurons tous types de déplacements locaux, régionaux et longue distance, avec une disponibilité permanente.",
-      description3: "Basée à La Motte-Servolex, commune située entre Chambéry et Aix-les-Bains, notre implantation permet de desservir l'ensemble de la Savoie ainsi que les longues distances vers Lyon et Grenoble.",
+      description3: "Basée à La Motte-Servolex et à l'aéroport de Chambéry, notre implantation permet de desservir l'ensemble de la Savoie ainsi que les longues distances vers Lyon et Grenoble.",
       tourism: {
         title: "Tourisme & stations de ski",
         description: "Chaque saison, nous accompagnons de nombreux touristes français et internationaux vers les stations de ski de Tarentaise et Haute-Tarentaise.",
@@ -348,7 +348,7 @@ export const translations = {
       service24h: "Service 24/7",
       description1: "Our taxi company offers reliable, punctual and comfortable transport services for individuals, patients, professionals and tourists.",
       description2: "We provide all types of local, regional and long-distance trips, with permanent availability.",
-      description3: "Based in La Motte-Servolex, a town located between Chambéry and Aix-les-Bains, our location allows us to serve all of Savoie as well as long distances to Lyon and Grenoble.",
+      description3: "Based in La Motte-Servolex and at Chambéry Airport, our location allows us to serve all of Savoie as well as long distances to Lyon and Grenoble.",
       tourism: {
         title: "Tourism & ski resorts",
         description: "Each season, we accompany many French and international tourists to the ski resorts of Tarentaise and Haute-Tarentaise.",
