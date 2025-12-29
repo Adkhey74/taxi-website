@@ -40,11 +40,11 @@ export function Hero() {
           {/* Numéros de téléphone */}
           <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
             <a 
-              href="tel:0123456789" 
+              href="tel:0952473625" 
               className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-primary/10 hover:bg-primary/20 border border-primary/20 hover:border-primary/30 transition-all duration-300 text-foreground font-semibold shadow-sm hover:shadow-md"
             >
               <Phone className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-              <span className="text-lg">01 23 45 67 89</span>
+              <span className="text-lg">09 52 47 36 25</span>
             </a>
             <a 
               href="tel:0658686548" 

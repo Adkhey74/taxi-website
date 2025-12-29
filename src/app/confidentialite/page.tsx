@@ -148,8 +148,8 @@ export default function ConfidentialitePage() {
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Hern Taxi :</strong> Pour le traitement de votre demande de réservation et la gestion 
                     de la relation client</li>
-                    <li><strong>Prestataire d'envoi d'emails (SendGrid) :</strong> Pour l'envoi des emails de confirmation 
-                    et de notification. SendGrid agit en tant que sous-traitant et est soumis à des obligations strictes 
+                    <li><strong>Prestataire d'envoi d'emails (Resend) :</strong> Pour l'envoi des emails de confirmation 
+                    et de notification. Resend agit en tant que sous-traitant et est soumis à des obligations strictes 
                     de confidentialité</li>
                     <li><strong>Hébergeur de la base de données :</strong> Railway 
                     pour le stockage sécurisé de vos données</li>
@@ -241,7 +241,7 @@ export default function ConfidentialitePage() {
                       <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Par téléphone :</p>
-                        <p>01 23 45 67 89 ou 06 58 68 65 48</p>
+                        <p>09 52 47 36 25 ou 06 58 68 65 48</p>
                       </div>
                     </div>
                   </div>
@@ -306,7 +306,7 @@ export default function ConfidentialitePage() {
                       <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Téléphone :</p>
-                        <p>01 23 45 67 89</p>
+                        <p>09 52 47 36 25</p>
                         <p>06 58 68 65 48</p>
                       </div>
                     </div>

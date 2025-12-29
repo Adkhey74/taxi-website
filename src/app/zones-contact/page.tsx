@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, MessageCircle, MapPin, CheckCircle, Calendar, Clock, Plane, Luggage, AlertCircle, Loader2, Heart, Mountain, Users } from "lucide-react"
+import { Phone, MapPin, CheckCircle, Calendar, Clock, Plane, Luggage, AlertCircle, Loader2, Heart, Mountain, Users } from "lucide-react"
 import { useState, Suspense, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
@@ -120,10 +120,10 @@ function ReservationFormSection() {
     <div className="w-full">
       <div className="mb-6 sm:mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground">
-          Réservez votre course
+          {t("zonesContact.formTitle")}
         </h2>
         <p className="text-sm sm:text-base text-muted-foreground">
-          Remplissez le formulaire ci-dessous pour effectuer votre réservation. Tous les champs marqués d&apos;un astérisque (*) sont obligatoires.
+          {t("zonesContact.formDescription")}
         </p>
       </div>
 
@@ -456,7 +456,7 @@ export default function ZonesContactPage() {
                 {t("zonesContact.title")}
               </h1>
               <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
-                Réservez votre transport en toute simplicité. Consultez nos zones de service ci-contre pendant que vous remplissez le formulaire.
+                {t("zonesContact.description")}
               </p>
             </div>
 
@@ -476,7 +476,7 @@ export default function ZonesContactPage() {
                     <div>
                       <h2 className="text-xl sm:text-2xl font-bold mb-5 text-foreground flex items-center gap-2">
                         <MapPin className="h-5 w-5 text-primary" />
-                        Nos zones de service
+                        {t("zonesContact.serviceZonesTitle")}
                       </h2>
                       
                       <div className="space-y-4">
@@ -565,7 +565,7 @@ export default function ZonesContactPage() {
                   <Card className="border border-primary/30 bg-primary/5 shadow-md">
                     <CardHeader className="p-5 border-b border-primary/20">
                       <CardTitle className="text-base font-bold text-foreground">
-                        Informations utiles
+                        {t("zonesContact.usefulInfo")}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-5 space-y-4">

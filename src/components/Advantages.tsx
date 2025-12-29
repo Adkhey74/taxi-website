@@ -146,7 +146,7 @@ export function Advantages() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button variant="outline" className="flex items-center justify-center gap-2 bg-background/10 backdrop-blur-sm border-2 border-background/20 hover:bg-background/20 hover:border-background/30 transition-all duration-300 text-background font-semibold h-12 px-6">
                     <Phone className="h-5 w-5" />
-                    <span>01 23 45 67 89</span>
+                    <span>09 52 47 36 25</span>
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

@@ -2,7 +2,8 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle, CheckCircle } from "lucide-react"
+import { Phone, CheckCircle } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -66,11 +67,13 @@ export default function TransportMedicalCPAMPage() {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-8">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {t("medicalCPAM.description")}
-            </p>
+            <div id="transport-vsl" className="scroll-mt-24">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t("medicalCPAM.description")}
+              </p>
+            </div>
 
-            <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+            <div id="transports-medicaux" className="bg-primary/5 border border-primary/20 rounded-xl p-6 scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4">{t("medicalCPAM.transports.title")}</h2>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
@@ -118,7 +121,7 @@ export default function TransportMedicalCPAMPage() {
               </Button>
               <Button size="lg" variant="outline" className="border-2 border-primary/20 hover:border-primary/40 px-8 py-7 text-lg font-semibold" asChild>
                 <a href="https://api.whatsapp.com/send?phone=33658686548&text=Bonjour%20je%20souhaite%20r%C3%A9server%20un%20transport%20m%C3%A9dical." target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  <MessageCircle className="mr-2 h-5 w-5" />
+                  <FaWhatsapp className="mr-2 h-5 w-5" />
                   {t("cta.whatsapp")}
                 </a>
               </Button>

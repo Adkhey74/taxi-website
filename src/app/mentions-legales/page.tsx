@@ -47,7 +47,7 @@ export default function MentionsLegalesPage() {
                     <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold">Téléphone :</p>
-                      <p>01 23 45 67 89</p>
+                      <p>09 52 47 36 25</p>
                       <p>06 58 68 65 48</p>
                     </div>
                   </div>

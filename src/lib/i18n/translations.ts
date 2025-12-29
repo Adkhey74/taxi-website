@@ -36,16 +36,20 @@ export const translations = {
     // Home page
     home: {
       title: "Taxi professionnel toutes distances en Savoie",
-      subtitle: "Transport médical conventionné CPAM – Taxi aéroport – Transfert stations de ski",
+      subtitle: "Transport médical conventionné CPAM",
+      subtitle2: "Taxi aéroport",
+      subtitle3: "Transfert stations de ski",
       service24h: "Service 24h/24 et 7j/7",
-      description1: "Notre société de taxi propose des services de transport fiables, ponctuels et confortables pour les particuliers, patients, professionnels et touristes.",
+      professionalService: "Service professionnel",
+      description1: "Notre société de taxi propose des services de transport fiables, ponctuels et confortables au service des particuliers et professionnels.",
       description2: "Nous assurons tous types de déplacements locaux, régionaux et longue distance, avec une disponibilité permanente.",
-      description3: "Basée à La Motte-Servolex et à l'aéroport de Chambéry, notre implantation permet de desservir l'ensemble de la Savoie ainsi que les longues distances vers Lyon et Grenoble.",
+      description3: "Basée à La Motte-Servolex et à l'aéroport de Chambéry, notre implantation permet de desservir l'ensemble de la Savoie ainsi que vers Lyon, Grenoble, la Haute-Savoie, la Suisse et l'Italie.",
       tourism: {
         title: "Tourisme & stations de ski",
         description: "Chaque saison, nous accompagnons de nombreux touristes français et internationaux vers les stations de ski de Tarentaise et Haute-Tarentaise.",
         features: "Nos transferts stations de ski sont adaptés aux bagages, skis et conditions hivernales, avec un service fiable, ponctuel et professionnel.",
-        learnMore: "En savoir plus",
+        stationsServed: "Stations desservies",
+        servicesInfo: "Nos services",
       },
       vehicles: {
         title: "Véhicules & confort",
@@ -56,12 +60,14 @@ export const translations = {
         title: "Transport médical conventionné CPAM",
         description: "Taxi conventionné CPAM spécialisé dans le transport médical assis (VSL), réalisé uniquement sur prescription médicale. Service disponible 24h/24 et 7j/7.",
         features: "Nous assurons également des transports médicaux longue distance vers les pôles hospitaliers de Lyon et Grenoble pour les soins spécialisés.",
+        transportsCovered: "Transports couverts",
         learnMore: "En savoir plus",
       },
       airport: {
         title: "Taxi aéroport – transferts toutes distances",
         description: "Nous assurons des transferts taxi aéroport fiables et ponctuels, avec une organisation adaptée aux horaires de vol et aux bagages.",
         features: "Service disponible 24h/24 et 7j/7 vers les aéroports de Chambéry, Lyon, Grenoble, Genève et Milan.",
+        airportsServed: "Aéroports desservis",
         learnMore: "En savoir plus",
       },
     },
@@ -147,7 +153,11 @@ export const translations = {
     // Zones desservies & Contact
     zonesContact: {
       title: "Zones desservies – Taxi toutes distances",
-      description: "",
+      description: "Réservez votre transport en toute simplicité. Consultez nos zones de service ci-contre pendant que vous remplissez le formulaire.",
+      formTitle: "Réservez votre course",
+      formDescription: "Remplissez le formulaire ci-dessous pour effectuer votre réservation. Tous les champs marqués d'un astérisque (*) sont obligatoires.",
+      serviceZonesTitle: "Nos zones de service",
+      usefulInfo: "Informations utiles",
       zones: {
         local: {
           title: "Zone locale",
@@ -211,7 +221,7 @@ export const translations = {
       email: "Email",
       emailPlaceholder: "votre@email.com",
       phone: "Téléphone",
-      phonePlaceholder: "01 23 45 67 89",
+      phonePlaceholder: "06 58 68 65 48",
       serviceType: "Type de service",
       selectService: "Sélectionnez un service",
       message: "Message",
@@ -256,7 +266,7 @@ export const translations = {
       email: "Email",
       emailPlaceholder: "votre@email.com",
       phone: "Téléphone",
-      phonePlaceholder: "01 23 45 67 89",
+      phonePlaceholder: "06 58 68 65 48",
       pickupAddress: "Adresse de départ",
       pickupAddressPlaceholder: "123 Rue de la République, Chambéry",
       dropoffAddress: "Destination",
@@ -350,16 +360,20 @@ export const translations = {
     // Home page
     home: {
       title: "Professional taxi all distances in Savoie",
-      subtitle: "CPAM certified medical transport – Airport taxi – Ski resort transfers",
+      subtitle: "CPAM certified medical transport",
+      subtitle2: "Airport taxi",
+      subtitle3: "Ski resort transfers",
       service24h: "Service 24/7",
-      description1: "Our taxi company offers reliable, punctual and comfortable transport services for individuals, patients, professionals and tourists.",
+      professionalService: "Professional service",
+      description1: "Our taxi company offers reliable, punctual and comfortable transport services for individuals and professionals.",
       description2: "We provide all types of local, regional and long-distance trips, with permanent availability.",
-      description3: "Based in La Motte-Servolex and at Chambéry Airport, our location allows us to serve all of Savoie as well as long distances to Lyon and Grenoble.",
+      description3: "Based in La Motte-Servolex and at Chambéry Airport, our location allows us to serve all of Savoie as well as Lyon, Grenoble, Haute-Savoie, Switzerland and Italy.",
       tourism: {
         title: "Tourism & ski resorts",
         description: "Each season, we accompany many French and international tourists to the ski resorts of Tarentaise and Haute-Tarentaise.",
         features: "Our ski resort transfers are adapted to luggage, skis and winter conditions, with a reliable, punctual and professional service.",
-        learnMore: "Learn more",
+        stationsServed: "Served stations",
+        servicesInfo: "Our services",
       },
       vehicles: {
         title: "Vehicles & comfort",
@@ -370,12 +384,14 @@ export const translations = {
         title: "CPAM certified medical transport",
         description: "CPAM certified taxi specialized in seated medical transport (VSL), performed only on medical prescription. Service available 24/7.",
         features: "We also provide long-distance medical transport to the hospital centers of Lyon and Grenoble for specialized care.",
+        transportsCovered: "Covered transports",
         learnMore: "Learn more",
       },
       airport: {
         title: "Airport taxi – all distance transfers",
         description: "We provide reliable and punctual airport taxi transfers, with organization adapted to flight schedules and luggage.",
         features: "Service available 24/7 to Chambéry, Lyon, Grenoble, Geneva and Milan airports.",
+        airportsServed: "Served airports",
         learnMore: "Learn more",
       },
     },
@@ -461,7 +477,11 @@ export const translations = {
     // Zones desservies & Contact
     zonesContact: {
       title: "Service areas – All distance taxi",
-      description: "",
+      description: "Book your transport with ease. Check our service areas on the side while you fill out the form.",
+      formTitle: "Book your ride",
+      formDescription: "Fill out the form below to make your reservation. All fields marked with an asterisk (*) are required.",
+      serviceZonesTitle: "Our service areas",
+      usefulInfo: "Useful information",
       zones: {
         local: {
           title: "Local area",

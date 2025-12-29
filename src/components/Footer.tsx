@@ -25,7 +25,10 @@ export function Footer() {
               {t("footer.description")}
             </p>
             <div className="flex gap-3">
-              <a href="tel:0123456789" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 p-3 rounded-lg transition-all duration-200 border border-primary-foreground/20 hover:border-primary-foreground/30">
+              <a href="tel:0952473625" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 p-3 rounded-lg transition-all duration-200 border border-primary-foreground/20 hover:border-primary-foreground/30">
+                <Phone className="h-4 w-4 text-primary-foreground" />
+              </a>
+              <a href="tel:0658686548" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 p-3 rounded-lg transition-all duration-200 border border-primary-foreground/20 hover:border-primary-foreground/30">
                 <Phone className="h-4 w-4 text-primary-foreground" />
               </a>
               <a href="mailto:contact@hern-taxi.fr" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 p-3 rounded-lg transition-all duration-200 border border-primary-foreground/20 hover:border-primary-foreground/30">
@@ -82,7 +85,7 @@ export function Footer() {
                   <Phone className="h-4 w-4 text-primary-foreground" />
                 </div>
                 <div>
-                  <a href="tel:0123456789" className="text-primary-foreground font-semibold hover:text-primary-foreground/80 transition-colors">01 23 45 67 89</a>
+                  <a href="tel:0952473625" className="text-primary-foreground font-semibold hover:text-primary-foreground/80 transition-colors">09 52 47 36 25</a>
                   <p className="text-primary-foreground/70 text-xs">{t("footer.availability")}</p>
                 </div>
               </div>

@@ -11,7 +11,27 @@ import { motion } from "framer-motion"
 export default function Home() {
   const { t } = useI18n()
   const [videoLoaded, setVideoLoaded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Détecter si on est sur mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  // Recharger la vidéo si on passe de mobile à desktop ou vice versa
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load()
+    }
+  }, [isMobile])
 
   // Fallback pour la vidéo - s'affiche après 500ms même si l'événement ne se déclenche pas
   useEffect(() => {
@@ -64,7 +84,11 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source 
-              src="https://res.cloudinary.com/dufmpr5dh/video/upload/q_auto:best,w_1920,h_1080,f_auto,vc_auto/v1766857307/Fait_moi_une_1080p_202512262254_zxnjuk.mp4" 
+              src={
+                isMobile 
+                  ? "https://res.cloudinary.com/dufmpr5dh/video/upload/q_auto:best,w_1280,h_720,f_auto,vc_auto/v1766857307/Fait_moi_une_1080p_202512262254_zxnjuk.mp4"
+                  : "https://res.cloudinary.com/dufmpr5dh/video/upload/q_auto:best,w_1920,h_1080,f_auto,vc_auto/v1766857307/Fait_moi_une_1080p_202512262254_zxnjuk.mp4"
+              }
               type="video/mp4" 
             />
           </video>
@@ -91,9 +115,11 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-lg">
               {t("home.title")}
             </h1>
-            <p className="text-xl sm:text-2xl mb-4 text-white/90 font-semibold drop-shadow-md">
-              {t("home.subtitle")}
-            </p>
+            <div className="text-xl sm:text-2xl mb-4 text-white/90 font-semibold drop-shadow-md space-y-1">
+              <p>{t("home.subtitle")}</p>
+              <p>{t("home.subtitle2")}</p>
+              <p>{t("home.subtitle3")}</p>
+            </div>
             <p className="text-lg text-white/80 mb-6 drop-shadow-md">
               {t("home.service24h")}
             </p>
@@ -101,13 +127,13 @@ export default function Home() {
             {/* Numéros de téléphone */}
             <div className="flex flex-wrap items-center justify-center gap-4">
               <motion.a 
-                href="tel:0123456789" 
+                href="tel:0952473625" 
                 className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white font-semibold shadow-lg hover:shadow-xl backdrop-blur-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Phone className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                <span className="text-lg">01 23 45 67 89</span>
+                <span className="text-lg">09 52 47 36 25</span>
               </motion.a>
               <motion.a 
                 href="tel:0658686548" 
@@ -196,13 +222,20 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("home.tourism.description")}
                 </p>
+                <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                  <Button asChild className="mt-2 hover:shadow-xl transition-all duration-300">
+                    <Link href="/transfert-stations-ski#stations-desservies" className="flex items-center">
+                      {t("home.tourism.stationsServed")}
+                    </Link>
+                  </Button>
+                </motion.div>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("home.tourism.features")}
                 </p>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild className="mt-4">
-                    <Link href="/transfert-stations-ski" className="flex items-center">
-                      {t("home.tourism.learnMore")}
+                <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                  <Button asChild className="mt-2 hover:shadow-xl transition-all duration-300">
+                    <Link href="/transfert-stations-ski#services-ski" className="flex items-center">
+                      {t("home.tourism.servicesInfo")}
                     </Link>
                   </Button>
                 </motion.div>
@@ -234,8 +267,8 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("home.medical.features")}
                 </p>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild className="mt-4">
+                <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                  <Button asChild className="mt-2 hover:shadow-xl transition-all duration-300">
                     <Link href="/transport-medical-cpam" className="flex items-center">
                       {t("home.medical.learnMore")}
                     </Link>
@@ -301,8 +334,8 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("home.airport.features")}
                 </p>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild className="mt-4">
+                <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                  <Button asChild className="mt-2 hover:shadow-xl transition-all duration-300">
                     <Link href="/taxi-aeroport" className="flex items-center">
                       {t("home.airport.learnMore")}
                     </Link>
@@ -365,7 +398,7 @@ export default function Home() {
             {[
               { icon: Clock, text: t("home.service24h") },
               { icon: Car, text: t("home.vehicles.title") },
-              { icon: Shield, text: "Service professionnel" }
+              { icon: Shield, text: t("home.professionalService") }
             ].map((feature, index) => {
               const Icon = feature.icon
               return (

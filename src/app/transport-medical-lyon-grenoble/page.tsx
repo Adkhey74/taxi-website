@@ -2,7 +2,8 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle, Building2, CheckCircle } from "lucide-react"
+import { Phone, Building2, CheckCircle } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -145,7 +146,7 @@ export default function TransportMedicalLyonGrenoblePage() {
               </Button>
               <Button size="lg" variant="outline" className="border-2 border-primary/20 hover:border-primary/40 px-8 py-7 text-lg font-semibold" asChild>
                 <a href="https://api.whatsapp.com/send?phone=33658686548&text=Bonjour%20je%20souhaite%20r%C3%A9server%20un%20transport%20m%C3%A9dical%20vers%20Lyon%20ou%20Grenoble." target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  <MessageCircle className="mr-2 h-5 w-5" />
+                  <FaWhatsapp className="mr-2 h-5 w-5" />
                   {t("cta.whatsapp")}
                 </a>
               </Button>

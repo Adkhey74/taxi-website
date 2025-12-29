@@ -115,7 +115,8 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground mb-1">{t("contact.phoneTitle")}</h3>
-                    <p className="text-foreground font-medium">01 23 45 67 89</p>
+                    <p className="text-foreground font-medium">09 52 47 36 25</p>
+                    <p className="text-foreground font-medium">06 58 68 65 48</p>
                     <p className="text-sm text-muted-foreground mt-1">{t("contact.phoneAvailability")}</p>
                   </div>
                 </div>

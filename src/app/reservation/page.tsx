@@ -5,7 +5,8 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, MessageCircle, CheckCircle, AlertCircle, Loader2, Calendar, Clock, MapPin, Plane, Luggage, Heart, Mountain, Users } from "lucide-react"
+import { Phone, CheckCircle, AlertCircle, Loader2, Calendar, Clock, MapPin, Plane, Luggage, Heart, Mountain, Users } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
 import { toast } from "sonner"
@@ -464,7 +465,7 @@ function ReservationForm() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2"
                 >
-                  <MessageCircle className="h-5 w-5" />
+                  <FaWhatsapp className="h-5 w-5" />
                   {t("cta.whatsapp")}
                 </a>
               </Button>

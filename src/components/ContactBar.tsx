@@ -20,11 +20,11 @@ export function ContactBar() {
               <span className="font-semibold text-foreground">{t("contactBar.callUs")}:</span>
             </div>
             <a 
-              href="tel:0123456789" 
+              href="tel:0952473625" 
               className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200"
             >
               <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
-              <span>01 23 45 67 89</span>
+              <span>09 52 47 36 25</span>
             </a>
             <a 
               href="tel:0658686548" 

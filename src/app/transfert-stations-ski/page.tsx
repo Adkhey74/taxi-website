@@ -2,7 +2,8 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle, Mountain, CheckCircle } from "lucide-react"
+import { Phone, Mountain, CheckCircle } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -71,7 +72,7 @@ export default function TransfertStationsSkiPage() {
               {t("ski.description")}
             </p>
 
-            <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+            <div id="stations-desservies" className="bg-primary/5 border border-primary/20 rounded-xl p-6 scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
                 <Mountain className="h-6 w-6 text-primary" />
                 {t("ski.stations.title")}
@@ -120,7 +121,7 @@ export default function TransfertStationsSkiPage() {
               </ul>
             </div>
 
-            <div className="bg-muted/50 rounded-xl p-6 space-y-4">
+            <div id="services-ski" className="bg-muted/50 rounded-xl p-6 space-y-4 scroll-mt-24">
               <p className="text-muted-foreground leading-relaxed">
                 {t("ski.international")}
               </p>
@@ -149,7 +150,7 @@ export default function TransfertStationsSkiPage() {
               </Button>
               <Button size="lg" variant="outline" className="border-2 border-primary/20 hover:border-primary/40 px-8 py-7 text-lg font-semibold" asChild>
                 <a href="https://api.whatsapp.com/send?phone=33658686548&text=Bonjour%20je%20souhaite%20r%C3%A9server%20un%20transfert%20vers%20une%20station%20de%20ski." target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  <MessageCircle className="mr-2 h-5 w-5" />
+                  <FaWhatsapp className="mr-2 h-5 w-5" />
                   {t("cta.whatsapp")}
                 </a>
               </Button>
