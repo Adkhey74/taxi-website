@@ -30,7 +30,7 @@ export function LanguageSwitcher() {
   const currentLanguage = languages.find(l => l.code === locale)
 
   return (
-    <NavigationMenu>
+    <NavigationMenu viewport={false}>
       <NavigationMenuItem>
         <NavigationMenuTrigger className="h-10 px-2 sm:px-3">
           <span className={`fi fi-${currentLanguage?.flagCode} mr-1 sm:mr-2`}></span>
@@ -38,7 +38,7 @@ export function LanguageSwitcher() {
             {currentLanguage?.codeLabel}
           </span>
         </NavigationMenuTrigger>
-        <NavigationMenuContent>
+        <NavigationMenuContent className="right-0 left-auto md:left-1/2 md:-translate-x-1/2 md:right-auto">
           <div className="p-2 w-44">
             {languages.map((lang) => (
               <button
