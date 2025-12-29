@@ -5,36 +5,96 @@ import { Button } from "@/components/ui/button"
 import { Phone, MessageCircle, Car, Shield, Clock } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useState, useEffect, useRef } from "react"
 
 export default function Home() {
   const { t } = useI18n()
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({})
+  const imageRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Fallback pour la vidéo - s'affiche après 500ms même si l'événement ne se déclenche pas
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVideoLoaded(true)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Observer pour les images
+  useEffect(() => {
+    const observers: IntersectionObserver[] = []
+
+    Object.keys(imageRefs.current).forEach((key) => {
+      const element = imageRefs.current[key]
+      if (!element) return
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setImagesLoaded((prev) => ({ ...prev, [key]: true }))
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.1 }
+      )
+
+      observer.observe(element)
+      observers.push(observer)
+    })
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect())
+    }
+  }, [])
 
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center bg-black overflow-hidden">
-        {/* Fond noir en arrière-plan pour éviter le fond gris */}
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+        {/* Fond blanc pendant le chargement de la vidéo - au-dessus du fond noir */}
+        <div className={`absolute inset-0 bg-white z-[1] transition-opacity duration-1000 ease-in-out ${
+          videoLoaded ? "opacity-0" : "opacity-100"
+        }`} />
+        
+        {/* Fond noir en arrière-plan */}
         <div className="absolute inset-0 bg-black z-0" />
         
         {/* Video background */}
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          onCanPlay={() => setVideoLoaded(true)}
+          onLoadedMetadata={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover z-[2] transition-opacity duration-1000 ease-in-out ${
+            videoLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          }`}
+          style={{ transition: "opacity 1s ease-in-out, transform 1s ease-in-out" }}
         >
           <source 
-            src="https://res.cloudinary.com/dufmpr5dh/video/upload/q_auto:good,w_1280,h_720,f_auto/v1766857307/Fait_moi_une_1080p_202512262254_zxnjuk.mp4" 
+            src="https://res.cloudinary.com/dufmpr5dh/video/upload/q_auto:best,w_1920,h_1080,f_auto,vc_auto/v1766857307/Fait_moi_une_1080p_202512262254_zxnjuk.mp4" 
             type="video/mp4" 
           />
         </video>
         
         {/* Overlay pour améliorer la lisibilité du texte */}
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className={`absolute inset-0 bg-black/40 z-10 transition-opacity duration-1000 ease-in-out ${
+          videoLoaded ? "opacity-100" : "opacity-0"
+        }`} />
         
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 z-20">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-in-out ${
+            videoLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-lg">
               {t("home.title")}
             </h1>
@@ -83,7 +143,14 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Image */}
-              <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+              <div 
+                ref={(el) => { imageRefs.current["ski"] = el }}
+                className={`relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-1000 ease-out ${
+                  imagesLoaded["ski"] 
+                    ? "opacity-100 translate-y-0" 
+                    : "opacity-0 translate-y-8"
+                }`}
+              >
                 <Image
                   src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1280,c_limit/v1766938706/ski_iuqmrd.jpg"
                   alt="Stations de ski en Savoie"
@@ -133,7 +200,14 @@ export default function Home() {
               </div>
               
               {/* Image véhicule */}
-              <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl order-1 lg:order-2">
+              <div 
+                ref={(el) => { imageRefs.current["vehicle"] = el }}
+                className={`relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl order-1 lg:order-2 transition-all duration-1000 ease-out ${
+                  imagesLoaded["vehicle"] 
+                    ? "opacity-100 translate-y-0" 
+                    : "opacity-0 translate-y-8"
+                }`}
+              >
                 <Image
                   src="/images/vehicles/Mercedes-Classe-V-transport-avec-chauffeur-transfert-aeroport-gare-1.jpeg"
                   alt="Mercedes Classe V - Véhicule de transport"

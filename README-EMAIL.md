@@ -129,3 +129,4 @@ En attendant, utilisez l'email de test Resend : `onboarding@resend.dev`
 - [Documentation Resend](https://resend.com/docs)
 - [Guide de vérification de domaine](https://resend.com/docs/dashboard/domains/introduction)
 
+

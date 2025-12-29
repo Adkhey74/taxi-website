@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Phone, MessageCircle, CheckCircle, AlertCircle, Loader2, Calendar, Clock, MapPin, Users, Plane, Luggage } from "lucide-react"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
+import { toast } from "sonner"
 
 function ReservationForm() {
   const searchParams = useSearchParams()
@@ -67,8 +68,14 @@ function ReservationForm() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || "Erreur lors de la création de la réservation")
+        throw new Error(data.error || t("reservation.errorCreating") as string)
       }
+
+      // Afficher le toast de succès
+      toast.success(t("reservation.success") as string, {
+        description: t("reservation.successMessage") as string,
+        duration: 5000,
+      })
 
       setSubmitStatus("success")
       setTimeout(() => {
@@ -90,8 +97,13 @@ function ReservationForm() {
         setSubmitStatus(null)
       }, 3000)
     } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : t("reservation.errorOccurred") as string
+      toast.error(t("reservation.errorTitle") as string, {
+        description: errorMsg,
+        duration: 5000,
+      })
       setSubmitStatus("error")
-      setErrorMessage(error instanceof Error ? error.message : "Une erreur est survenue")
+      setErrorMessage(errorMsg)
     } finally {
       setIsSubmitting(false)
     }
@@ -127,10 +139,10 @@ function ReservationForm() {
                 <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-bold text-green-900 dark:text-green-100 text-lg mb-1">
-                    Réservation envoyée !
+                    {t("reservation.successTitle")}
                   </p>
                   <p className="text-green-700 dark:text-green-300">
-                    Nous vous contacterons rapidement pour confirmer votre demande.
+                    {t("reservation.successDescription")}
                   </p>
                 </div>
               </div>
@@ -189,7 +201,7 @@ function ReservationForm() {
                       <div className="space-y-4">
                         <div>
                           <label htmlFor="firstName" className="block text-sm font-semibold text-foreground mb-2">
-                            Prénom
+                            {t("reservation.firstName")}
                           </label>
                           <Input
                             id="firstName"
@@ -198,13 +210,13 @@ function ReservationForm() {
                             onChange={handleChange}
                             required
                             className="h-12"
-                            placeholder="Jean"
+                            placeholder={t("reservation.firstNamePlaceholder") as string}
                           />
                         </div>
 
                         <div>
                           <label htmlFor="lastName" className="block text-sm font-semibold text-foreground mb-2">
-                            Nom
+                            {t("reservation.lastName")}
                           </label>
                           <Input
                             id="lastName"
@@ -219,7 +231,7 @@ function ReservationForm() {
 
                         <div>
                           <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
-                            Email
+                            {t("reservation.email")}
                           </label>
                           <Input
                             id="email"
@@ -235,7 +247,7 @@ function ReservationForm() {
 
                         <div>
                           <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
-                            Téléphone
+                            {t("reservation.phone")}
                           </label>
                           <Input
                             id="phone"
@@ -259,7 +271,7 @@ function ReservationForm() {
                         <div>
                           <label htmlFor="pickupAddress" className="block text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
                             <MapPin className="h-4 w-4" />
-                            Adresse de départ
+                            {t("reservation.pickupAddress")}
                           </label>
                           <Input
                             id="pickupAddress"
@@ -275,7 +287,7 @@ function ReservationForm() {
                         <div>
                           <label htmlFor="dropoffAddress" className="block text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
                             <MapPin className="h-4 w-4" />
-                            Destination
+                            {t("reservation.dropoffAddress")}
                           </label>
                           <Input
                             id="dropoffAddress"
@@ -368,7 +380,7 @@ function ReservationForm() {
                               value={formData.flightNumber}
                               onChange={handleChange}
                               className="h-12"
-                              placeholder="AF 1234"
+                              placeholder={t("reservation.flightNumberPlaceholder") as string}
                             />
                           </div>
                         )}

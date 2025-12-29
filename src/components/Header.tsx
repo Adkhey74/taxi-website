@@ -7,10 +7,12 @@ import { Menu, X, Calendar } from "lucide-react"
 import { useState } from "react"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { useI18n } from "@/lib/i18n/context"
+import { useReservationModal } from "@/contexts/ReservationModalContext"
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { t } = useI18n()
+  const { openModal } = useReservationModal()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background backdrop-blur-md supports-[backdrop-filter]:bg-background/95 shadow-sm">
@@ -104,15 +106,13 @@ export function Header() {
           {/* Bouton Réserver et sélecteur de langue à droite - Desktop */}
           <div className="hidden md:flex items-center gap-3">
             <Button 
-              asChild 
+              onClick={() => openModal()}
               size="sm" 
               className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground border-0 shadow-md hover:shadow-lg transition-all duration-200 font-semibold h-10 px-4"
             >
-              <Link href="/zones-contact#contact" className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 [&_circle]:hidden" />
-                <span className="hidden lg:inline">{t("header.bookNow")}</span>
-                <span className="lg:hidden">{t("header.book")}</span>
-              </Link>
+              <Calendar className="h-4 w-4 [&_circle]:hidden" />
+              <span className="hidden lg:inline">{t("header.bookNow")}</span>
+              <span className="lg:hidden">{t("header.book")}</span>
             </Button>
             <LanguageSwitcher />
           </div>
@@ -186,13 +186,14 @@ export function Header() {
               {/* Bouton Réserver mobile */}
               <div className="pt-4 border-t border-border/40">
                 <Button 
-                  asChild 
+                  onClick={() => {
+                    openModal()
+                    setIsMobileMenuOpen(false)
+                  }}
                   className="w-full gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-11 shadow-md hover:shadow-lg transition-all duration-200"
                 >
-                  <Link href="/zones-contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2">
-                    <Calendar className="h-4 w-4 [&_circle]:hidden" />
-                    {t("header.bookNow")}
-                  </Link>
+                  <Calendar className="h-4 w-4 [&_circle]:hidden" />
+                  {t("header.bookNow")}
                 </Button>
               </div>
               

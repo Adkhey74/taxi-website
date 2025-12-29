@@ -74,12 +74,12 @@ export function Contact() {
                     className="w-full h-11 px-3 py-2 border border-input bg-background rounded-lg text-sm ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors"
                   >
                     <option value="">{t("contact.selectService")}</option>
-                    <option value="aeroport">{t("services.serviceTypes.aeroport")}</option>
-                    <option value="ville">{t("services.serviceTypes.ville")}</option>
-                    <option value="longue-distance">{t("services.serviceTypes.longue-distance")}</option>
-                    <option value="evenement">{t("services.serviceTypes.evenement")}</option>
-                    <option value="express">{t("services.serviceTypes.express")}</option>
-                    <option value="forfait">{t("services.serviceTypes.forfait")}</option>
+                    <option value="aeroport">{t("reservation.serviceTypes.aeroport")}</option>
+                    <option value="ville">{t("reservation.serviceTypes.ville")}</option>
+                    <option value="longue-distance">{t("reservation.serviceTypes.longueDistance")}</option>
+                    <option value="evenement">{t("reservation.serviceTypes.evenement")}</option>
+                    <option value="express">{t("reservation.serviceTypes.express")}</option>
+                    <option value="forfait">{t("reservation.serviceTypes.forfait")}</option>
                   </select>
                 </div>
 

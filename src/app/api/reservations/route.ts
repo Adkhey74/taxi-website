@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { CreateReservationInput } from '@/types/reservation'
 import { ReservationStatus, Prisma, Client } from '@prisma/client'
-import { Resend } from 'resend'
+import sgMail from '@sendgrid/mail'
 
 // Fonction pour formater la date en français
 const formatDate = (date: Date) => {
@@ -47,22 +47,33 @@ async function sendReservationConfirmationEmail(
   },
   client: Client
 ) {
-  // Vérifier si Resend est configuré
-  if (!process.env.RESEND_API_KEY) {
-    console.log('⚠️ RESEND_API_KEY non configurée - Email non envoyé')
+  // Vérifier si SendGrid est configuré
+  if (!process.env.SENDGRID_API_KEY) {
+    console.error('⚠️ SENDGRID_API_KEY non configurée dans les variables d\'environnement')
     console.log('Email de confirmation à envoyer à:', client.email)
-    return
+    throw new Error('SENDGRID_API_KEY non configurée')
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY)
+  // Initialiser SendGrid
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  
   const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
-  const fromEmail = process.env.FROM_EMAIL || 'reservations@hern-taxi.fr'
+  const fromEmail = process.env.FROM_EMAIL || 'adil.apple74@gmail.com'
   const reservationId = reservation.id.slice(0, 8).toUpperCase()
 
+  console.log('📧 Configuration email SendGrid:', {
+    from: fromEmail,
+    to: client.email,
+    apiKeyPresent: !!process.env.SENDGRID_API_KEY
+  })
+
   try {
-    await resend.emails.send({
-      from: `Hern Taxi <${fromEmail}>`,
+    const msg = {
       to: client.email,
+      from: {
+        email: fromEmail,
+        name: 'Hern Taxi'
+      },
       subject: `Confirmation de réservation #${reservationId}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -95,10 +106,35 @@ async function sendReservationConfirmationEmail(
           <p style="margin-top: 30px;">Cordialement,<br><strong>L'équipe Hern Taxi</strong></p>
         </div>
       `,
+    }
+
+    const [response] = await sgMail.send(msg)
+    console.log('✅ Email de confirmation envoyé avec succès à:', client.email)
+    console.log('📧 Réponse SendGrid:', {
+      statusCode: response?.statusCode,
+      headers: response?.headers,
+      body: response?.body
     })
-    console.log('✅ Email de confirmation envoyé à:', client.email)
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Erreur lors de l\'envoi de l\'email de confirmation:', error)
+    console.error('📋 Détails:', {
+      message: error?.message,
+      code: error?.code,
+      statusCode: error?.response?.statusCode,
+      body: error?.response?.body
+    })
+    
+    // Vérifier si c'est une erreur de vérification d'email
+    if (error?.response?.body?.errors) {
+      error.response.body.errors.forEach((err: any) => {
+        console.error('❌ Erreur SendGrid:', err.message)
+        if (err.message?.includes('verified') || err.message?.includes('sender')) {
+          console.error('⚠️ IMPORTANT: Vous devez vérifier votre email d\'envoi dans SendGrid')
+          console.error('📧 Allez sur https://app.sendgrid.com/settings/sender_auth/senders/new')
+        }
+      })
+    }
+    
     throw error
   }
 }
@@ -120,9 +156,9 @@ async function sendReservationNotificationEmail(
   },
   client: Client
 ) {
-  // Vérifier si Resend est configuré
-  if (!process.env.RESEND_API_KEY) {
-    console.log('⚠️ RESEND_API_KEY non configurée - Email de notification non envoyé')
+  // Vérifier si SendGrid est configuré
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log('⚠️ SENDGRID_API_KEY non configurée - Email de notification non envoyé')
     return
   }
 
@@ -133,15 +169,20 @@ async function sendReservationNotificationEmail(
     return
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY)
+  // Initialiser SendGrid
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  
   const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
-  const fromEmail = process.env.FROM_EMAIL || 'reservations@hern-taxi.fr'
+  const fromEmail = process.env.FROM_EMAIL || 'adil.apple74@gmail.com'
   const reservationId = reservation.id.slice(0, 8).toUpperCase()
 
   try {
-    await resend.emails.send({
-      from: `Système de réservation <${fromEmail}>`,
+    const msg = {
       to: companyEmail,
+      from: {
+        email: fromEmail,
+        name: 'Système de réservation'
+      },
       subject: `🆕 Nouvelle réservation #${reservationId} - ${serviceType}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -179,10 +220,34 @@ async function sendReservationNotificationEmail(
           </p>
         </div>
       `,
-    })
+    }
+
+    const [response] = await sgMail.send(msg)
     console.log('✅ Email de notification envoyé à:', companyEmail)
-  } catch (error) {
+    console.log('📧 Réponse SendGrid:', {
+      statusCode: response?.statusCode,
+      headers: response?.headers,
+      body: response?.body
+    })
+  } catch (error: any) {
     console.error('❌ Erreur lors de l\'envoi de l\'email de notification:', error)
+    console.error('📋 Détails:', {
+      message: error?.message,
+      code: error?.code,
+      statusCode: error?.response?.statusCode,
+      body: error?.response?.body
+    })
+    
+    // Vérifier si c'est une erreur de vérification d'email
+    if (error?.response?.body?.errors) {
+      error.response.body.errors.forEach((err: any) => {
+        console.error('❌ Erreur SendGrid:', err.message)
+        if (err.message?.includes('verified') || err.message?.includes('sender')) {
+          console.error('⚠️ IMPORTANT: Vous devez vérifier votre email d\'envoi dans SendGrid')
+          console.error('📧 Allez sur https://app.sendgrid.com/settings/sender_auth/senders/new')
+        }
+      })
+    }
     // Ne pas faire échouer la création de réservation si l'email de notification échoue
   }
 }
@@ -313,17 +378,31 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Envoyer les emails (de manière asynchrone, ne pas bloquer la réponse)
-    try {
-      // Email de confirmation au client
-      await sendReservationConfirmationEmail(reservation, client)
-      
-      // Email de notification à l'entreprise
-      await sendReservationNotificationEmail(reservation, client)
-    } catch (emailError) {
-      console.error('Error sending emails:', emailError)
-      // Ne pas faire échouer la création de réservation si l'email échoue
-    }
+    // Envoyer les emails (de manière indépendante pour que l'un ne bloque pas l'autre)
+    // Email de confirmation au client
+    console.log('📧 Début envoi email de confirmation au client:', client.email)
+    sendReservationConfirmationEmail(reservation, client)
+      .then(() => {
+        console.log('✅ Email de confirmation au client envoyé avec succès')
+      })
+      .catch((error) => {
+        console.error('❌ ERREUR lors de l\'envoi de l\'email de confirmation au client:', error)
+        console.error('Détails de l\'erreur:', error?.message || error)
+        if (error?.response) {
+          console.error('Réponse Resend:', error.response)
+        }
+      })
+    
+    // Email de notification à l'entreprise
+    console.log('📧 Début envoi email de notification à l\'entreprise')
+    sendReservationNotificationEmail(reservation, client)
+      .then(() => {
+        console.log('✅ Email de notification à l\'entreprise envoyé avec succès')
+      })
+      .catch((error) => {
+        console.error('❌ ERREUR lors de l\'envoi de l\'email de notification à l\'entreprise:', error)
+        console.error('Détails de l\'erreur:', error?.message || error)
+      })
 
     return NextResponse.json(
       { 

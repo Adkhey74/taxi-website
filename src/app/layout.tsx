@@ -5,6 +5,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { I18nProvider } from "@/lib/i18n/context";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { Toaster } from "sonner";
+import { ReservationModalProvider } from "@/contexts/ReservationModalContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +34,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <I18nProvider>
-          <Header />
-          {children}
-          <Footer />
-          <WhatsAppButton />
+          <ReservationModalProvider>
+            <Header />
+            {children}
+            <Footer />
+            <WhatsAppButton />
+            <Toaster position="top-center" richColors />
+          </ReservationModalProvider>
         </I18nProvider>
       </body>
     </html>

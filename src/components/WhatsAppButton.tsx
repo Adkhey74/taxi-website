@@ -7,7 +7,7 @@ const WHATSAPP_LINK_FR = "https://api.whatsapp.com/send?phone=33658686548&text=B
 const WHATSAPP_LINK_EN = "https://api.whatsapp.com/send?phone=33658686548&text=Hello%20I%20would%20like%20to%20book%20a%20taxi."
 
 export function WhatsAppButton() {
-  const { locale } = useI18n()
+  const { locale, t } = useI18n()
   const whatsappLink = locale === "fr" ? WHATSAPP_LINK_FR : WHATSAPP_LINK_EN
 
   return (
@@ -16,10 +16,10 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20BA5A] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
-      aria-label="Contactez-nous via WhatsApp"
+      aria-label={t("cta.whatsapp") as string}
     >
       <MessageCircle className="h-7 w-7" />
-      <span className="sr-only">WhatsApp</span>
+      <span className="sr-only">{t("cta.whatsapp")}</span>
     </a>
   )
 }

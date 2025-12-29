@@ -5,28 +5,54 @@ import { Button } from "@/components/ui/button"
 import { Phone, MessageCircle, Mountain, CheckCircle } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useState, useEffect } from "react"
 
 export default function TransfertStationsSkiPage() {
   const { t } = useI18n()
+  const [imageLoaded, setImageLoaded] = useState(false)
+
+  // Fallback pour l'image - s'affiche après 500ms même si l'événement ne se déclenche pas
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setImageLoaded(true)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 min-h-[60vh] flex items-center overflow-hidden">
+        {/* Fond blanc pendant le chargement de l'image */}
+        <div className={`absolute inset-0 bg-white z-[1] transition-opacity duration-1000 ease-in-out ${
+          imageLoaded ? "opacity-0" : "opacity-100"
+        }`} />
+        
+        {/* Fond sombre en arrière-plan */}
+        <div className="absolute inset-0 bg-gray-900 z-0" />
+        
         {/* Image background */}
-        <div className="absolute inset-0 z-0">
+        <div className={`absolute inset-0 z-[2] transition-opacity duration-1000 ease-in-out ${
+          imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
+        }`}>
           <Image
             src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1920,c_limit/v1766938706/ski_iuqmrd.jpg"
             alt="Stations de ski"
             fill
             className="object-cover"
             priority
+            onLoad={() => setImageLoaded(true)}
           />
-          <div className="absolute inset-0 bg-black/50 z-10" />
+          <div className={`absolute inset-0 bg-black/50 z-10 transition-opacity duration-1000 ease-in-out ${
+            imageLoaded ? "opacity-100" : "opacity-0"
+          }`} />
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-in-out ${
+            imageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
               {t("ski.title")}
             </h1>

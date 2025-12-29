@@ -9,6 +9,7 @@ import { Phone, MessageCircle, MapPin, CheckCircle, Calendar, Clock, Users, Plan
 import { useState, Suspense, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
+import { toast } from "sonner"
 
 function ReservationFormSection() {
   const { t } = useI18n()
@@ -71,6 +72,12 @@ function ReservationFormSection() {
         throw new Error(data.error || t("reservation.errorOccurred") as string)
       }
 
+      // Afficher le toast de succès
+      toast.success(t("reservation.success") as string, {
+        description: t("reservation.successMessage") as string,
+        duration: 5000,
+      })
+
       setSubmitStatus("success")
       setTimeout(() => {
         setFormData({
@@ -91,8 +98,13 @@ function ReservationFormSection() {
         setSubmitStatus(null)
       }, 3000)
     } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : t("reservation.errorOccurred") as string
+      toast.error(t("reservation.errorTitle") as string, {
+        description: errorMsg,
+        duration: 5000,
+      })
       setSubmitStatus("error")
-      setErrorMessage(error instanceof Error ? error.message : t("reservation.errorOccurred") as string)
+      setErrorMessage(errorMsg)
     } finally {
       setIsSubmitting(false)
     }
