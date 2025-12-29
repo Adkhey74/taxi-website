@@ -1,10 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client"
 
-import { useI18n } from "@/lib/i18n/context"
 import { Phone, Mail, MapPin } from "lucide-react"
 
 export default function MentionsLegalesPage() {
-  const { t } = useI18n()
 
   return (
     <main className="min-h-screen bg-background">

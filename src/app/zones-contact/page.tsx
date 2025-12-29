@@ -123,7 +123,7 @@ function ReservationFormSection() {
           Réservez votre course
         </h2>
         <p className="text-sm sm:text-base text-muted-foreground">
-          Remplissez le formulaire ci-dessous pour effectuer votre réservation. Tous les champs marqués d'un astérisque (*) sont obligatoires.
+          Remplissez le formulaire ci-dessous pour effectuer votre réservation. Tous les champs marqués d&apos;un astérisque (*) sont obligatoires.
         </p>
       </div>
 
