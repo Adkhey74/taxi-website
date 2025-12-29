@@ -104,7 +104,7 @@ export default function MentionsLegalesPage() {
                     <li>gratuité de la diffusion</li>
                     <li>respect de l'intégrité des documents reproduits (pas de modification ni altération)</li>
                     <li>citation claire et lisible de la source sous la forme : "Document issu du site Hern Taxi - 
-                    [URL de la page concernée] - Droits de reproduction réservés et limités"</li>
+                    https://taxi-website-production.up.railway.app - Droits de reproduction réservés et limités"</li>
                   </ul>
                 </div>
               </section>
@@ -129,8 +129,7 @@ export default function MentionsLegalesPage() {
                     demande de réservation de transport et de vous contacter pour confirmer votre réservation.
                   </p>
                   <p>
-                    <strong>Conservation :</strong> Les données sont conservées pour une durée de [durée de conservation, 
-                    ex: 3 ans] à compter de la dernière utilisation, conformément aux obligations légales et comptables.
+                    <strong>Conservation :</strong> Les données sont conservées pour une durée de 3 ans à compter de la dernière utilisation, conformément aux obligations légales et comptables.
                   </p>
                   <p>
                     <strong>Destinataires :</strong> Les données collectées sont destinées à Hern Taxi pour le traitement 

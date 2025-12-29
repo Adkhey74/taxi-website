@@ -151,7 +151,7 @@ export default function ConfidentialitePage() {
                     <li><strong>Prestataire d'envoi d'emails (SendGrid) :</strong> Pour l'envoi des emails de confirmation 
                     et de notification. SendGrid agit en tant que sous-traitant et est soumis à des obligations strictes 
                     de confidentialité</li>
-                    <li><strong>Hébergeur de la base de données :</strong> [Nom de l'hébergeur, ex: Railway, Vercel, etc.] 
+                    <li><strong>Hébergeur de la base de données :</strong> Railway 
                     pour le stockage sécurisé de vos données</li>
                   </ul>
                   <p className="mt-4">
