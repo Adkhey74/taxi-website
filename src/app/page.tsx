@@ -263,12 +263,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Vehicles & Comfort Section */}
+      {/* Airport Transport Section */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Image véhicule */}
+              {/* Image */}
               <motion.div 
                 className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl"
                 initial={{ opacity: 0, x: -50 }}
@@ -277,8 +277,8 @@ export default function Home() {
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <Image
-                  src="/images/vehicles/Mercedes-Classe-V-transport-avec-chauffeur-transfert-aeroport-gare-1.jpeg"
-                  alt="Mercedes Classe V - Véhicule de transport"
+                  src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1280,c_limit/v1766938705/aeroport_i3lxia.jpg"
+                  alt="Taxi aéroport"
                   fill
                   className="object-cover"
                 />
@@ -293,6 +293,41 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <h2 className="text-3xl sm:text-4xl font-bold">
+                  {t("home.airport.title")}
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {t("home.airport.description")}
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {t("home.airport.features")}
+                </p>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild className="mt-4">
+                    <Link href="/taxi-aeroport" className="flex items-center">
+                      {t("home.airport.learnMore")}
+                    </Link>
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vehicles & Comfort Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Contenu */}
+              <motion.div 
+                className="space-y-6 order-2 lg:order-1"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <h2 className="text-3xl sm:text-4xl font-bold">
                   {t("home.vehicles.title")}
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
@@ -301,6 +336,22 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("home.vehicles.seat")}
                 </p>
+              </motion.div>
+              
+              {/* Image véhicule */}
+              <motion.div 
+                className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl order-1 lg:order-2"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <Image
+                  src="/images/vehicles/Mercedes-Classe-V-transport-avec-chauffeur-transfert-aeroport-gare-1.jpeg"
+                  alt="Mercedes Classe V - Véhicule de transport"
+                  fill
+                  className="object-cover"
+                />
               </motion.div>
             </div>
           </div>

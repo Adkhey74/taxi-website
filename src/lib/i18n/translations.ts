@@ -58,6 +58,12 @@ export const translations = {
         features: "Nous assurons également des transports médicaux longue distance vers les pôles hospitaliers de Lyon et Grenoble pour les soins spécialisés.",
         learnMore: "En savoir plus",
       },
+      airport: {
+        title: "Taxi aéroport – transferts toutes distances",
+        description: "Nous assurons des transferts taxi aéroport fiables et ponctuels, avec une organisation adaptée aux horaires de vol et aux bagages.",
+        features: "Service disponible 24h/24 et 7j/7 vers les aéroports de Chambéry, Lyon, Grenoble, Genève et Milan.",
+        learnMore: "En savoir plus",
+      },
     },
     // Transport médical CPAM
     medicalCPAM: {
@@ -364,6 +370,12 @@ export const translations = {
         title: "CPAM certified medical transport",
         description: "CPAM certified taxi specialized in seated medical transport (VSL), performed only on medical prescription. Service available 24/7.",
         features: "We also provide long-distance medical transport to the hospital centers of Lyon and Grenoble for specialized care.",
+        learnMore: "Learn more",
+      },
+      airport: {
+        title: "Airport taxi – all distance transfers",
+        description: "We provide reliable and punctual airport taxi transfers, with organization adapted to flight schedules and luggage.",
+        features: "Service available 24/7 to Chambéry, Lyon, Grenoble, Geneva and Milan airports.",
         learnMore: "Learn more",
       },
     },
