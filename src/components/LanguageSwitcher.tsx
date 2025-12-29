@@ -32,8 +32,8 @@ export function LanguageSwitcher() {
   return (
     <NavigationMenu>
       <NavigationMenuItem>
-        <NavigationMenuTrigger className="h-10 px-3">
-          <span className={`fi fi-${currentLanguage?.flagCode} mr-2`}></span>
+        <NavigationMenuTrigger className="h-10 px-2 sm:px-3">
+          <span className={`fi fi-${currentLanguage?.flagCode} mr-1 sm:mr-2`}></span>
           <span className="hidden sm:inline font-semibold">
             {currentLanguage?.codeLabel}
           </span>

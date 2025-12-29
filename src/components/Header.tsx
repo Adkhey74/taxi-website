@@ -133,8 +133,9 @@ export function Header() {
             <LanguageSwitcher />
           </div>
 
-          {/* Menu mobile */}
-          <div className="lg:hidden">
+          {/* Menu mobile et sélecteur de langue */}
+          <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitcher />
             <Button
               variant="ghost"
               size="icon"
@@ -211,11 +212,6 @@ export function Header() {
                     {t("header.bookNow")}
                   </Link>
                 </Button>
-              </div>
-              
-              {/* Sélecteur de langue mobile */}
-              <div className="pt-3 border-t border-border/40">
-                <LanguageSwitcher />
               </div>
             </div>
           </div>
