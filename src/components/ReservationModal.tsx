@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -10,6 +10,7 @@ import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
 import { toast } from "sonner"
 import { AddressAutocomplete } from "@/components/AddressAutocomplete"
+import ReCAPTCHA from "react-google-recaptcha"
 
 interface ReservationModalProps {
   open: boolean
@@ -18,11 +19,13 @@ interface ReservationModalProps {
 }
 
 export function ReservationModal({ open, onOpenChange, initialServiceType }: ReservationModalProps) {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)
   const [errorMessage, setErrorMessage] = useState("")
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const [formData, setFormData] = useState<CreateReservationInput>({
     firstName: "",
@@ -65,6 +68,8 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
           flightNumber: "",
           notes: "",
         })
+        setRecaptchaToken(null)
+        recaptchaRef.current?.reset()
         setSubmitStatus(null)
         setErrorMessage("")
       }, 300)
@@ -81,6 +86,15 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Vérifier le captcha
+    if (!recaptchaToken) {
+      setErrorMessage(t("reservation.captchaRequired") as string || "Veuillez compléter la vérification captcha")
+      setSubmitStatus("error")
+      toast.error(t("reservation.captchaRequired") as string || "Veuillez compléter la vérification captcha")
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus(null)
     setErrorMessage("")
@@ -91,7 +105,10 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+        }),
       })
 
       const data = await response.json()
@@ -123,6 +140,8 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
           flightNumber: "",
           notes: "",
         })
+        setRecaptchaToken(null)
+        recaptchaRef.current?.reset()
         setSubmitStatus(null)
         onOpenChange(false)
       }, 2000)
@@ -418,6 +437,18 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
                 />
               </div>
             </div>
+          </div>
+
+          {/* ReCAPTCHA */}
+          <div className="flex justify-center pt-2">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+              onChange={(token) => setRecaptchaToken(token)}
+              onExpired={() => setRecaptchaToken(null)}
+              onError={() => setRecaptchaToken(null)}
+              hl={locale === "fr" ? "fr" : "en"}
+            />
           </div>
 
           {/* Footer du formulaire */}

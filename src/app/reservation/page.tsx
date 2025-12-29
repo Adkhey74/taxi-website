@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
+import { useState, useEffect, Suspense, useRef } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,15 +9,18 @@ import { Phone, MessageCircle, CheckCircle, AlertCircle, Loader2, Calendar, Cloc
 import { CreateReservationInput, ServiceType } from "@/types/reservation"
 import { useI18n } from "@/lib/i18n/context"
 import { toast } from "sonner"
+import ReCAPTCHA from "react-google-recaptcha"
 
 function ReservationForm() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)
   const [errorMessage, setErrorMessage] = useState("")
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const [formData, setFormData] = useState<CreateReservationInput>({
     firstName: "",
@@ -52,6 +55,15 @@ function ReservationForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Vérifier le captcha
+    if (!recaptchaToken) {
+      setErrorMessage(t("reservation.captchaRequired") as string || "Veuillez compléter la vérification captcha")
+      setSubmitStatus("error")
+      toast.error(t("reservation.captchaRequired") as string || "Veuillez compléter la vérification captcha")
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus(null)
     setErrorMessage("")
@@ -62,7 +74,10 @@ function ReservationForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+        }),
       })
 
       const data = await response.json()
@@ -94,6 +109,8 @@ function ReservationForm() {
           flightNumber: "",
           notes: "",
         })
+        setRecaptchaToken(null)
+        recaptchaRef.current?.reset()
         setSubmitStatus(null)
       }, 3000)
     } catch (error) {
@@ -403,6 +420,18 @@ function ReservationForm() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* ReCAPTCHA */}
+              <div className="flex justify-center py-4">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                  onChange={(token) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                  onError={() => setRecaptchaToken(null)}
+                  hl={locale === "fr" ? "fr" : "en"}
+                />
               </div>
 
               {/* Footer du formulaire */}

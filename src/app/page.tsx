@@ -116,40 +116,20 @@ export default function Home() {
             className="max-w-4xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: videoLoaded ? 1 : 0, y: videoLoaded ? 0 : 30 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <motion.h1 
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: videoLoaded ? 1 : 0, y: videoLoaded ? 0 : 20 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-            >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-lg">
               {t("home.title")}
-            </motion.h1>
-            <motion.p 
-              className="text-xl sm:text-2xl mb-4 text-white/90 font-semibold drop-shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: videoLoaded ? 1 : 0, y: videoLoaded ? 0 : 20 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-            >
+            </h1>
+            <p className="text-xl sm:text-2xl mb-4 text-white/90 font-semibold drop-shadow-md">
               {t("home.subtitle")}
-            </motion.p>
-            <motion.p 
-              className="text-lg text-white/80 mb-6 drop-shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: videoLoaded ? 1 : 0, y: videoLoaded ? 0 : 20 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
-            >
+            </p>
+            <p className="text-lg text-white/80 mb-6 drop-shadow-md">
               {t("home.service24h")}
-            </motion.p>
+            </p>
             
             {/* Numéros de téléphone */}
-            <motion.div 
-              className="flex flex-wrap items-center justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: videoLoaded ? 1 : 0, y: videoLoaded ? 0 : 20 }}
-              transition={{ duration: 0.8, delay: 1.3 }}
-            >
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <motion.a 
                 href="tel:0123456789" 
                 className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white font-semibold shadow-lg hover:shadow-xl backdrop-blur-sm"
@@ -168,7 +148,7 @@ export default function Home() {
                 <Phone className="h-5 w-5 group-hover:scale-110 transition-transform" />
                 <span className="text-lg">06 58 68 65 48</span>
               </motion.a>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
