@@ -44,9 +44,9 @@ export default function TransfertStationsSkiPage() {
             priority
             onLoad={() => setImageLoaded(true)}
           />
-          <div className={`absolute inset-0 bg-black/50 z-10 transition-opacity duration-1000 ease-in-out ${
+          <div className={`absolute inset-0 bg-black/50 z-10 ${
             imageLoaded ? "opacity-100" : "opacity-0"
-          }`} />
+          }`} style={{ transition: 'opacity 1000ms ease-in-out' }} />
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">

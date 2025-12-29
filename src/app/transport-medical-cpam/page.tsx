@@ -37,16 +37,16 @@ export default function TransportMedicalCPAMPage() {
           imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
         }`}>
           <Image
-            src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1920,c_limit/v1766938706/emergency_qtwa47.jpg"
+            src="https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1920,c_limit/v1767022577/pexels-cottonbro-7579827_htskx2.jpg"
             alt="Transport médical conventionné CPAM"
             fill
             className="object-cover"
             priority
             onLoad={() => setImageLoaded(true)}
           />
-          <div className={`absolute inset-0 bg-black/50 z-10 transition-opacity duration-1000 ease-in-out ${
+          <div className={`absolute inset-0 bg-black/50 z-10 ${
             imageLoaded ? "opacity-100" : "opacity-0"
-          }`} />
+          }`} style={{ transition: 'opacity 1000ms ease-in-out' }} />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-in-out ${
