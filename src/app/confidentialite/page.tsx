@@ -148,8 +148,8 @@ export default function ConfidentialitePage() {
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Hern Taxi :</strong> Pour le traitement de votre demande de réservation et la gestion 
                     de la relation client</li>
-                    <li><strong>Prestataire d'envoi d'emails (Resend) :</strong> Pour l'envoi des emails de confirmation 
-                    et de notification. Resend agit en tant que sous-traitant et est soumis à des obligations strictes 
+                    <li><strong>Prestataire d'envoi d'emails (Brevo) :</strong> Pour l'envoi des emails de confirmation 
+                    et de notification. Brevo agit en tant que sous-traitant et est soumis à des obligations strictes 
                     de confidentialité</li>
                     <li><strong>Hébergeur de la base de données :</strong> Railway 
                     pour le stockage sécurisé de vos données</li>

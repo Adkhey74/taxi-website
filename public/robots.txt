@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
 
-# Sitemap: [URL du sitemap à ajouter après changement de domaine]
+# Sitemap
+Sitemap: https://herntaxi.fr/sitemap.xml
+
+# Disallow admin and API routes
+User-agent: *
+Disallow: /api/
 

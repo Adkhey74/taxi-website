@@ -100,13 +100,15 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
         throw new Error(data.error || t("reservation.errorCreating") as string)
       }
 
-      // Afficher le toast de succès
-      toast.success(t("reservation.success") as string, {
-        description: t("reservation.successMessage") as string,
-        duration: 5000,
+      // Afficher le toast de succès amélioré
+      toast.success(t("reservation.successTitle") as string, {
+        description: t("reservation.successDescription") as string,
+        duration: 6000,
+        icon: <CheckCircle className="h-5 w-5" />,
+        className: "bg-green-50 dark:bg-green-950/30 border-2 border-green-200 dark:border-green-800",
       })
 
-      setSubmitStatus("success")
+      // Réinitialiser le formulaire et fermer la modal après un court délai
       setTimeout(() => {
         setFormData({
           firstName: "",
@@ -123,15 +125,17 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
           flightNumber: "",
           notes: "",
         })
-        setSubmitStatus(null)
         onOpenChange(false)
-      }, 2000)
+      }, 500)
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : t("reservation.errorOccurred") as string
       setErrorMessage(errorMsg)
       setSubmitStatus("error")
       toast.error(t("reservation.errorTitle") as string, {
         description: errorMsg,
+        duration: 6000,
+        icon: <AlertCircle className="h-5 w-5" />,
+        className: "bg-red-50 dark:bg-red-950/30 border-2 border-red-200 dark:border-red-800",
       })
     } finally {
       setIsSubmitting(false)
@@ -163,22 +167,6 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
         <div className="px-4 sm:px-6 py-4 sm:py-6 overflow-y-auto flex-1 min-h-0">
 
         {/* Messages d'état */}
-        {submitStatus === "success" && (
-          <div className="p-3 sm:p-4 rounded-xl bg-green-50 border-2 border-green-200 dark:bg-green-950/30 mb-2.5 sm:mb-3">
-            <div className="flex items-start gap-2 sm:gap-3">
-              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-bold text-sm sm:text-base text-green-900 dark:text-green-100 mb-0.5 sm:mb-1">
-                  {t("reservation.successTitle")}
-                </p>
-                <p className="text-xs sm:text-sm text-green-700 dark:text-green-300">
-                  {t("reservation.successDescription")}
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-
         {submitStatus === "error" && (
           <div className="p-3 sm:p-4 rounded-xl bg-red-50 border-2 border-red-200 dark:bg-red-950/30 mb-2.5 sm:mb-3">
             <div className="flex items-start gap-2 sm:gap-3">

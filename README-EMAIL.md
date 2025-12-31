@@ -1,15 +1,16 @@
 # 📧 Configuration de l'envoi d'emails
 
-Ce guide explique comment configurer l'envoi d'emails pour les réservations.
+Ce guide explique comment configurer l'envoi d'emails pour les réservations avec Brevo.
 
 ## 🔧 Configuration
 
-### 1. Créer un compte Resend
+### 1. Créer un compte Brevo
 
-1. Allez sur [https://resend.com](https://resend.com)
-2. Créez un compte gratuit (100 emails/jour gratuits)
-3. Allez dans **API Keys** et créez une nouvelle clé API
-4. Copiez votre clé API (commence par `re_`)
+1. Allez sur [https://www.brevo.com](https://www.brevo.com)
+2. Créez un compte gratuit (300 emails/jour gratuits)
+3. Allez dans **Settings** > **SMTP & API** > **API Keys**
+4. Créez une nouvelle clé API
+5. Copiez votre clé API (commence par `xkeysib-`)
 
 ### 2. Configurer les variables d'environnement
 
@@ -19,29 +20,33 @@ Créez un fichier `.env` à la racine du projet avec les variables suivantes :
 # Base de données (déjà configurée)
 DATABASE_URL="postgresql://user:password@localhost:5432/taxi_db?schema=public"
 
-# Resend API - Clé API obtenue sur https://resend.com/api-keys
-RESEND_API_KEY="re_xxxxxxxxxxxxxxxxxxxxx"
+# Brevo API - Clé API obtenue sur https://app.brevo.com/settings/keys/api
+BREVO_API_KEY="xkeysib-xxxxxxxxxxxxxxxxxxxxx"
 
 # Email de l'entreprise - Adresse qui recevra les notifications de nouvelles réservations
 # ⚠️ IMPORTANT : C'est l'email où vous recevrez les notifications de nouvelles réservations
+# Vous pouvez mettre plusieurs emails en les séparant par des virgules
 COMPANY_EMAIL="contact@hern-taxi.fr"
 
 # Email d'envoi - Adresse depuis laquelle les emails seront envoyés
-# ⚠️ IMPORTANT : Cet email doit être vérifié dans votre domaine Resend
-# Pour commencer, vous pouvez utiliser l'email de test fourni par Resend
+# ⚠️ IMPORTANT : Cet email doit être vérifié dans votre compte Brevo
 FROM_EMAIL="reservations@hern-taxi.fr"
+
+# Nom de l'expéditeur (optionnel)
+FROM_NAME="Hern Taxi"
 ```
 
 ### 3. Vérifier votre domaine (optionnel mais recommandé)
 
 Pour utiliser votre propre domaine (ex: `reservations@hern-taxi.fr`) :
 
-1. Allez dans **Domains** sur Resend
-2. Ajoutez votre domaine (ex: `hern-taxi.fr`)
-3. Suivez les instructions pour ajouter les enregistrements DNS
-4. Une fois vérifié, vous pouvez utiliser `reservations@hern-taxi.fr` dans `FROM_EMAIL`
+1. Allez dans **Settings** > **Senders & IP** sur Brevo
+2. Cliquez sur **Add a sender**
+3. Ajoutez votre adresse email (ex: `reservations@hern-taxi.fr`)
+4. Vérifiez votre email en cliquant sur le lien dans l'email de confirmation
+5. Une fois vérifié, vous pouvez utiliser cette adresse dans `FROM_EMAIL`
 
-**Note :** Pour tester rapidement, vous pouvez utiliser l'email de test fourni par Resend (format: `onboarding@resend.dev`)
+**Note :** Pour tester rapidement, vous pouvez utiliser votre email personnel vérifié dans Brevo.
 
 ## 📨 Types d'emails envoyés
 
@@ -50,7 +55,7 @@ Lorsqu'une réservation est créée, **deux emails** sont envoyés :
 ### 1. Email de confirmation au client
 - **Destinataire :** L'email du client qui a fait la réservation
 - **Contenu :** Confirmation avec tous les détails de la réservation
-- **Sujet :** `Confirmation de réservation #XXXXXXXX`
+- **Sujet :** `Confirmation de demande de réservation #XXXXXXXX`
 
 ### 2. Email de notification à l'entreprise
 - **Destinataire :** L'email configuré dans `COMPANY_EMAIL`
@@ -81,7 +86,7 @@ Modifiez la variable `FROM_EMAIL` dans votre fichier `.env` :
 FROM_EMAIL="reservations@hern-taxi.fr"
 ```
 
-⚠️ **Important :** L'email dans `FROM_EMAIL` doit être vérifié dans votre compte Resend.
+⚠️ **Important :** L'email dans `FROM_EMAIL` doit être vérifié dans votre compte Brevo.
 
 ## 🧪 Tester l'envoi d'emails
 
@@ -100,33 +105,30 @@ FROM_EMAIL="reservations@hern-taxi.fr"
 1. **Vérifiez les variables d'environnement :**
    ```bash
    # Vérifiez que les variables sont bien définies
-   echo $RESEND_API_KEY
+   echo $BREVO_API_KEY
    echo $COMPANY_EMAIL
    echo $FROM_EMAIL
    ```
 
 2. **Vérifiez les logs :**
-   - Si vous voyez `⚠️ RESEND_API_KEY non configurée`, la clé API n'est pas définie
+   - Si vous voyez `⚠️ BREVO_API_KEY non configurée`, la clé API n'est pas définie
    - Si vous voyez `⚠️ COMPANY_EMAIL non configurée`, l'email de l'entreprise n'est pas défini
-   - Si vous voyez `❌ Erreur lors de l'envoi`, vérifiez votre clé API Resend
+   - Si vous voyez `❌ Erreur lors de l'envoi`, vérifiez votre clé API Brevo
 
-3. **Vérifiez votre compte Resend :**
-   - Allez sur [Resend Dashboard](https://resend.com/emails)
+3. **Vérifiez votre compte Brevo :**
+   - Allez sur [Brevo Dashboard](https://app.brevo.com/statistics/email)
    - Vérifiez si les emails apparaissent dans les logs
    - Vérifiez les erreurs éventuelles
 
 ### L'email FROM n'est pas vérifié
 
 Si vous utilisez un email personnalisé (ex: `reservations@hern-taxi.fr`), vous devez :
-1. Ajouter votre domaine dans Resend
-2. Vérifier le domaine en ajoutant les enregistrements DNS
+1. Ajouter votre email dans Brevo (Settings > Senders & IP)
+2. Vérifier l'email en cliquant sur le lien dans l'email de confirmation
 3. Attendre la vérification (peut prendre quelques minutes)
-
-En attendant, utilisez l'email de test Resend : `onboarding@resend.dev`
 
 ## 📚 Ressources
 
-- [Documentation Resend](https://resend.com/docs)
-- [Guide de vérification de domaine](https://resend.com/docs/dashboard/domains/introduction)
-
-
+- [Documentation Brevo API](https://developers.brevo.com/docs)
+- [Guide de vérification d'email](https://help.brevo.com/hc/fr/articles/209467485)
+- [Limites et quotas Brevo](https://help.brevo.com/hc/fr/articles/360012635399)

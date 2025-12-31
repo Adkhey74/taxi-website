@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { ReservationStatus, Prisma, Client } from '@prisma/client'
-import { Resend } from 'resend'
 
-// Initialiser Resend uniquement si la clé API est présente
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
+// Configuration Brevo
+const BREVO_API_KEY = process.env.BREVO_API_KEY
+const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email'
 
 // Fonction pour formater la date en français
 const formatDate = (date: Date) => {
@@ -51,68 +51,105 @@ async function sendReservationConfirmationEmail(
   },
   client: Client
 ) {
-  // Désactivé temporairement - vérifier si Resend est configuré
-  if (!resend || !process.env.RESEND_API_KEY) {
-    console.log('⚠️ Envoi d\'emails désactivé - RESEND_API_KEY non configurée')
+  // Vérifier si Brevo est configuré
+  if (!BREVO_API_KEY) {
+    console.log('⚠️ Envoi d\'emails désactivé - BREVO_API_KEY non configurée')
     console.log('Email de confirmation à envoyer à:', client.email)
     return // Retourner sans erreur
   }
 
   const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
-  const fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev'
+  const fromEmail = process.env.FROM_EMAIL || 'noreply@hern-taxi.fr'
+  const fromName = process.env.FROM_NAME || 'Hern Taxi'
   const reservationId = reservation.id.slice(0, 8).toUpperCase()
 
-  console.log('📧 Configuration email Resend:', {
+  console.log('📧 Configuration email Brevo:', {
     from: fromEmail,
+    fromName: fromName,
     to: client.email,
-    apiKeyPresent: !!process.env.RESEND_API_KEY
+    apiKeyPresent: !!BREVO_API_KEY,
+    apiKeyPrefix: BREVO_API_KEY?.substring(0, 10) + '...'
   })
+  
+  // Avertissement si FROM_EMAIL n'est pas configuré
+  if (!process.env.FROM_EMAIL) {
+    console.warn('⚠️ FROM_EMAIL non configuré - Utilisation de la valeur par défaut:', fromEmail)
+    console.warn('⚠️ IMPORTANT: L\'email FROM doit être vérifié dans Brevo (Settings > Senders & IP)')
+  }
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: fromEmail,
-      to: client.email,
-      subject: `Confirmation de demande de réservation #${reservationId}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
-            Confirmation de votre demande de réservation
-          </h2>
-          <p>Bonjour ${client.firstName} ${client.lastName},</p>
-          <p>Votre demande de réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
-            <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
-            <p><strong>Service :</strong> ${serviceType}</p>
-            <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
-            <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
-            <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
-            <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
-            <p><strong>Passagers :</strong> ${reservation.passengers}</p>
-            <p><strong>Bagages :</strong> ${reservation.luggage}</p>
-            ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
-            ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
+    const response = await fetch(BREVO_API_URL, {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': BREVO_API_KEY,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        sender: {
+          name: fromName,
+          email: fromEmail,
+        },
+        to: [
+          {
+            email: client.email,
+            name: `${client.firstName} ${client.lastName}`,
+          },
+        ],
+        subject: `Confirmation de demande de réservation #${reservationId}`,
+        htmlContent: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
+              Confirmation de votre demande de réservation
+            </h2>
+            <p>Bonjour ${client.firstName} ${client.lastName},</p>
+            <p>Votre demande de réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
+            
+            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
+              <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
+              <p><strong>Service :</strong> ${serviceType}</p>
+              <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
+              <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
+              <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
+              <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
+              <p><strong>Passagers :</strong> ${reservation.passengers}</p>
+              <p><strong>Bagages :</strong> ${reservation.luggage}</p>
+              ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
+              ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
+            </div>
+            
+            <p>Pour toute question, n'hésitez pas à nous contacter :</p>
+            <p>
+              📞 <strong>09 52 47 36 25</strong><br>
+              📱 <strong>06 58 68 65 48</strong>
+            </p>
+            
+            <p style="margin-top: 30px;">Cordialement,<br><strong>L'équipe Hern Taxi</strong></p>
           </div>
-          
-          <p>Pour toute question, n'hésitez pas à nous contacter :</p>
-          <p>
-            📞 <strong>09 52 47 36 25</strong><br>
-            📱 <strong>06 58 68 65 48</strong>
-          </p>
-          
-          <p style="margin-top: 30px;">Cordialement,<br><strong>L'équipe Hern Taxi</strong></p>
-        </div>
-      `,
+        `,
+      }),
     })
 
-    if (error) {
-      console.error('❌ Erreur Resend:', error)
-      throw error
+    const data = await response.json()
+    
+    if (!response.ok) {
+      console.error('❌ Erreur Brevo API:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: data
+      })
+      throw new Error(`Brevo API error: ${response.status} - ${JSON.stringify(data)}`)
     }
 
     console.log('✅ Email de confirmation envoyé avec succès à:', client.email)
-    console.log('📧 Réponse Resend:', data)
+    console.log('📧 Réponse Brevo:', data)
+    console.log('📋 Détails:', {
+      messageId: data.messageId,
+      from: fromEmail,
+      to: client.email,
+      subject: `Confirmation de demande de réservation #${reservationId}`
+    })
   } catch (error) {
     console.error('❌ Erreur lors de l\'envoi de l\'email de confirmation:', error)
     throw error
@@ -136,9 +173,9 @@ async function sendReservationNotificationEmail(
   },
   client: Client
 ) {
-  // Désactivé temporairement - vérifier si Resend est configuré
-  if (!resend || !process.env.RESEND_API_KEY) {
-    console.log('⚠️ Envoi d\'emails désactivé - RESEND_API_KEY non configurée')
+  // Vérifier si Brevo est configuré
+  if (!BREVO_API_KEY) {
+    console.log('⚠️ Envoi d\'emails désactivé - BREVO_API_KEY non configurée')
     console.log('Email de notification à envoyer à:', process.env.COMPANY_EMAIL || 'non configuré')
     return
   }
@@ -151,60 +188,102 @@ async function sendReservationNotificationEmail(
   }
 
   const serviceType = serviceTypeLabels[reservation.serviceType] || reservation.serviceType
-  const fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev'
+  const fromEmail = process.env.FROM_EMAIL || 'noreply@hern-taxi.fr'
+  const fromName = process.env.FROM_NAME || 'Hern Taxi'
   const reservationId = reservation.id.slice(0, 8).toUpperCase()
 
+  // Gérer plusieurs emails (séparés par des virgules)
+  const emailList = companyEmail.split(',').map(email => ({
+    email: email.trim(),
+  }))
+
+  console.log('📧 Configuration email notification Brevo:', {
+    from: fromEmail,
+    fromName: fromName,
+    to: emailList,
+    apiKeyPresent: !!BREVO_API_KEY
+  })
+  
+  // Avertissement si FROM_EMAIL n'est pas configuré
+  if (!process.env.FROM_EMAIL) {
+    console.warn('⚠️ FROM_EMAIL non configuré - Utilisation de la valeur par défaut:', fromEmail)
+    console.warn('⚠️ IMPORTANT: L\'email FROM doit être vérifié dans Brevo (Settings > Senders & IP)')
+  }
+
   try {
-    const { data, error } = await resend.emails.send({
-      from: fromEmail,
-      to: companyEmail,
-      subject: `🆕 Nouvelle réservation #${reservationId} - ${serviceType}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
-            Nouvelle réservation reçue
-          </h2>
-          
-          <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
-            <p style="margin: 0;"><strong>⚠️ Action requise :</strong> Une nouvelle réservation nécessite votre attention.</p>
+    const response = await fetch(BREVO_API_URL, {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': BREVO_API_KEY,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        sender: {
+          name: fromName,
+          email: fromEmail,
+        },
+        to: emailList,
+        subject: `🆕 Nouvelle réservation #${reservationId} - ${serviceType}`,
+        htmlContent: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
+              Nouvelle réservation reçue
+            </h2>
+            
+            <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+              <p style="margin: 0;"><strong>⚠️ Action requise :</strong> Une nouvelle réservation nécessite votre attention.</p>
+            </div>
+            
+            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #1a1a1a; margin-top: 0;">Informations client :</h3>
+              <p><strong>Nom :</strong> ${client.firstName} ${client.lastName}</p>
+              <p><strong>Email :</strong> ${client.email}</p>
+              <p><strong>Téléphone :</strong> ${client.phone}</p>
+            </div>
+            
+            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
+              <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
+              <p><strong>Service :</strong> ${serviceType}</p>
+              <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
+              <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
+              <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
+              <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
+              <p><strong>Passagers :</strong> ${reservation.passengers}</p>
+              <p><strong>Bagages :</strong> ${reservation.luggage}</p>
+              ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
+              ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
+            </div>
+            
+            <p style="margin-top: 30px; color: #666; font-size: 14px;">
+              Cette notification a été envoyée automatiquement par le système de réservation.
+            </p>
           </div>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1a1a1a; margin-top: 0;">Informations client :</h3>
-            <p><strong>Nom :</strong> ${client.firstName} ${client.lastName}</p>
-            <p><strong>Email :</strong> ${client.email}</p>
-            <p><strong>Téléphone :</strong> ${client.phone}</p>
-          </div>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
-            <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
-            <p><strong>Service :</strong> ${serviceType}</p>
-            <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
-            <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
-            <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
-            <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
-            <p><strong>Passagers :</strong> ${reservation.passengers}</p>
-            <p><strong>Bagages :</strong> ${reservation.luggage}</p>
-            ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
-            ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
-          </div>
-          
-          <p style="margin-top: 30px; color: #666; font-size: 14px;">
-            Cette notification a été envoyée automatiquement par le système de réservation.
-          </p>
-        </div>
-      `,
+        `,
+      }),
     })
 
-    if (error) {
-      console.error('❌ Erreur Resend:', error)
+    const data = await response.json()
+    
+    if (!response.ok) {
+      console.error('❌ Erreur Brevo API:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: data
+      })
       // Ne pas faire échouer la création de réservation si l'email de notification échoue
       return
     }
 
     console.log('✅ Email de notification envoyé à:', companyEmail)
-    console.log('📧 Réponse Resend:', data)
+    console.log('📧 Réponse Brevo:', data)
+    console.log('📋 Détails:', {
+      messageId: data.messageId,
+      from: fromEmail,
+      to: emailList,
+      subject: `🆕 Nouvelle réservation #${reservationId} - ${serviceType}`
+    })
   } catch (error) {
     console.error('❌ Erreur lors de l\'envoi de l\'email de notification:', error)
     // Ne pas faire échouer la création de réservation si l'email de notification échoue

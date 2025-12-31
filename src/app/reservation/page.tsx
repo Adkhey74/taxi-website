@@ -72,13 +72,15 @@ function ReservationForm() {
         throw new Error(data.error || t("reservation.errorCreating") as string)
       }
 
-      // Afficher le toast de succès
-      toast.success(t("reservation.success") as string, {
-        description: t("reservation.successMessage") as string,
-        duration: 5000,
+      // Afficher le toast de succès amélioré
+      toast.success(t("reservation.successTitle") as string, {
+        description: t("reservation.successDescription") as string,
+        duration: 6000,
+        icon: <CheckCircle className="h-5 w-5" />,
+        className: "bg-green-50 dark:bg-green-950/30 border-2 border-green-200 dark:border-green-800",
       })
 
-      setSubmitStatus("success")
+      // Réinitialiser le formulaire après un court délai
       setTimeout(() => {
         setFormData({
           firstName: "",
@@ -95,13 +97,14 @@ function ReservationForm() {
           flightNumber: "",
           notes: "",
         })
-        setSubmitStatus(null)
-      }, 3000)
+      }, 500)
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : t("reservation.errorOccurred") as string
       toast.error(t("reservation.errorTitle") as string, {
         description: errorMsg,
-        duration: 5000,
+        duration: 6000,
+        icon: <AlertCircle className="h-5 w-5" />,
+        className: "bg-red-50 dark:bg-red-950/30 border-2 border-red-200 dark:border-red-800",
       })
       setSubmitStatus("error")
       setErrorMessage(errorMsg)
@@ -134,22 +137,6 @@ function ReservationForm() {
           </div>
 
           {/* Messages d'état */}
-          {submitStatus === "success" && (
-            <div className="mb-6 p-5 rounded-xl bg-green-50 border-2 border-green-200 dark:bg-green-950/30">
-              <div className="flex items-start gap-4">
-                <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-bold text-green-900 dark:text-green-100 text-lg mb-1">
-                    {t("reservation.successTitle")}
-                  </p>
-                  <p className="text-green-700 dark:text-green-300">
-                    {t("reservation.successDescription")}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
           {submitStatus === "error" && (
             <div className="mb-6 p-5 rounded-xl bg-red-50 border-2 border-red-200 dark:bg-red-950/30">
               <div className="flex items-start gap-4">

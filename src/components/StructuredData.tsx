@@ -2,11 +2,11 @@ export function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "[NOUVEAU_DOMAINE]/#organization", // À remplir après changement de domaine
+    "@id": "https://herntaxi.fr/#organization",
     "name": "Hern Taxi",
-    "description": "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, longue distance. Disponible 24h/24 et 7j/7.",
-    "url": "[NOUVEAU_DOMAINE]", // À remplir après changement de domaine
-    "logo": "[NOUVEAU_DOMAINE]/images/logo/logo.png", // À remplir après changement de domaine
+    "description": "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région Savoie.",
+    "url": "https://herntaxi.fr",
+    "logo": "https://herntaxi.fr/images/logo/logo%20hern%20(3).png",
     "image": "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
     "telephone": "+33658686548",
     "email": "contact@hern-taxi.fr",
@@ -93,8 +93,8 @@ export function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Longue distance",
-            "description": "Service de transport longue distance"
+            "name": "Transfert stations de ski",
+            "description": "Service de transfert vers les stations de ski de Tarentaise et Haute-Tarentaise"
           }
         }
       ]

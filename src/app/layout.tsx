@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     default: "Hern Taxi - Service de transport professionnel",
     template: "%s | Hern Taxi"
   },
-  description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, longue distance. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région.",
-  keywords: ["taxi", "transport", "chauffeur", "aéroport", "Chambéry", "Aix-les-Bains", "Savoie", "transport médical", "réservation taxi"],
+  description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical conventionné CPAM, transfert stations de ski. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région Savoie.",
+  keywords: ["taxi", "transport", "chauffeur", "aéroport", "Chambéry", "Aix-les-Bains", "Savoie", "transport médical", "réservation taxi", "taxi aéroport Chambéry", "transfert stations de ski", "taxi conventionné CPAM"],
   authors: [{ name: "Hern Taxi" }],
   creator: "Hern Taxi",
   publisher: "Hern Taxi",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  // metadataBase: new URL("[NOUVEAU_DOMAINE]"), // À décommenter et remplir après changement de domaine
+  metadataBase: new URL("https://herntaxi.fr"),
   alternates: {
     canonical: "/",
     languages: {
@@ -41,28 +41,28 @@ export const metadata: Metadata = {
       "en": "/",
     },
   },
-  // openGraph: {
-  //   type: "website",
-  //   locale: "fr_FR",
-  //   url: "[NOUVEAU_DOMAINE]", // À remplir après changement de domaine
-  //   siteName: "Hern Taxi",
-  //   title: "Hern Taxi - Service de transport professionnel",
-  //   description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, longue distance. Disponible 24h/24 et 7j/7.",
-  //   images: [
-  //     {
-  //       url: "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
-  //       width: 1200,
-  //       height: 630,
-  //       alt: "Hern Taxi - Service de transport professionnel",
-  //     },
-  //   ],
-  // },
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: "Hern Taxi - Service de transport professionnel",
-  //   description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, longue distance.",
-  //   images: ["https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg"],
-  // },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://herntaxi.fr",
+    siteName: "Hern Taxi",
+    title: "Hern Taxi - Service de transport professionnel en Savoie",
+    description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région.",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Hern Taxi - Service de transport professionnel en Savoie",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hern Taxi - Service de transport professionnel en Savoie",
+    description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7.",
+    images: ["https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg"],
+  },
   robots: {
     index: true,
     follow: true,
@@ -99,7 +99,15 @@ export default function RootLayout({
           {children}
           <Footer />
           <WhatsAppButton />
-          <Toaster position="top-center" richColors />
+          <Toaster 
+            position="top-center" 
+            richColors 
+            duration={6000}
+            closeButton
+            toastOptions={{
+              className: "shadow-lg",
+            }}
+          />
         </I18nProvider>
       </body>
     </html>

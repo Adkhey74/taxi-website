@@ -7,16 +7,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/taxi-aeroport",
   },
-  // openGraph: {
-  //   title: "Taxi Aéroport - Transfert aéroport Chambéry | Hern Taxi",
-  //   description: "Service de taxi aéroport professionnel pour vos transferts vers et depuis l'aéroport. Disponible 24h/24.",
-  //   url: "[NOUVEAU_DOMAINE]/taxi-aeroport", // À remplir après changement de domaine
-  //   images: [
-  //     {
-  //       url: "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
-  //       alt: "Taxi aéroport - Hern Taxi",
-  //     },
-  //   ],
-  // },
+  openGraph: {
+    title: "Taxi Aéroport - Transfert aéroport Chambéry | Hern Taxi",
+    description: "Service de taxi aéroport professionnel pour vos transferts vers et depuis l'aéroport de Chambéry, Lyon-Saint-Exupéry et Genève. Disponible 24h/24.",
+    url: "https://herntaxi.fr/taxi-aeroport",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Taxi aéroport Chambéry - Hern Taxi",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Taxi Aéroport - Transfert aéroport Chambéry | Hern Taxi",
+    description: "Service de taxi aéroport professionnel pour vos transferts vers et depuis l'aéroport de Chambéry, Lyon-Saint-Exupéry et Genève.",
+    images: ["https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg"],
+  },
 }
 
