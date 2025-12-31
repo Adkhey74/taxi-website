@@ -98,35 +98,121 @@ async function sendReservationConfirmationEmail(
         ],
         subject: `Confirmation de demande de réservation #${reservationId}`,
         htmlContent: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
-              Confirmation de votre demande de réservation
-            </h2>
-            <p>Bonjour ${client.firstName} ${client.lastName},</p>
-            <p>Votre demande de réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
-            
-            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
-              <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
-              <p><strong>Service :</strong> ${serviceType}</p>
-              <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
-              <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
-              <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
-              <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
-              <p><strong>Passagers :</strong> ${reservation.passengers}</p>
-              <p><strong>Bagages :</strong> ${reservation.luggage}</p>
-              ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
-              ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
-            </div>
-            
-            <p>Pour toute question, n'hésitez pas à nous contacter :</p>
-            <p>
-              📞 <strong>09 52 47 36 25</strong><br>
-              📱 <strong>06 58 68 65 48</strong>
-            </p>
-            
-            <p style="margin-top: 30px;">Cordialement,<br><strong>L'équipe Hern Taxi</strong></p>
-          </div>
+          <!DOCTYPE html>
+          <html lang="fr">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          </head>
+          <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5; line-height: 1.6;">
+            <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f5f5f5; padding: 20px 0;">
+              <tr>
+                <td align="center">
+                  <table role="presentation" style="width: 100%; max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                      <td style="background-color: #000000; padding: 30px 40px; text-align: center;">
+                        <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: 1px;">HERN TAXI</h1>
+                        <p style="margin: 8px 0 0 0; color: #ffffff; font-size: 14px; opacity: 0.9;">Service de transport professionnel</p>
+                      </td>
+                    </tr>
+                    <!-- Content -->
+                    <tr>
+                      <td style="padding: 40px;">
+                        <h2 style="margin: 0 0 20px 0; color: #000000; font-size: 24px; font-weight: 600;">Confirmation de votre demande de réservation</h2>
+                        <p style="margin: 0 0 20px 0; color: #333333; font-size: 16px;">Bonjour <strong>${client.firstName} ${client.lastName}</strong>,</p>
+                        <p style="margin: 0 0 30px 0; color: #333333; font-size: 16px;">Votre demande de réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
+                        
+                        <!-- Reservation Details Card -->
+                        <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fafafa; border-radius: 8px; border: 1px solid #e5e5e5; margin-bottom: 30px;">
+                          <tr>
+                            <td style="padding: 25px;">
+                              <h3 style="margin: 0 0 20px 0; color: #000000; font-size: 18px; font-weight: 600; border-bottom: 2px solid #000000; padding-bottom: 10px;">Détails de la réservation</h3>
+                              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; width: 140px;"><strong style="color: #000000;">Numéro :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px; font-weight: 600;">#${reservationId}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Service :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${serviceType}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Date :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${formatDate(reservation.pickupDate)}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Heure :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${formatTime(reservation.pickupTime)}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Départ :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.pickupAddress}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Destination :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.dropoffAddress}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Passagers :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.passengers}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Bagages :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.luggage}</td>
+                                </tr>
+                                ${reservation.flightNumber ? `
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Numéro de vol :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.flightNumber}</td>
+                                </tr>
+                                ` : ''}
+                                ${reservation.notes ? `
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Notes :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.notes}</td>
+                                </tr>
+                                ` : ''}
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        <!-- Contact Info -->
+                        <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fafafa; border-radius: 8px; border: 1px solid #e5e5e5; margin-bottom: 30px;">
+                          <tr>
+                            <td style="padding: 20px;">
+                              <p style="margin: 0 0 12px 0; color: #000000; font-size: 14px; font-weight: 600;">Pour toute question, n'hésitez pas à nous contacter :</p>
+                              <p style="margin: 8px 0; color: #000000; font-size: 16px;">
+                                <strong style="display: inline-block; min-width: 140px;">📞 Téléphone :</strong>
+                                <a href="tel:0952473625" style="color: #000000; text-decoration: none; font-weight: 600;">09 52 47 36 25</a>
+                              </p>
+                              <p style="margin: 8px 0; color: #000000; font-size: 16px;">
+                                <strong style="display: inline-block; min-width: 140px;">📱 Mobile :</strong>
+                                <a href="tel:0658686548" style="color: #000000; text-decoration: none; font-weight: 600;">06 58 68 65 48</a>
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        <p style="margin: 30px 0 0 0; color: #333333; font-size: 16px;">Cordialement,</p>
+                        <p style="margin: 5px 0 0 0; color: #000000; font-size: 16px; font-weight: 600;">L'équipe Hern Taxi</p>
+                      </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                      <td style="background-color: #1a1a1a; padding: 25px 40px; text-align: center;">
+                        <p style="margin: 0 0 10px 0; color: #ffffff; font-size: 14px; font-weight: 600;">Hern Taxi</p>
+                        <p style="margin: 0; color: #999999; font-size: 12px;">Service disponible 24h/24 et 7j/7</p>
+                        <p style="margin: 10px 0 0 0; color: #999999; font-size: 12px;">Chambéry, Aix-les-Bains et région Savoie</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </body>
+          </html>
         `,
       }),
     })
@@ -226,40 +312,139 @@ async function sendReservationNotificationEmail(
         to: emailList,
         subject: `🆕 Nouvelle réservation #${reservationId} - ${serviceType}`,
         htmlContent: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">
-              Nouvelle réservation reçue
-            </h2>
-            
-            <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
-              <p style="margin: 0;"><strong>⚠️ Action requise :</strong> Une nouvelle réservation nécessite votre attention.</p>
-            </div>
-            
-            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #1a1a1a; margin-top: 0;">Informations client :</h3>
-              <p><strong>Nom :</strong> ${client.firstName} ${client.lastName}</p>
-              <p><strong>Email :</strong> ${client.email}</p>
-              <p><strong>Téléphone :</strong> ${client.phone}</p>
-            </div>
-            
-            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #1a1a1a; margin-top: 0;">Détails de la réservation :</h3>
-              <p><strong>Numéro de réservation :</strong> #${reservationId}</p>
-              <p><strong>Service :</strong> ${serviceType}</p>
-              <p><strong>Date :</strong> ${formatDate(reservation.pickupDate)}</p>
-              <p><strong>Heure :</strong> ${formatTime(reservation.pickupTime)}</p>
-              <p><strong>Départ :</strong> ${reservation.pickupAddress}</p>
-              <p><strong>Destination :</strong> ${reservation.dropoffAddress}</p>
-              <p><strong>Passagers :</strong> ${reservation.passengers}</p>
-              <p><strong>Bagages :</strong> ${reservation.luggage}</p>
-              ${reservation.flightNumber ? `<p><strong>Numéro de vol :</strong> ${reservation.flightNumber}</p>` : ''}
-              ${reservation.notes ? `<p><strong>Notes :</strong> ${reservation.notes}</p>` : ''}
-            </div>
-            
-            <p style="margin-top: 30px; color: #666; font-size: 14px;">
-              Cette notification a été envoyée automatiquement par le système de réservation.
-            </p>
-          </div>
+          <!DOCTYPE html>
+          <html lang="fr">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          </head>
+          <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5; line-height: 1.6;">
+            <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f5f5f5; padding: 20px 0;">
+              <tr>
+                <td align="center">
+                  <table role="presentation" style="width: 100%; max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                      <td style="background-color: #000000; padding: 30px 40px; text-align: center;">
+                        <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: 1px;">HERN TAXI</h1>
+                        <p style="margin: 8px 0 0 0; color: #ffffff; font-size: 14px; opacity: 0.9;">Service de transport professionnel</p>
+                      </td>
+                    </tr>
+                    <!-- Content -->
+                    <tr>
+                      <td style="padding: 40px;">
+                        <h2 style="margin: 0 0 20px 0; color: #000000; font-size: 24px; font-weight: 600;">Nouvelle réservation reçue</h2>
+                        
+                        <!-- Alert Box -->
+                        <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 30px;">
+                          <tr>
+                            <td style="padding: 20px;">
+                              <p style="margin: 0; color: #856404; font-size: 15px; font-weight: 600;">⚠️ Action requise : Une nouvelle réservation nécessite votre attention.</p>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        <!-- Client Info Card -->
+                        <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fafafa; border-radius: 8px; border: 1px solid #e5e5e5; margin-bottom: 20px;">
+                          <tr>
+                            <td style="padding: 25px;">
+                              <h3 style="margin: 0 0 20px 0; color: #000000; font-size: 18px; font-weight: 600; border-bottom: 2px solid #000000; padding-bottom: 10px;">Informations client</h3>
+                              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; width: 120px;"><strong style="color: #000000;">Nom :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px; font-weight: 600;">${client.firstName} ${client.lastName}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Email :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">
+                                    <a href="mailto:${client.email}" style="color: #000000; text-decoration: none; font-weight: 600;">${client.email}</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Téléphone :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px; font-weight: 600;">
+                                    <a href="tel:${client.phone.replace(/\s/g, '')}" style="color: #000000; text-decoration: none;">${client.phone}</a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        <!-- Reservation Details Card -->
+                        <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fafafa; border-radius: 8px; border: 1px solid #e5e5e5; margin-bottom: 30px;">
+                          <tr>
+                            <td style="padding: 25px;">
+                              <h3 style="margin: 0 0 20px 0; color: #000000; font-size: 18px; font-weight: 600; border-bottom: 2px solid #000000; padding-bottom: 10px;">Détails de la réservation</h3>
+                              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; width: 140px;"><strong style="color: #000000;">Numéro :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px; font-weight: 600;">#${reservationId}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Service :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${serviceType}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Date :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${formatDate(reservation.pickupDate)}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Heure :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${formatTime(reservation.pickupTime)}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Départ :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.pickupAddress}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Destination :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.dropoffAddress}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Passagers :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.passengers}</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Bagages :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.luggage}</td>
+                                </tr>
+                                ${reservation.flightNumber ? `
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Numéro de vol :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.flightNumber}</td>
+                                </tr>
+                                ` : ''}
+                                ${reservation.notes ? `
+                                <tr>
+                                  <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Notes :</strong></td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.notes}</td>
+                                </tr>
+                                ` : ''}
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        <p style="margin: 0; color: #666666; font-size: 13px; text-align: center; padding-top: 20px; border-top: 1px solid #e5e5e5;">
+                          Cette notification a été envoyée automatiquement par le système de réservation.
+                        </p>
+                      </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                      <td style="background-color: #1a1a1a; padding: 25px 40px; text-align: center;">
+                        <p style="margin: 0 0 10px 0; color: #ffffff; font-size: 14px; font-weight: 600;">Hern Taxi</p>
+                        <p style="margin: 0; color: #999999; font-size: 12px;">Service disponible 24h/24 et 7j/7</p>
+                        <p style="margin: 10px 0 0 0; color: #999999; font-size: 12px;">Chambéry, Aix-les-Bains et région Savoie</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </body>
+          </html>
         `,
       }),
     })
