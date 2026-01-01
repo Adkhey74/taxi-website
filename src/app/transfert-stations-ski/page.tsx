@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Phone, Mountain, CheckCircle } from "lucide-react"
+import { Phone, Mountain, CheckCircle, Info } from "lucide-react"
 import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import Image from "next/image"
@@ -119,6 +119,10 @@ export default function TransfertStationsSkiPage() {
                   <span className="text-muted-foreground">{t("ski.stations.rosiere")}</span>
                 </li>
               </ul>
+              <p className="flex items-start gap-2 text-sm text-muted-foreground/80 italic mt-4 pt-4 border-t border-primary/10">
+                <Info className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span>{t("ski.stations.otherStations")}</span>
+              </p>
             </div>
 
             <div id="services-ski" className="bg-muted/50 rounded-xl p-6 space-y-4 scroll-mt-24">
