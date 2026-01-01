@@ -3,6 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Car, Users, Wifi, Shield, Clock } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
+import Image from "next/image"
 
 export function Vehicles() {
   const { t } = useI18n()
@@ -18,31 +19,32 @@ export function Vehicles() {
       })(),
       icon: Car,
       color: "bg-gradient-to-br from-slate-700 to-slate-900",
-      image: "/api/placeholder/400/250"
+      image: "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
+      hasImage: true,
     },
     {
-      name: t("vehicles.skoda.name") as string,
-      capacity: t("vehicles.skoda.capacity") as string, 
-      description: t("vehicles.skoda.description") as string,
+      name: t("vehicles.renault.name") as string,
+      capacity: t("vehicles.renault.capacity") as string, 
+      description: t("vehicles.renault.description") as string,
       features: (() => {
-        const features = t("vehicles.skoda.features")
+        const features = t("vehicles.renault.features")
         return Array.isArray(features) ? features : []
       })(),
       icon: Car,
       color: "bg-gradient-to-br from-blue-600 to-cyan-600",
-      image: "/api/placeholder/400/250"
+      image: "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/trafic_ycuzd2.jpg",
+      hasImage: true,
     }
   ]
   return (
-    <section className="py-24 bg-background">
+    <section className="pt-8 pb-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <span className="text-sm font-semibold text-primary">{t("vehicles.ourFleet")}</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            {t("vehicles.title")}
-            <span className="block mt-2 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
+            {t("vehicles.title")} <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
               {t("vehicles.titleHighlight")}
             </span>
           </h2>
@@ -55,17 +57,32 @@ export function Vehicles() {
           {vehicles.map((vehicle, index) => {
             const IconComponent = vehicle.icon
             return (
-              <Card key={index} className="group overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:border-primary/30">
-                <div className="relative h-72 bg-gradient-to-br from-muted/50 via-muted/30 to-muted/50 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
-                  <div className="text-center relative z-10">
-                    <div className="bg-primary/10 rounded-2xl p-6 inline-block mb-4 group-hover:bg-primary/20 transition-colors border border-primary/20">
-                      <IconComponent className="h-20 w-20 text-primary mx-auto" />
+              <Card key={index} className="group overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 p-0">
+                <div className={`relative aspect-video w-full overflow-hidden ${vehicle.hasImage && vehicle.image ? '' : 'bg-gradient-to-br from-muted/50 via-muted/30 to-muted/50'}`}>
+                  {vehicle.hasImage && vehicle.image ? (
+                    <Image
+                      src={vehicle.image}
+                      alt={vehicle.name}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={index === 0}
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <>
+                        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
+                        <div className="text-center relative z-10">
+                          <div className="bg-primary/10 rounded-2xl p-6 inline-block mb-4 group-hover:bg-primary/20 transition-colors border border-primary/20">
+                            <IconComponent className="h-20 w-20 text-primary mx-auto" />
+                          </div>
+                          <p className="text-foreground font-bold text-lg">{vehicle.name}</p>
+                        </div>
+                      </>
                     </div>
-                    <p className="text-foreground font-bold text-lg">{vehicle.name}</p>
-                  </div>
+                  )}
                 </div>
-                <CardHeader>
+                <CardHeader className="pt-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
                       <IconComponent className="h-7 w-7 text-primary" />
@@ -79,7 +96,7 @@ export function Vehicles() {
                     {vehicle.description}
                   </p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pb-6">
                   <div className="grid grid-cols-2 gap-4">
                     {vehicle.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center text-sm text-muted-foreground">

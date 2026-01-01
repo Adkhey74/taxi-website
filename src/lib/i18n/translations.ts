@@ -9,6 +9,7 @@ export const translations = {
       transfers: "Transferts",
       airport: "Taxi Aéroport",
       ski: "Transfert stations de ski",
+      vehicles: "Nos véhicules",
       zonesContact: "Contact",
       bookNow: "Réserver maintenant",
       book: "Réserver",
@@ -39,6 +40,7 @@ export const translations = {
       subtitle: "Transport médical conventionné CPAM",
       subtitle2: "Taxi aéroport",
       subtitle3: "Transfert stations de ski",
+      subtitle3Detail: "Transport de 1 à 8 personnes",
       service24h: "Service 24h/24 et 7j/7",
       professionalService: "Service professionnel",
       description1: "Notre société de taxi propose des services de transport fiables, ponctuels et confortables au service des particuliers et professionnels.",
@@ -150,6 +152,53 @@ export const translations = {
       vehicles: "Véhicules jusqu'à 8 passagers.",
       seat: "Siège bébé et rehausseur disponibles gratuitement sur demande.",
       ctaTitle: "Réservez votre transfert vers les stations",
+    },
+    // Véhicules
+    vehicles: {
+      title: "Nos",
+      titleHighlight: "véhicules",
+      description: "Une flotte moderne et confortable pour tous vos déplacements",
+      ourFleet: "Notre flotte",
+      mercedes: {
+        name: "Mercedes Classe V",
+        capacity: "Jusqu'à 8 passagers",
+        description: "Véhicule haut de gamme pour un transport confortable et professionnel. Idéal pour les transferts aéroport, stations de ski et déplacements longue distance.",
+        features: [
+          "Confort premium",
+          "Espace bagages généreux",
+          "Climatisation",
+          "Grande capacité",
+        ],
+      },
+      renault: {
+        name: "Renault Trafic",
+        capacity: "9 places",
+        description: "Véhicule spacieux et polyvalent pour les groupes. Parfait pour les déplacements en groupe, les transferts collectifs et les transports familiaux.",
+        features: [
+          "9 places",
+          "Grand espace",
+          "Confortable",
+          "Idéal pour groupes",
+        ],
+      },
+      features: {
+        security: {
+          title: "Sécurité",
+          description: "Véhicules régulièrement entretenus et contrôlés",
+        },
+        capacity: {
+          title: "Capacité",
+          description: "Jusqu'à 9 passagers avec bagages",
+        },
+        comfort: {
+          title: "Confort",
+          description: "Intérieur spacieux et équipements modernes",
+        },
+        availability: {
+          title: "Disponibilité",
+          description: "Service 24h/24 et 7j/7",
+        },
+      },
     },
     // Zones desservies & Contact
     zonesContact: {

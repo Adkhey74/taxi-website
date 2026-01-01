@@ -108,6 +108,13 @@ export function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
+                    <Link href="/vehicles" className="group inline-flex h-11 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus:outline-none data-[active]:bg-muted data-[active]:text-foreground">
+                      {t("header.vehicles")}
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
                     <Link href="/zones-contact" className="group inline-flex h-11 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus:outline-none data-[active]:bg-muted data-[active]:text-foreground">
                       {t("header.zonesContact")}
                     </Link>
@@ -193,6 +200,13 @@ export function Header() {
                 {t("header.ski")}
               </Link>
               <Link
+                href="/vehicles"
+                className="block px-4 py-3 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("header.vehicles")}
+              </Link>
+              <Link
                 href="/zones-contact"
                 className="block px-4 py-3 rounded-lg text-foreground hover:bg-muted transition-all duration-200 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -220,3 +234,4 @@ export function Header() {
     </motion.header>
   );
 }
+

@@ -95,7 +95,7 @@ export default function Home() {
           
           {/* Overlay pour améliorer la lisibilité du texte - synchronisé avec la vidéo */}
           <motion.div
-            className="absolute inset-0 bg-black/40 z-10"
+            className="absolute inset-0 bg-black/60 z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: videoLoaded ? 1 : 0 }}
             transition={{
@@ -112,17 +112,18 @@ export default function Home() {
             animate={{ opacity: videoLoaded ? 1 : 0, y: videoLoaded ? 0 : 30 }}
             transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-lg">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-2xl [text-shadow:_2px_2px_8px_rgb(0_0_0_/_80%)]">
               {t("home.title")}
             </h1>
-            <div className="text-xl sm:text-2xl mb-4 text-white/90 font-semibold drop-shadow-md space-y-1">
+            <div className="text-2xl sm:text-3xl lg:text-4xl mb-4 text-white font-semibold drop-shadow-xl [text-shadow:_2px_2px_6px_rgb(0_0_0_/_70%)] space-y-1">
               <p>{t("home.subtitle")}</p>
               <p>{t("home.subtitle2")}</p>
               <p>{t("home.subtitle3")}</p>
             </div>
-            <p className="text-lg text-white/80 mb-6 drop-shadow-md">
-              {t("home.service24h")}
-            </p>
+            <div className="text-xl sm:text-2xl text-white mb-6 drop-shadow-lg [text-shadow:_1px_1px_4px_rgb(0_0_0_/_70%)] space-y-1">
+              <p>{t("home.subtitle3Detail")}</p>
+              <p>{t("home.service24h")}</p>
+            </div>
             
             {/* Numéros de téléphone */}
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -369,6 +370,13 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {t("home.vehicles.seat")}
                 </p>
+                <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                  <Button asChild className="mt-2 hover:shadow-xl transition-all duration-300">
+                    <Link href="/vehicles" className="flex items-center">
+                      {t("header.vehicles")}
+                    </Link>
+                  </Button>
+                </motion.div>
               </motion.div>
               
               {/* Image véhicule */}
