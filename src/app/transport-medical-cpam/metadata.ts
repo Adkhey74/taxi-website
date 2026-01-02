@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Transport médical conventionné CPAM | Hern Taxi",
     description: "Service de transport médical conventionné CPAM pour vos déplacements médicaux. Transport VSL, déplacements vers hôpitaux et cliniques de Savoie, Lyon et Grenoble.",
-    url: "https://herntaxi.fr/transport-medical-cpam",
+    url: "https://www.herntaxi.fr/transport-medical-cpam",
   },
   twitter: {
     card: "summary_large_image",
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description: "Service de transport médical conventionné CPAM pour vos déplacements médicaux en Savoie, Lyon et Grenoble.",
   },
 }
+
 
 
 

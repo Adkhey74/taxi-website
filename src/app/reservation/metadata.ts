@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Réservation taxi en ligne | Hern Taxi",
     description: "Réservez votre taxi en ligne facilement. Service disponible 24h/24 et 7j/7 pour tous vos déplacements : aéroport, ville, transport médical, stations de ski.",
-    url: "https://herntaxi.fr/reservation",
+    url: "https://www.herntaxi.fr/reservation",
   },
 }
+
 
 
 

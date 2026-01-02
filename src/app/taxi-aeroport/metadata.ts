@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Taxi Aéroport - Transfert aéroport Chambéry | Hern Taxi",
     description: "Service de taxi aéroport professionnel pour vos transferts vers et depuis l'aéroport de Chambéry, Lyon-Saint-Exupéry et Genève. Disponible 24h/24.",
-    url: "https://herntaxi.fr/taxi-aeroport",
+    url: "https://www.herntaxi.fr/taxi-aeroport",
     images: [
       {
         url: "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",

@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Transport médical Lyon Grenoble | Hern Taxi",
     description: "Service de transport médical vers les hôpitaux de Lyon et Grenoble depuis la Savoie. Transport conventionné CPAM, VSL.",
-    url: "https://herntaxi.fr/transport-medical-lyon-grenoble",
+    url: "https://www.herntaxi.fr/transport-medical-lyon-grenoble",
   },
 }
+
 
 
 

@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Zones de service et contact | Hern Taxi",
     description: "Découvrez nos zones de service en Savoie et réservez votre taxi. Service disponible à Chambéry, Aix-les-Bains, La Motte-Servolex et toute la région.",
-    url: "https://herntaxi.fr/zones-contact",
+    url: "https://www.herntaxi.fr/zones-contact",
   },
 }
+
 
 
 

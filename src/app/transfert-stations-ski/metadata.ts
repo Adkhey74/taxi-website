@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Transfert stations de ski Savoie | Hern Taxi",
     description: "Service de transfert vers les stations de ski de Tarentaise et Haute-Tarentaise. Transport vers Courchevel, Val d'Isère, Tignes, Les Arcs et autres stations.",
-    url: "https://herntaxi.fr/transfert-stations-ski",
+    url: "https://www.herntaxi.fr/transfert-stations-ski",
   },
   twitter: {
     card: "summary_large_image",
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description: "Service de transfert vers les stations de ski de Tarentaise et Haute-Tarentaise depuis Chambéry et Aix-les-Bains.",
   },
 }
+
 
 
 

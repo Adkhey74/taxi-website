@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://herntaxi.fr"),
+  metadataBase: new URL("https://www.herntaxi.fr"),
   alternates: {
     canonical: "/",
     languages: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://herntaxi.fr",
+    url: "https://www.herntaxi.fr",
     siteName: "Hern Taxi",
     title: "Hern Taxi - Service de transport professionnel en Savoie",
     description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région.",
@@ -78,6 +78,11 @@ export const metadata: Metadata = {
     // google: "votre-code-verification-google",
     // yandex: "votre-code-verification-yandex",
     // yahoo: "votre-code-verification-yahoo",
+  },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 

@@ -383,6 +383,7 @@ export const translations = {
       transfers: "Transfers",
       airport: "Airport Taxi",
       ski: "Ski Resort Transfer",
+      vehicles: "Our vehicles",
       zonesContact: "Contact",
       bookNow: "Book now",
       book: "Book",
@@ -524,6 +525,53 @@ export const translations = {
       vehicles: "Vehicles for up to 8 passengers.",
       seat: "Baby seat and booster seat available free of charge on request.",
       ctaTitle: "Book your ski resort transfer",
+    },
+    // Vehicles
+    vehicles: {
+      title: "Our",
+      titleHighlight: "vehicles",
+      description: "A modern and comfortable fleet for all your trips",
+      ourFleet: "Our fleet",
+      mercedes: {
+        name: "Mercedes Class V",
+        capacity: "Up to 8 passengers",
+        description: "Premium vehicle for comfortable and professional transport. Ideal for airport transfers, ski resorts and long-distance trips.",
+        features: [
+          "Premium comfort",
+          "Generous luggage space",
+          "Air conditioning",
+          "Large capacity",
+        ],
+      },
+      renault: {
+        name: "Renault Trafic",
+        capacity: "9 seats",
+        description: "Spacious and versatile vehicle for groups. Perfect for group trips, collective transfers and family transport.",
+        features: [
+          "9 seats",
+          "Large space",
+          "Comfortable",
+          "Ideal for groups",
+        ],
+      },
+      features: {
+        security: {
+          title: "Security",
+          description: "Regularly maintained and inspected vehicles",
+        },
+        capacity: {
+          title: "Capacity",
+          description: "Up to 9 passengers with luggage",
+        },
+        comfort: {
+          title: "Comfort",
+          description: "Spacious interior and modern equipment",
+        },
+        availability: {
+          title: "Availability",
+          description: "Service 24/7",
+        },
+      },
     },
     // Zones desservies & Contact
     zonesContact: {

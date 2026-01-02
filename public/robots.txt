@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://herntaxi.fr/sitemap.xml
+Sitemap: https://www.herntaxi.fr/sitemap.xml
 
 # Disallow admin and API routes
 User-agent: *
