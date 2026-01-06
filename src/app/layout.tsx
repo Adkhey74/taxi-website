@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région.",
     images: [
       {
-        url: "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
+        url: "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
         width: 1200,
         height: 630,
         alt: "Hern Taxi - Service de transport professionnel en Savoie",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hern Taxi - Service de transport professionnel en Savoie",
     description: "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7.",
-    images: ["https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg"],
+    images: ["https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg"],
   },
   robots: {
     index: true,

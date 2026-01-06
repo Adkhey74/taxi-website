@@ -7,7 +7,7 @@ export function StructuredData() {
     "description": "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région Savoie.",
     "url": "https://www.herntaxi.fr",
     "logo": "https://www.herntaxi.fr/images/logo/logo%20hern%20(3).png",
-    "image": "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
+    "image": "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
     "telephone": "+33658686548",
     "email": "contact@hern-taxi.fr",
     "address": {

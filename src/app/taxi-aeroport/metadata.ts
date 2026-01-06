@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: "https://www.herntaxi.fr/taxi-aeroport",
     images: [
       {
-        url: "https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg",
+        url: "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
         width: 1200,
         height: 630,
         alt: "Taxi aéroport Chambéry - Hern Taxi",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Taxi Aéroport - Transfert aéroport Chambéry | Hern Taxi",
     description: "Service de taxi aéroport professionnel pour vos transferts vers et depuis l'aéroport de Chambéry, Lyon-Saint-Exupéry et Genève.",
-    images: ["https://res.cloudinary.com/dufmpr5dh/image/upload/f_auto,q_auto,w_1200,h_630,c_limit/v1766938705/aeroport_i3lxia.jpg"],
+    images: ["https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg"],
   },
 }
 
