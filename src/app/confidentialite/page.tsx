@@ -232,8 +232,8 @@ export default function ConfidentialitePage() {
                       <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Par email :</p>
-                        <a href="mailto:contact@hern-taxi.fr" className="text-primary hover:underline">
-                          contact@hern-taxi.fr
+                        <a href="mailto:herntaxi73@gmail.com" className="text-primary hover:underline">
+                          herntaxi73@gmail.com
                         </a>
                       </div>
                     </div>
@@ -297,8 +297,8 @@ export default function ConfidentialitePage() {
                       <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Email :</p>
-                        <a href="mailto:contact@hern-taxi.fr" className="text-primary hover:underline">
-                          contact@hern-taxi.fr
+                        <a href="mailto:herntaxi73@gmail.com" className="text-primary hover:underline">
+                          herntaxi73@gmail.com
                         </a>
                       </div>
                     </div>

@@ -31,7 +31,7 @@ export function Footer() {
               <a href="tel:0658686548" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 p-3 rounded-lg transition-all duration-200 border border-primary-foreground/20 hover:border-primary-foreground/30">
                 <Phone className="h-4 w-4 text-primary-foreground" />
               </a>
-              <a href="mailto:contact@hern-taxi.fr" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 p-3 rounded-lg transition-all duration-200 border border-primary-foreground/20 hover:border-primary-foreground/30">
+              <a href="mailto:herntaxi73@gmail.com" className="bg-primary-foreground/10 hover:bg-primary-foreground/20 p-3 rounded-lg transition-all duration-200 border border-primary-foreground/20 hover:border-primary-foreground/30">
                 <Mail className="h-4 w-4 text-primary-foreground" />
               </a>
             </div>
@@ -103,7 +103,7 @@ export function Footer() {
                   <Mail className="h-4 w-4 text-primary-foreground" />
                 </div>
                 <div>
-                  <p className="text-primary-foreground font-semibold">contact@hern-taxi.fr</p>
+                  <p className="text-primary-foreground font-semibold">herntaxi73@gmail.com</p>
                   <p className="text-primary-foreground/70 text-xs">{t("footer.responseTime")}</p>
                 </div>
               </div>

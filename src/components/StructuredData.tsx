@@ -9,7 +9,7 @@ export function StructuredData() {
     "logo": "https://www.herntaxi.fr/images/logo/logo%20hern%20(3).png",
     "image": "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
     "telephone": "+33658686548",
-    "email": "contact@hern-taxi.fr",
+    "email": "herntaxi73@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Chambéry",
