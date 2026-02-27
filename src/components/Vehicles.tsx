@@ -22,19 +22,6 @@ export function Vehicles() {
       image: "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
       hasImage: true,
     },
-    {
-      name: t("vehicles.renault.name") as string,
-      capacity: t("vehicles.renault.capacity") as string, 
-      description: t("vehicles.renault.description") as string,
-      features: (() => {
-        const features = t("vehicles.renault.features")
-        return Array.isArray(features) ? features : []
-      })(),
-      icon: Car,
-      color: "bg-gradient-to-br from-blue-600 to-cyan-600",
-      image: "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/trafic_ycuzd2.jpg",
-      hasImage: true,
-    }
   ]
   return (
     <section className="pt-8 pb-32 bg-background">
@@ -53,7 +40,7 @@ export function Vehicles() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-20">
+        <div className={`grid grid-cols-1 gap-8 lg:gap-12 mb-20 ${vehicles.length === 1 ? "lg:max-w-2xl lg:mx-auto" : "lg:grid-cols-2"}`}>
           {vehicles.map((vehicle, index) => {
             const IconComponent = vehicle.icon
             return (
