@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -395,6 +396,14 @@ function ReservationFormSection() {
 
             {/* Bouton de soumission */}
             <div className="border-t border-border pt-6 bg-muted/30 -mx-5 sm:-mx-6 lg:-mx-8 px-5 sm:px-6 lg:px-8 pb-5 sm:pb-6 lg:pb-8">
+              {/* Information RGPD (art. 13) au point de collecte, avant l'envoi. Pas de case à cocher :
+                  la base légale est la préparation de la course demandée, pas le consentement. */}
+              <p id="privacy-notice" className="mb-4 text-xs leading-relaxed text-muted-foreground">
+                {t("reservation.privacyNotice")}{" "}
+                <Link href="/confidentialite" className="font-medium text-foreground underline underline-offset-2 hover:text-primary">
+                  {t("reservation.privacyLink")}
+                </Link>
+              </p>
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p className="text-sm text-muted-foreground text-center sm:text-left flex items-center gap-1.5">
                   <Phone className="h-4 w-4" />
@@ -406,6 +415,7 @@ function ReservationFormSection() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
+                  aria-describedby="privacy-notice"
                   className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 font-semibold h-12 px-8 w-full sm:w-auto"
                 >
                   {isSubmitting ? (

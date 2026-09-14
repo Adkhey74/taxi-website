@@ -1,26 +1,24 @@
 import { Metadata } from "next"
 
+const title = "Transfert stations de ski Savoie | Hern Taxi"
+const description = "Transferts en taxi vers les stations de Tarentaise depuis Chambéry et Aix-les-Bains : Courchevel, Méribel, La Plagne, Les Arcs, Tignes. Bagages et skis, familles et groupes."
+
 export const metadata: Metadata = {
-  title: "Transfert stations de ski Savoie | Hern Taxi",
-  description: "Service de transfert vers les stations de ski de Tarentaise et Haute-Tarentaise. Transport vers Courchevel, Val d'Isère, Tignes, Les Arcs, La Plagne et autres stations de ski depuis Chambéry et Aix-les-Bains.",
+  // absolute : le layout racine ajoute déjà « | Hern Taxi » via son template.
+  title: { absolute: title },
+  description,
   keywords: ["transfert stations de ski", "taxi stations de ski Savoie", "taxi Courchevel", "taxi Val d'Isère", "transfert ski Tarentaise", "navette stations de ski"],
   alternates: {
     canonical: "/transfert-stations-ski",
   },
   openGraph: {
-    title: "Transfert stations de ski Savoie | Hern Taxi",
-    description: "Service de transfert vers les stations de ski de Tarentaise et Haute-Tarentaise. Transport vers Courchevel, Val d'Isère, Tignes, Les Arcs et autres stations.",
+    title,
+    description,
     url: "https://www.herntaxi.fr/transfert-stations-ski",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Transfert stations de ski Savoie | Hern Taxi",
-    description: "Service de transfert vers les stations de ski de Tarentaise et Haute-Tarentaise depuis Chambéry et Aix-les-Bains.",
+    title,
+    description,
   },
 }
-
-
-
-
-
-

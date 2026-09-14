@@ -2,14 +2,14 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Transport médical Lyon Grenoble | Hern Taxi",
-  description: "Service de transport médical vers les hôpitaux de Lyon et Grenoble depuis la Savoie. Transport conventionné CPAM, VSL, déplacements médicaux vers centres hospitaliers de Rhône-Alpes.",
-  keywords: ["transport médical Lyon", "transport médical Grenoble", "VSL Lyon", "taxi hôpital Lyon", "transport médical Rhône-Alpes"],
+  description: "Service de transport médical vers les hôpitaux de Lyon et Grenoble depuis la Savoie. Taxi conventionné CPAM, déplacements médicaux vers centres hospitaliers de Rhône-Alpes.",
+  keywords: ["transport médical Lyon", "transport médical Grenoble", "taxi conventionné Lyon", "taxi hôpital Lyon", "transport médical Rhône-Alpes"],
   alternates: {
     canonical: "/transport-medical-lyon-grenoble",
   },
   openGraph: {
     title: "Transport médical Lyon Grenoble | Hern Taxi",
-    description: "Service de transport médical vers les hôpitaux de Lyon et Grenoble depuis la Savoie. Transport conventionné CPAM, VSL.",
+    description: "Service de transport médical vers les hôpitaux de Lyon et Grenoble depuis la Savoie. Taxi conventionné CPAM.",
     url: "https://www.herntaxi.fr/transport-medical-lyon-grenoble",
   },
 }

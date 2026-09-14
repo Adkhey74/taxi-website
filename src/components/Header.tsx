@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu"
-import { Menu, X, Calendar } from "lucide-react"
+import { Menu, X, Calendar, Heart, Building2, Plane, Mountain } from "lucide-react"
 import { useState } from "react"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { useI18n } from "@/lib/i18n/context"
@@ -12,6 +12,15 @@ import { motion } from "framer-motion"
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { t } = useI18n()
+
+  const menuItemClass =
+    "group/link flex-row items-start gap-3.5 rounded-xl p-3 no-underline outline-none transition-all duration-200 hover:bg-muted focus:bg-muted border border-transparent hover:border-border"
+  // Le composant de base force les icônes en gris ([&_svg]:text-muted-foreground) : au survol, le
+  // carré passe au noir, donc l'icône est repassée en blanc pour rester visible.
+  const menuIconClass =
+    "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/10 bg-primary/5 text-primary transition-colors group-hover/link:bg-primary group-hover/link:text-primary-foreground group-hover/link:[&_svg]:text-primary-foreground! group-focus/link:bg-primary group-focus/link:[&_svg]:text-primary-foreground!"
+  const menuTitleClass = "text-sm font-semibold leading-none text-foreground transition-colors group-hover/link:text-primary"
+  const menuDescClass = "text-xs leading-snug text-muted-foreground"
 
   return (
     <motion.header 
@@ -60,24 +69,37 @@ export function Header() {
                   <NavigationMenuTrigger className="h-11 px-4 text-sm font-semibold data-[state=open]:bg-muted data-[state=open]:text-foreground">
                     {t("header.medical")}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-card border border-border shadow-lg">
-                    <div className="grid gap-3 p-6 w-[300px]">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          href="/transport-medical-cpam"
-                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
-                        >
-                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.medicalCPAM")}</div>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          href="/transport-medical-lyon-grenoble"
-                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
-                        >
-                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.medicalLyonGrenoble")}</div>
-                        </Link>
-                      </NavigationMenuLink>
+                  {/* Style repris de la branche refonte-i18n-pwa : son « gold » (blanc sur thème sombre) devient ici primary (noir sur thème clair). */}
+                  <NavigationMenuContent className="rounded-2xl border-border p-0 shadow-2xl shadow-primary/10">
+                    <div className="w-[380px]">
+                      <div className="h-1 w-full bg-gradient-to-r from-primary via-primary/60 to-transparent" />
+                      <div className="p-2.5">
+                        <div className="px-3 pb-1.5 pt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
+                          {t("header.medicalMenuLabel")}
+                        </div>
+                        <NavigationMenuLink asChild>
+                          <Link href="/transport-medical-cpam" className={menuItemClass}>
+                            <span className={menuIconClass}>
+                              <Heart className="h-5 w-5" />
+                            </span>
+                            <span className="flex flex-col gap-1">
+                              <span className={menuTitleClass}>{t("header.medicalCPAM")}</span>
+                              <span className={menuDescClass}>{t("header.medicalCPAMDesc")}</span>
+                            </span>
+                          </Link>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <Link href="/transport-medical-lyon-grenoble" className={menuItemClass}>
+                            <span className={menuIconClass}>
+                              <Building2 className="h-5 w-5" />
+                            </span>
+                            <span className="flex flex-col gap-1">
+                              <span className={menuTitleClass}>{t("header.medicalLyonGrenoble")}</span>
+                              <span className={menuDescClass}>{t("header.medicalLyonGrenobleDesc")}</span>
+                            </span>
+                          </Link>
+                        </NavigationMenuLink>
+                      </div>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -85,24 +107,36 @@ export function Header() {
                   <NavigationMenuTrigger className="h-11 px-4 text-sm font-semibold data-[state=open]:bg-muted data-[state=open]:text-foreground">
                     {t("header.transfers")}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-card border border-border shadow-lg">
-                    <div className="grid gap-3 p-6 w-[300px]">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          href="/taxi-aeroport"
-                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
-                        >
-                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.airport")}</div>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          href="/transfert-stations-ski"
-                          className="block select-none space-y-1 rounded-lg p-4 leading-none no-underline outline-none transition-all duration-200 bg-card text-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground border border-transparent hover:border-border"
-                        >
-                          <div className="text-sm font-semibold leading-none text-foreground">{t("header.ski")}</div>
-                        </Link>
-                      </NavigationMenuLink>
+                  <NavigationMenuContent className="rounded-2xl border-border p-0 shadow-2xl shadow-primary/10">
+                    <div className="w-[380px]">
+                      <div className="h-1 w-full bg-gradient-to-r from-primary via-primary/60 to-transparent" />
+                      <div className="p-2.5">
+                        <div className="px-3 pb-1.5 pt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
+                          {t("header.transfersMenuLabel")}
+                        </div>
+                        <NavigationMenuLink asChild>
+                          <Link href="/taxi-aeroport" className={menuItemClass}>
+                            <span className={menuIconClass}>
+                              <Plane className="h-5 w-5" />
+                            </span>
+                            <span className="flex flex-col gap-1">
+                              <span className={menuTitleClass}>{t("header.airport")}</span>
+                              <span className={menuDescClass}>{t("header.airportDesc")}</span>
+                            </span>
+                          </Link>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <Link href="/transfert-stations-ski" className={menuItemClass}>
+                            <span className={menuIconClass}>
+                              <Mountain className="h-5 w-5" />
+                            </span>
+                            <span className="flex flex-col gap-1">
+                              <span className={menuTitleClass}>{t("header.ski")}</span>
+                              <span className={menuDescClass}>{t("header.skiDesc")}</span>
+                            </span>
+                          </Link>
+                        </NavigationMenuLink>
+                      </div>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>

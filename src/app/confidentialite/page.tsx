@@ -109,10 +109,9 @@ export default function ConfidentialitePage() {
                     Le traitement de vos données personnelles est fondé sur les bases légales suivantes :
                   </p>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Exécution d'un contrat :</strong> Le traitement est nécessaire pour l'exécution du contrat 
-                    de transport que vous souhaitez conclure</li>
-                    <li><strong>Consentement :</strong> Vous consentez à la collecte et au traitement de vos données en 
-                    soumettant le formulaire de réservation</li>
+                    <li><strong>Exécution d'un contrat :</strong> Le traitement est nécessaire pour l'exécution du contrat
+                    de transport que vous souhaitez conclure, y compris les mesures préalables prises à votre demande
+                    (traitement de votre demande de réservation)</li>
                     <li><strong>Obligations légales :</strong> Le traitement est nécessaire pour respecter nos obligations 
                     légales et comptables</li>
                   </ul>

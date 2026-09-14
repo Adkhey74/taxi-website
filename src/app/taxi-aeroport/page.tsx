@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Phone, Plane, CheckCircle } from "lucide-react"
+import { Phone, Plane, CheckCircle, Mountain } from "lucide-react"
 import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import Image from "next/image"
@@ -109,6 +109,20 @@ export default function TaxiAeroportPage() {
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 {t("airport.seat")}
+              </p>
+            </div>
+
+            {/* lang="en" : les lecteurs d'écran prononcent ce bloc en anglais même sur la page française */}
+            <div id="english" lang="en" className="bg-primary/5 border border-primary/20 rounded-xl p-6 space-y-4 scroll-mt-24">
+              <h2 className="text-2xl font-bold flex items-center gap-3">
+                <Mountain className="h-6 w-6 text-primary flex-shrink-0" />
+                {t("airport.english.title")}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {t("airport.english.description")}
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                {t("airport.english.details")}
               </p>
             </div>
           </div>

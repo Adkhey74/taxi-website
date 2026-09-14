@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -395,6 +396,14 @@ function ReservationForm() {
 
               {/* Footer du formulaire */}
               <div className="bg-muted/50 px-8 lg:px-10 py-6 border-t border-border">
+                {/* Information RGPD (art. 13) au point de collecte, avant l'envoi. Pas de case à cocher :
+                    la base légale est la préparation de la course demandée, pas le consentement. */}
+                <p id="privacy-notice" className="mb-4 text-xs leading-relaxed text-muted-foreground">
+                  {t("reservation.privacyNotice")}{" "}
+                  <Link href="/confidentialite" className="font-medium text-foreground underline underline-offset-2 hover:text-primary">
+                    {t("reservation.privacyLink")}
+                  </Link>
+                </p>
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <Button
                       type="button"
@@ -415,6 +424,7 @@ function ReservationForm() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
+                      aria-describedby="privacy-notice"
                       className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 font-semibold h-11 px-8"
                     >
                       {isSubmitting ? (

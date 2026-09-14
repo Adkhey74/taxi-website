@@ -5,10 +5,16 @@ export const translations = {
       home: "Accueil",
       medical: "Transport médical",
       medicalCPAM: "Transport médical CPAM",
+      medicalCPAMDesc: "Trajets conventionnés, remboursés par l'Assurance Maladie",
       medicalLyonGrenoble: "Transport médical Lyon & Grenoble",
+      medicalLyonGrenobleDesc: "Transferts longue distance vers les hôpitaux",
       transfers: "Transferts",
       airport: "Taxi Aéroport",
+      airportDesc: "Lyon, Genève, Chambéry, Grenoble, Milan",
       ski: "Transfert stations de ski",
+      skiDesc: "Toutes les stations des Alpes savoyardes",
+      medicalMenuLabel: "Trajets de santé conventionnés",
+      transfersMenuLabel: "Aéroports & stations de ski",
       vehicles: "Nos véhicules",
       zonesContact: "Contact",
       bookNow: "Réserver maintenant",
@@ -60,7 +66,7 @@ export const translations = {
       },
       medical: {
         title: "Transport médical conventionné CPAM",
-        description: "Taxi conventionné CPAM spécialisé dans le transport médical assis (VSL), réalisé uniquement sur prescription médicale. Service disponible 24h/24 et 7j/7.",
+        description: "Taxi conventionné CPAM pour le transport médical assis, réalisé uniquement sur prescription médicale. Service disponible 24h/24 et 7j/7.",
         features: "Nous assurons également des transports médicaux longue distance vers les pôles hospitaliers de Lyon et Grenoble pour les soins spécialisés.",
         transportsCovered: "Transports couverts",
         learnMore: "En savoir plus",
@@ -75,9 +81,14 @@ export const translations = {
     },
     // Transport médical CPAM
     medicalCPAM: {
-      title: "Transport médical conventionné CPAM – Taxi VSL",
+      title: "Taxi conventionné CPAM – Transport médical en Savoie",
       subtitle: "Transport médical assis – 24h/24 et 7j/7",
-      description: "Taxi conventionné CPAM spécialisé dans le transport médical assis (VSL), réalisé uniquement sur prescription médicale.",
+      description: "Taxi conventionné CPAM pour le transport médical assis, réalisé uniquement sur prescription médicale.",
+      lyonGrenoble: {
+        title: "Transport médical vers Lyon et Grenoble",
+        description: "Hern Taxi assure vos transports médicaux en taxi conventionné au départ de la Savoie, notamment vers les établissements hospitaliers de Chambéry, Grenoble et Lyon : CHU Grenoble Alpes, Centre Léon Bérard, Hôpital Édouard-Herriot, Lyon Sud et autres établissements de soins.",
+        conditions: "Transport sur prescription médicale et selon les conditions de prise en charge de l'Assurance Maladie. Service disponible 24h/24 et 7j/7.",
+      },
       transports: {
         title: "Transports concernés :",
         consultation: "Consultations médicales",
@@ -93,7 +104,7 @@ export const translations = {
     // Transport médical Lyon & Grenoble
     medicalLyonGrenoble: {
       title: "Transport médical conventionné CPAM vers Lyon et Grenoble",
-      subtitle: "Taxi VSL – longues distances médicales",
+      subtitle: "Taxi conventionné – longues distances médicales",
       description: "Nous assurons des transports médicaux longue distance vers les pôles hospitaliers de Lyon et Grenoble, lorsque des soins spécialisés sont nécessaires.",
       lyon: {
         title: "Hôpitaux desservis à Lyon :",
@@ -109,7 +120,7 @@ export const translations = {
         hopital2: "Hôpital Michallon",
         hopital3: "Groupe Hospitalier Mutualiste de Grenoble",
       },
-      prescription: "Tous les trajets sont réalisés sur prescription médicale, dans le cadre du transport médical assis (VSL).",
+      prescription: "Tous les trajets sont réalisés en taxi conventionné, sur prescription médicale, dans le cadre du transport médical assis.",
       ctaTitle: "Besoin d'un transport vers Lyon ou Grenoble ?",
     },
     // Taxi Aéroport
@@ -127,6 +138,13 @@ export const translations = {
       },
       vehicles: "Véhicules jusqu'à 8 passagers avec bagages.",
       seat: "Siège bébé et rehausseur disponibles gratuitement sur demande.",
+      // Section volontairement en anglais dans les deux langues : elle vise les
+      // voyageurs étrangers qui arrivent sur la version française via Google.
+      english: {
+        title: "Private transfers from Chambéry Airport to the French Alps",
+        description: "Arriving at Chambéry Airport? Hern Taxi provides private taxi transfers to Val Thorens, Courchevel, Méribel, Les Menuires, La Plagne, Les Arcs, Tignes and Val d'Isère.",
+        details: "Comfortable vehicles for up to 8 passengers with luggage. Baby seats and booster seats available free of charge on request. Service available 24/7.",
+      },
       ctaTitle: "Réservez votre transfert aéroport",
     },
     // Transfert stations de ski
@@ -172,13 +190,13 @@ export const translations = {
       },
       renault: {
         name: "Renault Trafic",
-        capacity: "9 places",
-        description: "Véhicule spacieux et polyvalent pour les groupes. Parfait pour les déplacements en groupe, les transferts collectifs et les transports familiaux.",
+        capacity: "Jusqu'à 8 passagers",
+        description: "Van spacieux et confortable, idéal pour les familles et les groupes. Adapté aux transferts aéroport, aux stations de ski et aux longues distances, avec un grand espace pour les bagages. Siège bébé et rehausseur disponibles gratuitement sur demande.",
         features: [
-          "9 places",
-          "Grand espace",
-          "Confortable",
-          "Idéal pour groupes",
+          "Jusqu'à 8 passagers",
+          "Grand espace bagages",
+          "Climatisation",
+          "Idéal groupes et familles",
         ],
       },
       features: {
@@ -188,7 +206,7 @@ export const translations = {
         },
         capacity: {
           title: "Capacité",
-          description: "Jusqu'à 9 passagers avec bagages",
+          description: "Jusqu'à 8 passagers avec bagages",
         },
         comfort: {
           title: "Confort",
@@ -331,6 +349,8 @@ export const translations = {
       notesPlaceholder: "Siège bébé, équipements spéciaux...",
       confirm: "Confirmer la réservation",
       submit: "Envoyer la réservation",
+      privacyNotice: "Hern Taxi utilise ces informations uniquement pour traiter votre réservation et vous recontacter à son sujet. Elles sont conservées 3 ans, ne sont jamais vendues ni cédées, et vous pouvez à tout moment y accéder, les rectifier ou demander leur suppression.",
+      privacyLink: "Politique de confidentialité",
       submitting: "Envoi en cours...",
       sending: "Envoi...",
       cancel: "Annuler",
@@ -379,10 +399,16 @@ export const translations = {
       home: "Home",
       medical: "Medical Transport",
       medicalCPAM: "Medical Transport CPAM",
+      medicalCPAMDesc: "Approved trips, reimbursed by health insurance",
       medicalLyonGrenoble: "Medical Transport Lyon & Grenoble",
+      medicalLyonGrenobleDesc: "Long-distance transfers to hospitals",
       transfers: "Transfers",
       airport: "Airport Taxi",
+      airportDesc: "Lyon, Geneva, Chambéry, Grenoble, Milan",
       ski: "Ski Resort Transfer",
+      skiDesc: "All the Savoie Alps resorts",
+      medicalMenuLabel: "Approved health transport",
+      transfersMenuLabel: "Airports & ski resorts",
       vehicles: "Our vehicles",
       zonesContact: "Contact",
       bookNow: "Book now",
@@ -433,7 +459,7 @@ export const translations = {
       },
       medical: {
         title: "CPAM certified medical transport",
-        description: "CPAM certified taxi specialized in seated medical transport (VSL), performed only on medical prescription. Service available 24/7.",
+        description: "CPAM-approved taxi for seated medical transport, performed only on medical prescription. Service available 24/7.",
         features: "We also provide long-distance medical transport to the hospital centers of Lyon and Grenoble for specialized care.",
         transportsCovered: "Covered transports",
         learnMore: "Learn more",
@@ -448,9 +474,14 @@ export const translations = {
     },
     // Transport médical CPAM
     medicalCPAM: {
-      title: "CPAM certified medical transport – Taxi VSL",
+      title: "CPAM-approved taxi – Medical transport in Savoie",
       subtitle: "Seated medical transport – 24/7",
-      description: "CPAM certified taxi specialized in seated medical transport (VSL), performed only on medical prescription.",
+      description: "CPAM-approved taxi for seated medical transport, performed only on medical prescription.",
+      lyonGrenoble: {
+        title: "Medical transport to Lyon and Grenoble",
+        description: "Hern Taxi provides medical transport by CPAM-approved taxi from Savoie, in particular to hospitals in Chambéry, Grenoble and Lyon: CHU Grenoble Alpes, Centre Léon Bérard, Édouard-Herriot Hospital, Lyon Sud and other healthcare facilities.",
+        conditions: "Transport on medical prescription and subject to the French Health Insurance coverage conditions. Service available 24/7.",
+      },
       transports: {
         title: "Covered transports:",
         consultation: "Medical consultations",
@@ -466,7 +497,7 @@ export const translations = {
     // Transport médical Lyon & Grenoble
     medicalLyonGrenoble: {
       title: "CPAM certified medical transport to Lyon and Grenoble",
-      subtitle: "Taxi VSL – long distance medical",
+      subtitle: "CPAM-approved taxi – long distance medical",
       description: "We provide long-distance medical transport to the hospital centers of Lyon and Grenoble, when specialized care is needed.",
       lyon: {
         title: "Hospitals served in Lyon:",
@@ -482,7 +513,7 @@ export const translations = {
         hopital2: "Michallon Hospital",
         hopital3: "Grenoble Mutual Hospital Group",
       },
-      prescription: "All trips are made on medical prescription, within the framework of seated medical transport (VSL).",
+      prescription: "All trips are made by CPAM-approved taxi, on medical prescription, within the framework of seated medical transport.",
       ctaTitle: "Need transport to Lyon or Grenoble?",
     },
     // Taxi Aéroport
@@ -500,6 +531,11 @@ export const translations = {
       },
       vehicles: "Vehicles for up to 8 passengers with luggage.",
       seat: "Baby seat and booster seat available free of charge on request.",
+      english: {
+        title: "Private transfers from Chambéry Airport to the French Alps",
+        description: "Arriving at Chambéry Airport? Hern Taxi provides private taxi transfers to Val Thorens, Courchevel, Méribel, Les Menuires, La Plagne, Les Arcs, Tignes and Val d'Isère.",
+        details: "Comfortable vehicles for up to 8 passengers with luggage. Baby seats and booster seats available free of charge on request. Service available 24/7.",
+      },
       ctaTitle: "Book your airport transfer",
     },
     // Transfert stations de ski
@@ -545,13 +581,13 @@ export const translations = {
       },
       renault: {
         name: "Renault Trafic",
-        capacity: "9 seats",
-        description: "Spacious and versatile vehicle for groups. Perfect for group trips, collective transfers and family transport.",
+        capacity: "Up to 8 passengers",
+        description: "Spacious and comfortable van, ideal for families and groups. Suited to airport transfers, ski resorts and long distances, with plenty of luggage space. Baby seat and booster seat available free of charge on request.",
         features: [
-          "9 seats",
-          "Large space",
-          "Comfortable",
-          "Ideal for groups",
+          "Up to 8 passengers",
+          "Large luggage space",
+          "Air conditioning",
+          "Ideal for groups and families",
         ],
       },
       features: {
@@ -561,7 +597,7 @@ export const translations = {
         },
         capacity: {
           title: "Capacity",
-          description: "Up to 9 passengers with luggage",
+          description: "Up to 8 passengers with luggage",
         },
         comfort: {
           title: "Comfort",
@@ -722,6 +758,8 @@ export const translations = {
       description: "Simple and quick form - Response within 24h",
       error: "Error",
       submit: "Submit reservation",
+      privacyNotice: "Hern Taxi uses this information only to process your booking and contact you about it. It is kept for 3 years, never sold or shared, and you can access, correct or request deletion of it at any time.",
+      privacyLink: "Privacy policy",
       bookingTitle: "Book your ride",
       clientInfo: "Your contact information",
       reservationDetails: "Ride details",

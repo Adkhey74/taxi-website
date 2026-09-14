@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/lib/i18n/context"
 import { Button } from "@/components/ui/button"
-import { Phone, CheckCircle } from "lucide-react"
+import { Phone, CheckCircle, Hospital } from "lucide-react"
 import { FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import Image from "next/image"
@@ -67,7 +67,7 @@ export default function TransportMedicalCPAMPage() {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-8">
-            <div id="transport-vsl" className="scroll-mt-24">
+            <div id="taxi-conventionne" className="scroll-mt-24">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {t("medicalCPAM.description")}
               </p>
@@ -101,6 +101,19 @@ export default function TransportMedicalCPAMPage() {
               </p>
               <p className="text-muted-foreground leading-relaxed font-semibold">
                 {t("medicalCPAM.noCoverage")}
+              </p>
+            </div>
+
+            <div id="lyon-grenoble" className="bg-primary/5 border border-primary/20 rounded-xl p-6 space-y-4 scroll-mt-24">
+              <h2 className="text-2xl font-bold flex items-center gap-3">
+                <Hospital className="h-6 w-6 text-primary flex-shrink-0" />
+                {t("medicalCPAM.lyonGrenoble.title")}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {t("medicalCPAM.lyonGrenoble.description")}
+              </p>
+              <p className="text-muted-foreground leading-relaxed font-semibold">
+                {t("medicalCPAM.lyonGrenoble.conditions")}
               </p>
             </div>
           </div>

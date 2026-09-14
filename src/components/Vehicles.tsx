@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Car, Users, Wifi, Shield, Clock } from "lucide-react"
+import { Bus, Car, Users, Wifi, Shield, Clock } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 import Image from "next/image"
 
@@ -20,6 +20,19 @@ export function Vehicles() {
       icon: Car,
       color: "bg-gradient-to-br from-slate-700 to-slate-900",
       image: "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
+      hasImage: true,
+    },
+    {
+      name: t("vehicles.renault.name") as string,
+      capacity: t("vehicles.renault.capacity") as string,
+      description: t("vehicles.renault.description") as string,
+      features: (() => {
+        const features = t("vehicles.renault.features")
+        return Array.isArray(features) ? features : []
+      })(),
+      icon: Bus,
+      color: "bg-gradient-to-br from-slate-700 to-slate-900",
+      image: "/images/vehicles/Renault_Trafic_van_parked_outside_20260914102847.jpeg",
       hasImage: true,
     },
   ]
