@@ -47,7 +47,10 @@ function ReservationFormSection() {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: name === "passengers" || name === "luggage" ? parseInt(value) || 0 : value,
+      // Un nombre vidé reste vide (et non 0, que min="1" refuserait) : l'API met 1 passager par défaut.
+      [name]: name === "passengers" || name === "luggage"
+        ? (value === "" ? undefined : Number.parseInt(value, 10))
+        : value,
     }))
   }
 
@@ -151,7 +154,6 @@ function ReservationFormSection() {
             <div>
               <label className="block text-base sm:text-lg font-bold mb-4 text-foreground flex items-center gap-2">
                 <span>{t("reservation.serviceType")}</span>
-                <span className="text-red-500 text-sm">*</span>
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {serviceOptions.map((service) => {
@@ -189,30 +191,24 @@ function ReservationFormSection() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="firstName" className="block text-sm font-semibold text-foreground mb-1.5">
-                          {t("reservation.firstName")} <span className="text-red-500">*</span>
-                        </label>
+                          {t("reservation.firstName")}                        </label>
                         <Input
                           id="firstName"
                           name="firstName"
                           value={formData.firstName}
-                          onChange={handleChange}
-                          required
-                          className="h-11 text-base"
+                          onChange={handleChange}                          className="h-11 text-base"
                           placeholder={t("reservation.firstNamePlaceholder") as string}
                         />
                       </div>
 
                       <div>
                         <label htmlFor="lastName" className="block text-sm font-semibold text-foreground mb-1.5">
-                          {t("reservation.lastName")} <span className="text-red-500">*</span>
-                        </label>
+                          {t("reservation.lastName")}                        </label>
                         <Input
                           id="lastName"
                           name="lastName"
                           value={formData.lastName}
-                          onChange={handleChange}
-                          required
-                          className="h-11 text-base"
+                          onChange={handleChange}                          className="h-11 text-base"
                           placeholder={t("reservation.lastNamePlaceholder") as string}
                         />
                       </div>
@@ -220,32 +216,26 @@ function ReservationFormSection() {
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-1.5">
-                        {t("reservation.email")} <span className="text-red-500">*</span>
-                      </label>
+                        {t("reservation.email")}                      </label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
                         value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="h-11 text-base"
+                        onChange={handleChange}                        className="h-11 text-base"
                         placeholder={t("reservation.emailPlaceholder") as string}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-1.5">
-                        {t("reservation.phone")} <span className="text-red-500">*</span>
-                      </label>
+                        {t("reservation.phone")}                      </label>
                       <Input
                         id="phone"
                         name="phone"
                         type="tel"
                         value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        className="h-11 text-base"
+                        onChange={handleChange}                        className="h-11 text-base"
                         placeholder={t("reservation.phonePlaceholder") as string}
                       />
                     </div>
@@ -262,30 +252,24 @@ function ReservationFormSection() {
                   <div className="space-y-4">
                     <div>
                       <label htmlFor="pickupAddress" className="block text-sm font-semibold text-foreground mb-1.5">
-                        {t("reservation.pickupAddress")} <span className="text-red-500">*</span>
-                      </label>
+                        {t("reservation.pickupAddress")}                      </label>
                       <Input
                         id="pickupAddress"
                         name="pickupAddress"
                         value={formData.pickupAddress}
-                        onChange={handleChange}
-                        required
-                        className="h-11 text-base"
+                        onChange={handleChange}                        className="h-11 text-base"
                         placeholder={t("reservation.pickupAddressPlaceholder") as string}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="dropoffAddress" className="block text-sm font-semibold text-foreground mb-1.5">
-                        {t("reservation.dropoffAddress")} <span className="text-red-500">*</span>
-                      </label>
+                        {t("reservation.dropoffAddress")}                      </label>
                       <Input
                         id="dropoffAddress"
                         name="dropoffAddress"
                         value={formData.dropoffAddress}
-                        onChange={handleChange}
-                        required
-                        className="h-11 text-base"
+                        onChange={handleChange}                        className="h-11 text-base"
                         placeholder={t("reservation.dropoffAddressPlaceholder") as string}
                       />
                     </div>
@@ -294,31 +278,25 @@ function ReservationFormSection() {
                       <div>
                         <label htmlFor="pickupDate" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
                           <Calendar className="h-4 w-4 text-primary" />
-                          {t("reservation.date")} <span className="text-red-500">*</span>
-                        </label>
+                          {t("reservation.date")}                        </label>
                         <Input
                           id="pickupDate"
                           name="pickupDate"
                           type="date"
                           value={formData.pickupDate}
-                          onChange={handleChange}
-                          required
-                          className="h-11 text-base"
+                          onChange={handleChange}                          className="h-11 text-base"
                         />
                       </div>
                       <div>
                         <label htmlFor="pickupTime" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
                           <Clock className="h-4 w-4 text-primary" />
-                          {t("reservation.time")} <span className="text-red-500">*</span>
-                        </label>
+                          {t("reservation.time")}                        </label>
                         <Input
                           id="pickupTime"
                           name="pickupTime"
                           type="time"
                           value={formData.pickupTime}
-                          onChange={handleChange}
-                          required
-                          className="h-11 text-base"
+                          onChange={handleChange}                          className="h-11 text-base"
                         />
                       </div>
                     </div>
@@ -327,18 +305,15 @@ function ReservationFormSection() {
                       <div>
                         <label htmlFor="passengers" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
                           <Users className="h-4 w-4 text-primary" />
-                          {t("reservation.passengers")} <span className="text-red-500">*</span>
-                        </label>
+                          {t("reservation.passengers")}                        </label>
                         <Input
                           id="passengers"
                           name="passengers"
                           type="number"
                           min="1"
                           max="8"
-                          value={formData.passengers}
-                          onChange={handleChange}
-                          required
-                          className="h-11 text-base"
+                          value={formData.passengers ?? ""}
+                          onChange={handleChange}                          className="h-11 text-base"
                         />
                       </div>
                       <div>
@@ -351,7 +326,7 @@ function ReservationFormSection() {
                           name="luggage"
                           type="number"
                           min="0"
-                          value={formData.luggage}
+                          value={formData.luggage ?? ""}
                           onChange={handleChange}
                           className="h-11 text-base"
                         />

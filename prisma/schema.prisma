@@ -15,7 +15,8 @@ model Client {
   id        String   @id @default(uuid())
   firstName String
   lastName  String
-  email     String   @unique
+  // Facultatif : le formulaire n'impose aucun champ. PostgreSQL accepte plusieurs NULL sous @unique.
+  email     String?  @unique
   phone     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -78,8 +79,8 @@ model Reservation {
   serviceType   String   // "aeroport", "ville", "longue-distance", "evenement", "express", "forfait"
   pickupAddress String
   dropoffAddress String
-  pickupDate    DateTime
-  pickupTime    String   // Format HH:mm
+  pickupDate    DateTime? // Facultative : une demande de devis peut arriver sans date
+  pickupTime    String   // Format HH:mm, chaîne vide si non renseignée
   passengers    Int      @default(1)
   luggage       Int      @default(0)
   

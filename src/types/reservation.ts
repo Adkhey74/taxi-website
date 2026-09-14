@@ -47,7 +47,7 @@ export interface ReservationWithRelations {
     id: string
     firstName: string
     lastName: string
-    email: string
+    email: string | null
     phone: string
   }
   vehicle?: {
@@ -65,7 +65,7 @@ export interface ReservationWithRelations {
   serviceType: ServiceType
   pickupAddress: string
   dropoffAddress: string
-  pickupDate: Date
+  pickupDate: Date | null
   pickupTime: string
   passengers: number
   luggage: number

@@ -48,7 +48,10 @@ function ReservationForm() {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: name === "passengers" || name === "luggage" ? parseInt(value) || 0 : value,
+      // Un nombre vidé reste vide (et non 0, que min="1" refuserait) : l'API met 1 passager par défaut.
+      [name]: name === "passengers" || name === "luggage"
+        ? (value === "" ? undefined : Number.parseInt(value, 10))
+        : value,
     }))
   }
 
@@ -196,9 +199,7 @@ function ReservationForm() {
                             id="firstName"
                             name="firstName"
                             value={formData.firstName}
-                            onChange={handleChange}
-                            required
-                            className="h-12"
+                            onChange={handleChange}                            className="h-12"
                             placeholder={t("reservation.firstNamePlaceholder") as string}
                           />
                         </div>
@@ -211,9 +212,7 @@ function ReservationForm() {
                             id="lastName"
                             name="lastName"
                             value={formData.lastName}
-                            onChange={handleChange}
-                          required
-                          className="h-12"
+                            onChange={handleChange}                          className="h-12"
                           placeholder={t("reservation.lastNamePlaceholder") as string}
                         />
                         </div>
@@ -227,9 +226,7 @@ function ReservationForm() {
                             name="email"
                             type="email"
                             value={formData.email}
-                            onChange={handleChange}
-                          required
-                          className="h-12"
+                            onChange={handleChange}                          className="h-12"
                           placeholder={t("reservation.emailPlaceholder") as string}
                         />
                         </div>
@@ -243,9 +240,7 @@ function ReservationForm() {
                             name="phone"
                             type="tel"
                             value={formData.phone}
-                            onChange={handleChange}
-                          required
-                          className="h-12"
+                            onChange={handleChange}                          className="h-12"
                           placeholder={t("reservation.phonePlaceholder") as string}
                         />
                         </div>
@@ -266,9 +261,7 @@ function ReservationForm() {
                             id="pickupAddress"
                             name="pickupAddress"
                             value={formData.pickupAddress}
-                            onChange={handleChange}
-                          required
-                          className="h-12"
+                            onChange={handleChange}                          className="h-12"
                           placeholder={t("reservation.pickupAddressPlaceholder") as string}
                         />
                         </div>
@@ -282,9 +275,7 @@ function ReservationForm() {
                             id="dropoffAddress"
                             name="dropoffAddress"
                             value={formData.dropoffAddress}
-                            onChange={handleChange}
-                          required
-                          className="h-12"
+                            onChange={handleChange}                          className="h-12"
                           placeholder={t("reservation.dropoffAddressPlaceholder") as string}
                         />
                         </div>
@@ -300,9 +291,7 @@ function ReservationForm() {
                               name="pickupDate"
                               type="date"
                               value={formData.pickupDate}
-                              onChange={handleChange}
-                              required
-                              className="h-12"
+                              onChange={handleChange}                              className="h-12"
                             />
                           </div>
                           <div>
@@ -315,9 +304,7 @@ function ReservationForm() {
                               name="pickupTime"
                               type="time"
                               value={formData.pickupTime}
-                              onChange={handleChange}
-                              required
-                              className="h-12"
+                              onChange={handleChange}                              className="h-12"
                             />
                           </div>
                         </div>
@@ -334,10 +321,8 @@ function ReservationForm() {
                               type="number"
                               min="1"
                               max="8"
-                              value={formData.passengers}
-                              onChange={handleChange}
-                              required
-                              className="h-12"
+                              value={formData.passengers ?? ""}
+                              onChange={handleChange}                              className="h-12"
                             />
                           </div>
                           <div>
@@ -350,7 +335,7 @@ function ReservationForm() {
                               name="luggage"
                               type="number"
                               min="0"
-                              value={formData.luggage}
+                              value={formData.luggage ?? ""}
                               onChange={handleChange}
                               className="h-12"
                             />

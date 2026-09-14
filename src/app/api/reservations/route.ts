@@ -6,8 +6,14 @@ import { ReservationStatus, Prisma, Client } from '@prisma/client'
 const BREVO_API_KEY = process.env.BREVO_API_KEY
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email'
 
+// Aucun champ du formulaire n'est obligatoire : les e-mails affichent explicitement ce qui manque
+// plutôt qu'une ligne vide ou « hundefined ».
+const NON_RENSEIGNE = 'Non renseigné'
+const orNonRenseigne = (value: string | null | undefined) => value?.trim() || NON_RENSEIGNE
+
 // Fonction pour formater la date en français
-const formatDate = (date: Date) => {
+const formatDate = (date: Date | null) => {
+  if (!date) return NON_RENSEIGNE
   return new Intl.DateTimeFormat('fr-FR', {
     weekday: 'long',
     year: 'numeric',
@@ -18,6 +24,7 @@ const formatDate = (date: Date) => {
 
 // Fonction pour formater l'heure
 const formatTime = (time: string) => {
+  if (!time) return NON_RENSEIGNE
   const [hours, minutes] = time.split(':')
   return `${hours}h${minutes}`
 }
@@ -41,7 +48,7 @@ async function sendReservationConfirmationEmail(
     serviceType: string
     pickupAddress: string
     dropoffAddress: string
-    pickupDate: Date
+    pickupDate: Date | null
     pickupTime: string
     passengers: number
     luggage: number
@@ -51,10 +58,17 @@ async function sendReservationConfirmationEmail(
   },
   client: Client
 ) {
+  const clientEmail = client.email
+  if (!clientEmail) {
+    console.log('ℹ️ Pas d\'e-mail renseigné - confirmation client non envoyée')
+    return
+  }
+  const fullName = `${client.firstName} ${client.lastName}`.trim()
+
   // Vérifier si Brevo est configuré
   if (!BREVO_API_KEY) {
     console.log('⚠️ Envoi d\'emails désactivé - BREVO_API_KEY non configurée')
-    console.log('Email de confirmation à envoyer à:', client.email)
+    console.log('Email de confirmation à envoyer à:', clientEmail)
     return // Retourner sans erreur
   }
 
@@ -92,11 +106,11 @@ async function sendReservationConfirmationEmail(
         },
         to: [
           {
-            email: client.email,
-            name: `${client.firstName} ${client.lastName}`,
+            email: clientEmail,
+            ...(fullName ? { name: fullName } : {}),
           },
         ],
-        subject: `Confirmation de demande de réservation #${reservationId}`,
+        subject: `Confirmation de demande de devis #${reservationId}`,
         htmlContent: `
           <!DOCTYPE html>
           <html lang="fr">
@@ -119,9 +133,9 @@ async function sendReservationConfirmationEmail(
                     <!-- Content -->
                     <tr>
                       <td style="padding: 40px;">
-                        <h2 style="margin: 0 0 20px 0; color: #000000; font-size: 24px; font-weight: 600;">Confirmation de votre demande de réservation</h2>
-                        <p style="margin: 0 0 20px 0; color: #333333; font-size: 16px;">Bonjour <strong>${client.firstName} ${client.lastName}</strong>,</p>
-                        <p style="margin: 0 0 30px 0; color: #333333; font-size: 16px;">Votre demande de réservation a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
+                        <h2 style="margin: 0 0 20px 0; color: #000000; font-size: 24px; font-weight: 600;">Confirmation de votre demande de devis</h2>
+                        <p style="margin: 0 0 20px 0; color: #333333; font-size: 16px;">Bonjour${fullName ? ` <strong>${fullName}</strong>` : ''},</p>
+                        <p style="margin: 0 0 30px 0; color: #333333; font-size: 16px;">Votre demande de devis a bien été enregistrée. Nous vous contacterons rapidement pour confirmer votre réservation.</p>
                         
                         <!-- Reservation Details Card -->
                         <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fafafa; border-radius: 8px; border: 1px solid #e5e5e5; margin-bottom: 30px;">
@@ -147,11 +161,11 @@ async function sendReservationConfirmationEmail(
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Départ :</strong></td>
-                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.pickupAddress}</td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${orNonRenseigne(reservation.pickupAddress)}</td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Destination :</strong></td>
-                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.dropoffAddress}</td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${orNonRenseigne(reservation.dropoffAddress)}</td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Passagers :</strong></td>
@@ -234,7 +248,7 @@ async function sendReservationConfirmationEmail(
       messageId: data.messageId,
       from: fromEmail,
       to: client.email,
-      subject: `Confirmation de demande de réservation #${reservationId}`
+      subject: `Confirmation de demande de devis #${reservationId}`
     })
   } catch (error) {
     console.error('❌ Erreur lors de l\'envoi de l\'email de confirmation:', error)
@@ -249,7 +263,7 @@ async function sendReservationNotificationEmail(
     serviceType: string
     pickupAddress: string
     dropoffAddress: string
-    pickupDate: Date
+    pickupDate: Date | null
     pickupTime: string
     passengers: number
     luggage: number
@@ -352,18 +366,18 @@ async function sendReservationNotificationEmail(
                               <table role="presentation" style="width: 100%; border-collapse: collapse;">
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px; width: 120px;"><strong style="color: #000000;">Nom :</strong></td>
-                                  <td style="padding: 8px 0; color: #000000; font-size: 14px; font-weight: 600;">${client.firstName} ${client.lastName}</td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px; font-weight: 600;">${orNonRenseigne(`${client.firstName} ${client.lastName}`)}</td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Email :</strong></td>
                                   <td style="padding: 8px 0; color: #000000; font-size: 14px;">
-                                    <a href="mailto:${client.email}" style="color: #000000; text-decoration: none; font-weight: 600;">${client.email}</a>
+                                    ${client.email ? `<a href="mailto:${client.email}" style="color: #000000; text-decoration: none; font-weight: 600;">${client.email}</a>` : NON_RENSEIGNE}
                                   </td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Téléphone :</strong></td>
                                   <td style="padding: 8px 0; color: #000000; font-size: 14px; font-weight: 600;">
-                                    <a href="tel:${client.phone.replace(/\s/g, '')}" style="color: #000000; text-decoration: none;">${client.phone}</a>
+                                    ${client.phone ? `<a href="tel:${client.phone.replace(/\s/g, '')}" style="color: #000000; text-decoration: none;">${client.phone}</a>` : NON_RENSEIGNE}
                                   </td>
                                 </tr>
                               </table>
@@ -395,11 +409,11 @@ async function sendReservationNotificationEmail(
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Départ :</strong></td>
-                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.pickupAddress}</td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${orNonRenseigne(reservation.pickupAddress)}</td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px; vertical-align: top;"><strong style="color: #000000;">Destination :</strong></td>
-                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${reservation.dropoffAddress}</td>
+                                  <td style="padding: 8px 0; color: #000000; font-size: 14px;">${orNonRenseigne(reservation.dropoffAddress)}</td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 8px 0; color: #666666; font-size: 14px;"><strong style="color: #000000;">Passagers :</strong></td>
@@ -528,16 +542,18 @@ export async function GET(request: NextRequest) {
 }
 
 // POST - Créer une nouvelle réservation
+// Aucun champ n'est obligatoire : une valeur absente est enregistrée vide (chaîne vide, ou null pour
+// l'e-mail et la date, seules colonnes où le vide ne tient pas).
 interface ReservationRequestBody {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  serviceType: string
-  pickupAddress: string
-  dropoffAddress: string
-  pickupDate: string
-  pickupTime: string
+  firstName?: unknown
+  lastName?: unknown
+  email?: unknown
+  phone?: unknown
+  serviceType?: unknown
+  pickupAddress?: unknown
+  dropoffAddress?: unknown
+  pickupDate?: unknown
+  pickupTime?: unknown
   passengers?: number
   luggage?: number
   flightNumber?: string | null
@@ -545,66 +561,55 @@ interface ReservationRequestBody {
   vehicleId?: string | null
 }
 
+const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '')
+
 export async function POST(request: NextRequest) {
   try {
     const body: ReservationRequestBody = await request.json()
 
-    // Validation des champs requis
-    if (!body.firstName || !body.lastName || !body.email || !body.phone) {
-      return NextResponse.json(
-        { error: 'Les informations client sont requises' },
-        { status: 400 }
-      )
-    }
+    const firstName = clean(body.firstName)
+    const lastName = clean(body.lastName)
+    const email = clean(body.email) || null
+    const phone = clean(body.phone)
+    const pickupDate = clean(body.pickupDate)
+    const pickupTime = clean(body.pickupTime)
 
-    if (!body.serviceType || !body.pickupAddress || !body.dropoffAddress || !body.pickupDate || !body.pickupTime) {
-      return NextResponse.json(
-        { error: 'Les détails de la réservation sont requis' },
-        { status: 400 }
-      )
-    }
+    // L'e-mail est la seule clé qui identifie un client. Sans lui, on crée toujours un nouveau client :
+    // rattacher toutes les demandes anonymes au même client écraserait ses coordonnées.
+    const existingClient = email
+      ? await prisma.client.findUnique({ where: { email } })
+      : null
 
-    // Vérifier ou créer le client
-    let client = await prisma.client.findUnique({
-      where: { email: body.email },
-    })
+    const client = existingClient
+      ? await prisma.client.update({
+          where: { id: existingClient.id },
+          // Un champ laissé vide cette fois-ci n'efface pas ce que le client avait donné avant.
+          data: {
+            ...(firstName ? { firstName } : {}),
+            ...(lastName ? { lastName } : {}),
+            ...(phone ? { phone } : {}),
+          },
+        })
+      : await prisma.client.create({
+          data: { firstName, lastName, email, phone },
+        })
 
-    if (!client) {
-      client = await prisma.client.create({
-        data: {
-          firstName: body.firstName,
-          lastName: body.lastName,
-          email: body.email,
-          phone: body.phone,
-        },
-      })
-    } else {
-      // Mettre à jour les informations si nécessaire
-      client = await prisma.client.update({
-        where: { id: client.id },
-        data: {
-          firstName: body.firstName,
-          lastName: body.lastName,
-          phone: body.phone,
-        },
-      })
-    }
-
-    // Combiner date et heure pour créer un DateTime complet
-    const pickupDateTime = body.pickupDate && body.pickupTime
-      ? new Date(`${body.pickupDate}T${body.pickupTime}:00`)
-      : new Date(body.pickupDate)
+    // Combiner date et heure pour créer un DateTime complet ; sans date, rien à combiner
+    const combined = pickupDate
+      ? new Date(pickupTime ? `${pickupDate}T${pickupTime}:00` : pickupDate)
+      : null
+    const pickupDateTime = combined && !Number.isNaN(combined.getTime()) ? combined : null
 
     // Créer la réservation
     const reservation = await prisma.reservation.create({
       data: {
         clientId: client.id,
         vehicleId: body.vehicleId || null,
-        serviceType: body.serviceType,
-        pickupAddress: body.pickupAddress,
-        dropoffAddress: body.dropoffAddress,
+        serviceType: clean(body.serviceType) || 'ville',
+        pickupAddress: clean(body.pickupAddress),
+        dropoffAddress: clean(body.dropoffAddress),
         pickupDate: pickupDateTime,
-        pickupTime: body.pickupTime,
+        pickupTime,
         passengers: body.passengers || 1,
         luggage: body.luggage || 0,
         flightNumber: body.flightNumber || null,
