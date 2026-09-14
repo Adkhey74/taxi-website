@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Taxi Aéroport - Transfert aéroport Chambéry | Hern Taxi",
+  title: "Taxi Aéroport - Transfert aéroport Chambéry",
   description: "Service de taxi aéroport professionnel pour vos transferts vers et depuis l'aéroport. Disponible 24h/24. Réservation en ligne facile et rapide.",
   keywords: ["taxi aéroport", "transfert aéroport", "aéroport Chambéry", "taxi aéroport Savoie", "navette aéroport"],
   alternates: {

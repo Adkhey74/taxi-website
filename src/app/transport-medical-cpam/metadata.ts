@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Transport médical conventionné CPAM | Hern Taxi",
+  title: "Transport médical conventionné CPAM",
   description: "Service de transport médical conventionné CPAM pour vos déplacements médicaux. Transport VSL, déplacements vers hôpitaux et cliniques de Savoie, Lyon et Grenoble. Prise en charge CPAM.",
   keywords: ["transport médical", "taxi conventionné CPAM", "VSL Savoie", "transport médical Chambéry", "taxi CPAM", "transport médical conventionné"],
   alternates: {

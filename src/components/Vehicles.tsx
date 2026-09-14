@@ -24,14 +24,19 @@ export function Vehicles() {
     },
   ]
   return (
-    <section className="pt-8 pb-32 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden pt-16 pb-32 bg-background">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-80"
+        style={{ background: "radial-gradient(60rem 26rem at 50% -4rem, rgba(255,255,255,0.06), transparent)" }}
+      />
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <span className="text-sm font-semibold text-primary">{t("vehicles.ourFleet")}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-muted border border-gold/30 mb-6">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">{t("vehicles.ourFleet")}</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            {t("vehicles.title")} <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
+            {t("vehicles.title")} <span className="gold-gradient-text">
               {t("vehicles.titleHighlight")}
             </span>
           </h2>
@@ -44,7 +49,7 @@ export function Vehicles() {
           {vehicles.map((vehicle, index) => {
             const IconComponent = vehicle.icon
             return (
-              <Card key={index} className="group overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 p-0">
+              <Card key={index} className="group overflow-hidden border border-border bg-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 p-0">
                 <div className={`relative aspect-video w-full overflow-hidden ${vehicle.hasImage && vehicle.image ? '' : 'bg-gradient-to-br from-muted/50 via-muted/30 to-muted/50'}`}>
                   {vehicle.hasImage && vehicle.image ? (
                     <Image
@@ -60,8 +65,8 @@ export function Vehicles() {
                       <>
                         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
                         <div className="text-center relative z-10">
-                          <div className="bg-primary/10 rounded-2xl p-6 inline-block mb-4 group-hover:bg-primary/20 transition-colors border border-primary/20">
-                            <IconComponent className="h-20 w-20 text-primary mx-auto" />
+                          <div className="bg-gold-muted rounded-2xl p-6 inline-block mb-4 group-hover:bg-gold/20 transition-colors border border-gold/30">
+                            <IconComponent className="h-20 w-20 text-gold mx-auto" />
                           </div>
                           <p className="text-foreground font-bold text-lg">{vehicle.name}</p>
                         </div>
@@ -71,12 +76,12 @@ export function Vehicles() {
                 </div>
                 <CardHeader className="pt-6">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
-                      <IconComponent className="h-7 w-7 text-primary" />
+                    <div className="w-14 h-14 rounded-xl bg-gold-muted flex items-center justify-center border border-gold/30">
+                      <IconComponent className="h-7 w-7 text-gold" />
                     </div>
                     <div className="text-right">
                       <CardTitle className="text-2xl text-foreground mb-1">{vehicle.name}</CardTitle>
-                      <CardDescription className="text-primary font-semibold">{vehicle.capacity}</CardDescription>
+                      <CardDescription className="text-gold font-semibold">{vehicle.capacity}</CardDescription>
                     </div>
                   </div>
                   <p className="text-muted-foreground text-base leading-relaxed">
@@ -87,7 +92,7 @@ export function Vehicles() {
                   <div className="grid grid-cols-2 gap-4">
                     {vehicle.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center text-sm text-muted-foreground">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0"></div>
+                        <div className="w-1.5 h-1.5 bg-gold rounded-full mr-3 flex-shrink-0"></div>
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -101,32 +106,32 @@ export function Vehicles() {
         {/* Features de la flotte */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           <div className="text-center group">
-            <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
-              <Shield className="h-10 w-10 text-primary" />
+            <div className="bg-gold-muted backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-gold/20 transition-all duration-300 border border-gold/30 group-hover:border-gold/50 shadow-sm">
+              <Shield className="h-10 w-10 text-gold" />
             </div>
             <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.security.title")}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.security.description")}</p>
           </div>
           
           <div className="text-center group">
-            <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
-              <Users className="h-10 w-10 text-primary" />
+            <div className="bg-gold-muted backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-gold/20 transition-all duration-300 border border-gold/30 group-hover:border-gold/50 shadow-sm">
+              <Users className="h-10 w-10 text-gold" />
             </div>
             <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.capacity.title")}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.capacity.description")}</p>
           </div>
           
           <div className="text-center group">
-            <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
-              <Wifi className="h-10 w-10 text-primary" />
+            <div className="bg-gold-muted backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-gold/20 transition-all duration-300 border border-gold/30 group-hover:border-gold/50 shadow-sm">
+              <Wifi className="h-10 w-10 text-gold" />
             </div>
             <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.comfort.title")}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.comfort.description")}</p>
           </div>
           
           <div className="text-center group">
-            <div className="bg-primary/10 backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm">
-              <Clock className="h-10 w-10 text-primary" />
+            <div className="bg-gold-muted backdrop-blur-sm rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-gold/20 transition-all duration-300 border border-gold/30 group-hover:border-gold/50 shadow-sm">
+              <Clock className="h-10 w-10 text-gold" />
             </div>
             <h3 className="font-bold text-lg mb-2 text-foreground">{t("vehicles.features.availability.title")}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{t("vehicles.features.availability.description")}</p>

@@ -22,6 +22,13 @@ export function I18nProvider({ children, defaultLocale = "fr" }: { children: Rea
     }
   }, [])
 
+  // Synchroniser l'attribut lang de <html> avec la langue active (accessibilité / SEO)
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = locale
+    }
+  }, [locale])
+
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale)
     localStorage.setItem("locale", newLocale)

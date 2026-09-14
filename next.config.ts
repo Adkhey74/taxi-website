@@ -12,6 +12,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Rediriger le domaine technique Railway vers le domaine principal (évite le contenu dupliqué SEO)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'taxi-website-production.up.railway.app' }],
+        destination: 'https://www.herntaxi.fr/:path*',
+        permanent: true,
+      },
       // Redirections de l'ancien site vers le nouveau
       {
         source: '/taxi-aeroport-chambery',

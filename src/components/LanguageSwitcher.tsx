@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 import "flag-icons/css/flag-icons.min.css"
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ onDark = false }: { onDark?: boolean }) {
   const { locale, setLocale } = useI18n()
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -48,7 +48,11 @@ export function LanguageSwitcher() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="h-10 px-2 sm:px-3 inline-flex items-center justify-center rounded-md bg-background border border-input hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none transition-colors"
+        className={`h-10 px-2 sm:px-3 inline-flex items-center justify-center rounded-lg border focus:outline-none transition-colors ${
+          onDark
+            ? "bg-white/10 border-white/30 text-white backdrop-blur-sm hover:bg-white/20 focus:bg-white/20"
+            : "bg-background border-input hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+        }`}
       >
         <span className={`fi fi-${currentLanguage?.flagCode} mr-1 sm:mr-2`}></span>
         <span className="hidden sm:inline font-semibold">

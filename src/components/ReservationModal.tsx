@@ -196,8 +196,8 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
                     onClick={() => setFormData(prev => ({ ...prev, serviceType: service.value as ServiceType }))}
                     className={`p-2.5 sm:p-4 rounded-xl border-2 transition-all duration-200 ${
                       isSelected
-                        ? "border-primary bg-primary text-primary-foreground shadow-md scale-105"
-                        : "border-border bg-background hover:border-primary/50 hover:bg-muted/50 hover:scale-105"
+                        ? "border-gold bg-gold text-gold-foreground shadow-md shadow-gold/20 scale-105"
+                        : "border-border bg-background hover:border-gold/60 hover:bg-gold-muted/40 hover:scale-105"
                     }`}
                   >
                     <Icon className="h-4 w-4 sm:h-5 sm:w-5 mx-auto mb-1.5 sm:mb-2" />
@@ -211,7 +211,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
           {/* Informations client */}
           <div className="space-y-4 sm:space-y-5">
             <h3 className="text-sm sm:text-base font-bold text-foreground mb-3 sm:mb-4 flex items-center gap-2">
-              <Users className="h-4 w-4 text-primary" />
+              <Users className="h-4 w-4 text-gold" />
               {t("reservation.clientInfo")}
             </h3>
             
@@ -283,7 +283,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
           {/* Détails de la réservation */}
           <div className="space-y-4 sm:space-y-5">
             <h3 className="text-sm sm:text-base font-bold text-foreground mb-3 sm:mb-4 flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-primary" />
+              <MapPin className="h-4 w-4 text-gold" />
               {t("reservation.reservationDetails")}
             </h3>
             
@@ -316,7 +316,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div className="space-y-1.5">
                 <label htmlFor="modal-pickupDate" className="block text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4 text-primary" />
+                  <Calendar className="h-4 w-4 text-gold" />
                   {t("reservation.date")} <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -331,7 +331,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
               </div>
               <div className="space-y-1.5">
                 <label htmlFor="modal-pickupTime" className="block text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5">
-                  <Clock className="h-4 w-4 text-primary" />
+                  <Clock className="h-4 w-4 text-gold" />
                   {t("reservation.time")} <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -349,7 +349,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div className="space-y-1.5">
                 <label htmlFor="modal-passengers" className="block text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5">
-                  <Users className="h-4 w-4 text-primary" />
+                  <Users className="h-4 w-4 text-gold" />
                   {t("reservation.passengers")} <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -366,7 +366,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
               </div>
               <div className="space-y-1.5">
                 <label htmlFor="modal-luggage" className="block text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5">
-                  <Luggage className="h-4 w-4 text-primary" />
+                  <Luggage className="h-4 w-4 text-gold" />
                   {t("reservation.luggage")}
                 </label>
                 <Input
@@ -384,7 +384,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
             {formData.serviceType === "aeroport" && (
               <div className="space-y-1.5">
                 <label htmlFor="modal-flightNumber" className="block text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5">
-                  <Plane className="h-4 w-4 text-primary" />
+                  <Plane className="h-4 w-4 text-gold" />
                   {t("reservation.flightNumber")}
                 </label>
                 <Input
@@ -419,7 +419,7 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
             <div className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left flex items-center justify-center sm:justify-start gap-1.5">
               <Phone className="h-3.5 w-3.5" />
               {t("reservation.helpNeeded")}{" "}
-              <a href="tel:0658686548" className="text-primary hover:underline font-semibold">
+              <a href="tel:0658686548" className="text-gold hover:underline font-semibold">
                 06 58 68 65 48
               </a>
             </div>
@@ -434,8 +434,9 @@ export function ReservationModal({ open, onOpenChange, initialServiceType }: Res
               </Button>
               <Button
                 type="submit"
+                variant="gold"
                 disabled={isSubmitting}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 font-semibold h-11 sm:h-11 px-6 text-sm w-full sm:w-auto order-1 sm:order-2"
+                className="h-11 sm:h-11 px-6 text-sm w-full sm:w-auto order-1 sm:order-2"
               >
                 {isSubmitting ? (
                   <>

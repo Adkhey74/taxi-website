@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -36,10 +36,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.herntaxi.fr"),
   alternates: {
     canonical: "/",
-    languages: {
-      "fr": "/",
-      "en": "/",
-    },
   },
   openGraph: {
     type: "website",
@@ -86,13 +82,20 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0A0A0A",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="dark" style={{ colorScheme: "dark" }}>
       <head>
         <StructuredData />
       </head>
@@ -104,9 +107,10 @@ export default function RootLayout({
           {children}
           <Footer />
           <WhatsAppButton />
-          <Toaster 
-            position="top-center" 
-            richColors 
+          <Toaster
+            position="top-center"
+            richColors
+            theme="dark"
             duration={6000}
             toastOptions={{
               className: "shadow-lg",

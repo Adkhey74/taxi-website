@@ -54,12 +54,12 @@ export function Advantages() {
     <section className="py-24 bg-gradient-to-b from-muted/30 to-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <span className="text-sm font-semibold text-primary">{t("advantages.title")}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-muted border border-gold/30 mb-6">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">{t("advantages.title")}</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
             {t("advantages.title")}
-            <span className="block mt-2 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
+            <span className="block mt-2 gold-gradient-text">
               {t("advantages.titleHighlight")}
             </span>
           </h2>
@@ -79,14 +79,14 @@ export function Advantages() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <Card className="border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group hover:-translate-y-1 hover:border-primary/30 h-full">
+                <Card className="border border-border bg-card hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 hover:border-gold/50 h-full">
                   <CardHeader className="text-center pb-4">
-                    <motion.div 
-                      className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300 border border-primary/20 group-hover:border-primary/30 shadow-sm"
+                    <motion.div
+                      className="w-20 h-20 rounded-2xl bg-gold-muted flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-gold/20 transition-all duration-300 border border-gold/30 group-hover:border-gold/50 shadow-sm"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <IconComponent className="h-10 w-10 text-primary" />
+                      <IconComponent className="h-10 w-10 text-gold" />
                     </motion.div>
                     <CardTitle className="text-xl text-foreground mb-2">{t(advantage.titleKey)}</CardTitle>
                     <CardDescription className="text-base text-muted-foreground leading-relaxed">
@@ -107,13 +107,13 @@ export function Advantages() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <div className="bg-gradient-to-br from-foreground via-foreground/95 to-foreground rounded-3xl p-12 lg:p-16 text-background relative overflow-hidden">
+          <div className="surface-dark bg-gradient-to-br from-foreground via-foreground/95 to-foreground rounded-3xl p-12 lg:p-16 text-background relative overflow-hidden">
             <div className="absolute inset-0 opacity-[0.05]" style={{
               backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
               backgroundSize: '24px 24px'
             }} />
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-gold/15 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold/15 rounded-full blur-3xl" />
             <div className="relative z-10 text-center">
               <motion.h3 
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
@@ -123,7 +123,7 @@ export function Advantages() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 {t("advantages.cta.title")}
-                <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl text-primary">
+                <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl text-gold">
                   {t("advantages.cta.subtitle")}
                 </span>
               </motion.h3>
@@ -156,7 +156,7 @@ export function Advantages() {
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 h-12 px-6">
+                  <Button asChild variant="gold" className="flex items-center justify-center gap-2 h-12 px-6">
                     <Link href="/reservation" className="flex items-center justify-center gap-2">
                       <Euro className="h-5 w-5" />
                       <span>{t("advantages.cta.bookNow")}</span>

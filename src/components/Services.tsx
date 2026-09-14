@@ -71,12 +71,12 @@ export function Services() {
     <section className="py-24 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <span className="text-sm font-semibold text-primary">{t("services.title")}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-muted border border-gold/30 mb-6">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">{t("services.title")}</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
             {t("services.title")}
-            <span className="block mt-2 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
+            <span className="block mt-2 gold-gradient-text">
               {t("services.titleHighlight")}
             </span>
           </h2>
@@ -89,10 +89,10 @@ export function Services() {
           {services.map((service, index) => {
             const IconComponent = service.icon
             return (
-              <Card key={index} className="group hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 hover:-translate-y-1">
+              <Card key={index} className="group hover:shadow-2xl transition-all duration-300 border border-border bg-card hover:border-gold/50 hover:-translate-y-1">
                 <CardHeader className="pb-4">
-                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 border border-primary/20">
-                    <IconComponent className="h-8 w-8 text-primary" />
+                  <div className="w-16 h-16 rounded-xl bg-gold-muted flex items-center justify-center mb-4 group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300 border border-gold/30">
+                    <IconComponent className="h-8 w-8 text-gold" />
                   </div>
                   <CardTitle className="text-2xl text-foreground mb-2">{t(service.titleKey)}</CardTitle>
                   <CardDescription className="text-base text-muted-foreground leading-relaxed">
@@ -106,7 +106,7 @@ export function Services() {
                       const featuresArray = Array.isArray(features) ? features : []
                       return featuresArray.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0"></div>
+                          <div className="w-1.5 h-1.5 bg-gold rounded-full mr-3 flex-shrink-0"></div>
                           <span>{feature}</span>
                         </li>
                       ))
@@ -114,7 +114,7 @@ export function Services() {
                   </ul>
                   <div className="flex items-center justify-between pt-4 border-t border-border/50">
                     <span className="text-2xl font-bold text-foreground">{t(service.priceKey)}</span>
-                    <Button variant="outline" size="sm" asChild className="border-2 border-primary/20 hover:border-primary/40 hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold">
+                    <Button variant="gold" size="sm" asChild className="font-semibold">
                       <Link href={`/reservation?service=${service.serviceType}`}>
                         {t("services.book")}
                       </Link>
@@ -127,7 +127,7 @@ export function Services() {
         </div>
 
         <div className="text-center mt-16">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 font-semibold px-8 py-7 h-auto">
+          <Button size="lg" variant="gold" className="font-semibold px-8 py-7 h-auto">
             {t("services.viewAll")}
           </Button>
         </div>

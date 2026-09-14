@@ -195,7 +195,7 @@ export function AddressAutocomplete({
         />
         {isLoading && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-gold border-t-transparent"></div>
           </div>
         )}
       </div>
@@ -215,12 +215,12 @@ export function AddressAutocomplete({
                 onClick={() => handleSuggestionClick(suggestion)}
                 className="w-full text-left px-4 py-2.5 hover:bg-muted transition-colors flex items-start gap-2 border-b border-border/50 last:border-b-0"
               >
-                <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <MapPin className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
                 <span className="text-sm flex-1">
                   {matchIndex >= 0 ? (
                     <>
                       {suggestion.label.substring(0, matchIndex)}
-                      <span className="font-semibold text-primary">
+                      <span className="font-semibold text-gold">
                         {suggestion.label.substring(matchIndex, matchIndex + value.length)}
                       </span>
                       {suggestion.label.substring(matchIndex + value.length)}

@@ -10,15 +10,16 @@ export default function ConfidentialitePage() {
       <section className="py-12 sm:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-foreground">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
               Politique de confidentialité
             </h1>
+            <div className="gold-rule mb-8" />
 
             <div className="prose prose-lg max-w-none space-y-8">
               {/* Introduction */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <div className="flex items-center gap-3 mb-4">
-                  <Shield className="h-6 w-6 text-primary" />
+                  <Shield className="h-6 w-6 text-gold" />
                   <h2 className="text-2xl font-bold text-foreground">1. Introduction</h2>
                 </div>
                 <div className="space-y-3 text-foreground/90">
@@ -36,9 +37,9 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Données collectées */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <div className="flex items-center gap-3 mb-4">
-                  <Database className="h-6 w-6 text-primary" />
+                  <Database className="h-6 w-6 text-gold" />
                   <h2 className="text-2xl font-bold text-foreground">2. Données personnelles collectées</h2>
                 </div>
                 <div className="space-y-3 text-foreground/90">
@@ -76,7 +77,7 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Finalité de la collecte */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">3. Finalité de la collecte</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -102,7 +103,7 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Base légale */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">4. Base légale du traitement</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -120,7 +121,7 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Conservation des données */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">5. Durée de conservation des données</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -136,9 +137,9 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Destinataires des données */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <div className="flex items-center gap-3 mb-4">
-                  <MailIcon className="h-6 w-6 text-primary" />
+                  <MailIcon className="h-6 w-6 text-gold" />
                   <h2 className="text-2xl font-bold text-foreground">6. Destinataires des données</h2>
                 </div>
                 <div className="space-y-3 text-foreground/90">
@@ -161,9 +162,9 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Sécurité des données */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <div className="flex items-center gap-3 mb-4">
-                  <Shield className="h-6 w-6 text-primary" />
+                  <Shield className="h-6 w-6 text-gold" />
                   <h2 className="text-2xl font-bold text-foreground">7. Sécurité des données</h2>
                 </div>
                 <div className="space-y-3 text-foreground/90">
@@ -189,7 +190,7 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Vos droits */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">8. Vos droits</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -227,18 +228,18 @@ export default function ConfidentialitePage() {
                   <p className="mt-4">
                     Pour exercer ces droits, vous pouvez nous contacter :
                   </p>
-                  <div className="bg-primary/5 border border-primary/20 p-4 rounded-lg space-y-2">
+                  <div className="bg-gold-muted/50 border border-gold/25 p-4 rounded-xl space-y-2">
                     <div className="flex items-start gap-3">
-                      <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <Mail className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Par email :</p>
-                        <a href="mailto:herntaxi73@gmail.com" className="text-primary hover:underline">
+                        <a href="mailto:herntaxi73@gmail.com" className="text-gold hover:underline">
                           herntaxi73@gmail.com
                         </a>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <Phone className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Par téléphone :</p>
                         <p>09 52 47 36 25 ou 06 58 68 65 48</p>
@@ -252,7 +253,7 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Cookies et technologies similaires */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">9. Cookies et technologies similaires</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -270,7 +271,7 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Modifications de la politique */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">10. Modifications de la politique de confidentialité</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -285,25 +286,25 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Contact */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">11. Contact</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
                     Pour toute question concernant cette politique de confidentialité ou le traitement de vos données 
                     personnelles, vous pouvez nous contacter :
                   </p>
-                  <div className="bg-primary/5 border border-primary/20 p-4 rounded-lg space-y-3">
+                  <div className="bg-gold-muted/50 border border-gold/25 p-4 rounded-xl space-y-3">
                     <div className="flex items-start gap-3">
-                      <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <Mail className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Email :</p>
-                        <a href="mailto:herntaxi73@gmail.com" className="text-primary hover:underline">
+                        <a href="mailto:herntaxi73@gmail.com" className="text-gold hover:underline">
                           herntaxi73@gmail.com
                         </a>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <Phone className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-semibold">Téléphone :</p>
                         <p>09 52 47 36 25</p>
@@ -315,7 +316,7 @@ export default function ConfidentialitePage() {
               </section>
 
               {/* Dernière mise à jour */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">12. Dernière mise à jour</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>

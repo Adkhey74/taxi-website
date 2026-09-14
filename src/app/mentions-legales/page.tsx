@@ -10,13 +10,14 @@ export default function MentionsLegalesPage() {
       <section className="py-12 sm:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-foreground">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
               Mentions légales
             </h1>
+            <div className="gold-rule mb-8" />
 
             <div className="prose prose-lg max-w-none space-y-8">
               {/* Éditeur du site */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">1. Éditeur du site</h2>
                 <div className="space-y-2 text-foreground/90">
                   <p><strong>Dénomination sociale :</strong> HERN TAXI</p>
@@ -31,7 +32,7 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Directeur de publication */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">2. Directeur de publication</h2>
                 <div className="space-y-2 text-foreground/90">
                   <p><strong>Nom :</strong> HERNOUNE Farouk</p>
@@ -40,11 +41,11 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Contact */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">3. Contact</h2>
                 <div className="space-y-4 text-foreground/90">
                   <div className="flex items-start gap-3">
-                    <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <Phone className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold">Téléphone :</p>
                       <p>09 52 47 36 25</p>
@@ -52,16 +53,16 @@ export default function MentionsLegalesPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <Mail className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold">Email :</p>
-                      <a href="mailto:herntaxi73@gmail.com" className="text-primary hover:underline">
+                      <a href="mailto:herntaxi73@gmail.com" className="text-gold hover:underline">
                         herntaxi73@gmail.com
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <MapPin className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold">Zone de service :</p>
                       <p>Chambéry, Aix-les-Bains, La Motte-Servolex et région</p>
@@ -71,7 +72,7 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Hébergeur */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">4. Hébergement</h2>
                 <div className="space-y-2 text-foreground/90">
                   <p><strong>Hébergeur :</strong> Railway</p>
@@ -84,7 +85,7 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Propriété intellectuelle */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">5. Propriété intellectuelle</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -110,7 +111,7 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Protection des données personnelles */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">6. Protection des données personnelles</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -138,13 +139,13 @@ export default function MentionsLegalesPage() {
                   <p>
                     <strong>Vos droits :</strong> Vous pouvez exercer vos droits d'accès, de rectification, de suppression 
                     et d'opposition en nous contactant à l'adresse suivante : 
-                    <a href="mailto:herntaxi73@gmail.com" className="text-primary hover:underline ml-1">
+                    <a href="mailto:herntaxi73@gmail.com" className="text-gold hover:underline ml-1">
                       herntaxi73@gmail.com
                     </a>
                   </p>
                   <p>
                     Pour plus d'informations détaillées, consultez notre 
-                    <a href="/confidentialite" className="text-primary hover:underline ml-1">
+                    <a href="/confidentialite" className="text-gold hover:underline ml-1">
                       politique de confidentialité
                     </a>.
                   </p>
@@ -152,7 +153,7 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Responsabilité */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">7. Responsabilité</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -178,7 +179,7 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Droit applicable */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">8. Droit applicable</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>
@@ -189,7 +190,7 @@ export default function MentionsLegalesPage() {
               </section>
 
               {/* Dernière mise à jour */}
-              <section className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+              <section className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8 transition-colors duration-300 hover:border-white/20">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">9. Dernière mise à jour</h2>
                 <div className="space-y-3 text-foreground/90">
                   <p>

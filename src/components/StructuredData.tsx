@@ -1,26 +1,45 @@
 export function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["TaxiService", "LocalBusiness"],
     "@id": "https://www.herntaxi.fr/#organization",
     "name": "Hern Taxi",
     "description": "Service de taxi fiable et professionnel pour tous vos déplacements. Aéroport, ville, transport médical, stations de ski. Disponible 24h/24 et 7j/7 à Chambéry, Aix-les-Bains et région Savoie.",
     "url": "https://www.herntaxi.fr",
     "logo": "https://www.herntaxi.fr/images/logo/logo%20hern%20(3).png",
     "image": "https://res.cloudinary.com/dufmpr5dh/image/upload/v1767287362/classv_jinqie.jpg",
-    "telephone": "+33658686548",
+    "telephone": "+33952473625",
     "email": "herntaxi73@gmail.com",
+    "vatID": "FR84888343290",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Chambéry",
+      "streetAddress": "25 Allée des Pétavins",
+      "postalCode": "73420",
+      "addressLocality": "Drumettaz-Clarafond",
       "addressRegion": "Savoie",
       "addressCountry": "FR"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "[latitude]",
-      "longitude": "[longitude]"
+      "latitude": 45.6586,
+      "longitude": 5.9186
     },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+33952473625",
+        "contactType": "reservations",
+        "areaServed": "FR",
+        "availableLanguage": ["French", "English"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+33658686548",
+        "contactType": "customer service",
+        "areaServed": "FR",
+        "availableLanguage": ["French", "English"]
+      }
+    ],
     "areaServed": [
       {
         "@type": "City",

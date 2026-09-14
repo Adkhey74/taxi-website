@@ -123,14 +123,20 @@ function ReservationForm() {
   ]
 
   return (
-    <main className="min-h-screen bg-muted/30 py-12 lg:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-background py-12 lg:py-20">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-80"
+        style={{ background: "radial-gradient(60rem 26rem at 50% -4rem, rgba(255,255,255,0.06), transparent)" }}
+      />
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* En-tête simplifié */}
           <div className="text-center mb-10">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-3 text-foreground">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground">
               {t("reservation.bookingTitle")}
             </h1>
+            <div className="gold-rule mx-auto mb-4" />
             <p className="text-muted-foreground text-lg">
               {t("reservation.description")}
             </p>
@@ -150,7 +156,7 @@ function ReservationForm() {
           )}
 
           <form onSubmit={handleSubmit}>
-            <div className="bg-card border border-border rounded-2xl shadow-xl overflow-hidden">
+            <div className="bg-card border border-white/10 rounded-3xl shadow-2xl shadow-black/40 overflow-hidden">
               <div className="p-8 lg:p-10 space-y-10">
                 {/* Type de service */}
                 <div>
@@ -168,8 +174,8 @@ function ReservationForm() {
                           onClick={() => setFormData(prev => ({ ...prev, serviceType: service.value as ServiceType }))}
                           className={`p-3 rounded-xl border-2 transition-all ${
                             isSelected
-                              ? "border-primary bg-primary/5 text-primary"
-                              : "border-border bg-background hover:border-primary/50 hover:bg-muted/50"
+                              ? "border-gold bg-gold-muted/50 text-gold"
+                              : "border-border bg-background hover:border-gold/60 hover:bg-gold-muted/40"
                           }`}
                         >
                           <Icon className="h-5 w-5 mx-auto mb-1.5" />
@@ -408,14 +414,15 @@ function ReservationForm() {
                   <div className="flex flex-col sm:flex-row gap-4 items-center">
                     <div className="text-sm text-muted-foreground text-center sm:text-right">
                       {t("reservation.helpNeeded")}{" "}
-                      <a href="tel:0658686548" className="text-primary hover:underline font-semibold">
+                      <a href="tel:0658686548" className="text-gold hover:underline font-semibold">
                         06 58 68 65 48
                       </a>
                     </div>
                     <Button
                       type="submit"
+                      variant="gold"
                       disabled={isSubmitting}
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 font-semibold h-11 px-8"
+                      className="h-11 px-8"
                     >
                       {isSubmitting ? (
                         <>

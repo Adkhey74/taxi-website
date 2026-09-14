@@ -144,7 +144,7 @@ function ReservationFormSection() {
       )}
 
       <form onSubmit={handleSubmit}>
-        <div className="bg-card border border-border rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-card border border-white/10 rounded-3xl shadow-2xl shadow-black/40 overflow-hidden">
           <div className="p-5 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
             {/* Type de service */}
             <div>
@@ -163,8 +163,8 @@ function ReservationFormSection() {
                       onClick={() => setFormData(prev => ({ ...prev, serviceType: service.value as ServiceType }))}
                       className={`p-3 rounded-xl border-2 transition-all duration-200 ${
                         isSelected
-                          ? "border-primary bg-primary text-primary-foreground shadow-md scale-105"
-                          : "border-border bg-background hover:border-primary/50 hover:bg-muted/50 hover:scale-105"
+                          ? "border-gold bg-gold text-gold-foreground shadow-md shadow-gold/20 scale-105"
+                          : "border-border bg-background hover:border-gold/60 hover:bg-gold-muted/40 hover:scale-105"
                       }`}
                     >
                       <Icon className="h-4 w-4 sm:h-5 sm:w-5 mx-auto mb-1.5" />
@@ -180,7 +180,7 @@ function ReservationFormSection() {
                 {/* Colonne gauche - Informations client */}
                 <div className="space-y-5">
                   <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-                    <Users className="h-5 w-5 text-primary" />
+                    <Users className="h-5 w-5 text-gold" />
                     {t("reservation.clientInfo")}
                   </h3>
                   
@@ -254,7 +254,7 @@ function ReservationFormSection() {
                 {/* Colonne droite - Détails de la réservation */}
                 <div className="space-y-5">
                   <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-primary" />
+                    <MapPin className="h-5 w-5 text-gold" />
                     {t("reservation.reservationDetails")}
                   </h3>
                   
@@ -292,7 +292,7 @@ function ReservationFormSection() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="pickupDate" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-                          <Calendar className="h-4 w-4 text-primary" />
+                          <Calendar className="h-4 w-4 text-gold" />
                           {t("reservation.date")} <span className="text-red-500">*</span>
                         </label>
                         <Input
@@ -307,7 +307,7 @@ function ReservationFormSection() {
                       </div>
                       <div>
                         <label htmlFor="pickupTime" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-                          <Clock className="h-4 w-4 text-primary" />
+                          <Clock className="h-4 w-4 text-gold" />
                           {t("reservation.time")} <span className="text-red-500">*</span>
                         </label>
                         <Input
@@ -325,7 +325,7 @@ function ReservationFormSection() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="passengers" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-                          <Users className="h-4 w-4 text-primary" />
+                          <Users className="h-4 w-4 text-gold" />
                           {t("reservation.passengers")} <span className="text-red-500">*</span>
                         </label>
                         <Input
@@ -342,7 +342,7 @@ function ReservationFormSection() {
                       </div>
                       <div>
                         <label htmlFor="luggage" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-                          <Luggage className="h-4 w-4 text-primary" />
+                          <Luggage className="h-4 w-4 text-gold" />
                           {t("reservation.luggage")}
                         </label>
                         <Input
@@ -360,7 +360,7 @@ function ReservationFormSection() {
                     {formData.serviceType === "aeroport" && (
                       <div>
                         <label htmlFor="flightNumber" className="block text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
-                          <Plane className="h-4 w-4 text-primary" />
+                          <Plane className="h-4 w-4 text-gold" />
                           {t("reservation.flightNumber")}
                         </label>
                         <Input
@@ -399,14 +399,15 @@ function ReservationFormSection() {
                 <p className="text-sm text-muted-foreground text-center sm:text-left flex items-center gap-1.5">
                   <Phone className="h-4 w-4" />
                   {t("reservation.helpNeeded")}{" "}
-                  <a href="tel:0658686548" className="text-primary hover:underline font-semibold">
+                  <a href="tel:0658686548" className="text-gold hover:underline font-semibold">
                     06 58 68 65 48
                   </a>
                 </p>
                 <Button
                   type="submit"
+                  variant="gold"
                   disabled={isSubmitting}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 font-semibold h-12 px-8 w-full sm:w-auto"
+                  className="h-12 px-8 w-full sm:w-auto"
                 >
                   {isSubmitting ? (
                     <>
@@ -435,13 +436,19 @@ export default function ZonesContactPage() {
 
   return (
     <main className="min-h-screen">
-      <section className="py-12 sm:py-16 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-12 sm:py-16 bg-background">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-80"
+          style={{ background: "radial-gradient(60rem 26rem at 50% -4rem, rgba(255,255,255,0.06), transparent)" }}
+        />
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 lg:mb-12">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 text-foreground">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
                 {t("zonesContact.title")}
               </h1>
+              <div className="gold-rule mx-auto mb-4" />
               <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
                 {t("zonesContact.description")}
               </p>
@@ -462,84 +469,84 @@ export default function ZonesContactPage() {
                   <div className="space-y-5">
                     <div>
                       <h2 className="text-xl sm:text-2xl font-bold mb-5 text-foreground flex items-center gap-2">
-                        <MapPin className="h-5 w-5 text-primary" />
+                        <MapPin className="h-5 w-5 text-gold" />
                         {t("zonesContact.serviceZonesTitle")}
                       </h2>
                       
                       <div className="space-y-4">
-                      <Card className="border border-border shadow-lg hover:shadow-xl transition-shadow">
-                        <CardHeader className="p-5 bg-muted/30">
+                      <Card className="border border-white/10 bg-white/[0.02] rounded-2xl hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300">
+                        <CardHeader className="p-5 bg-white/[0.03] border-b border-white/5">
                           <CardTitle className="flex items-center gap-2 text-lg font-bold">
-                            <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
+                            <MapPin className="h-5 w-5 text-gold flex-shrink-0" />
                             {t("zonesContact.zones.local.title")}
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="p-5">
                           <ul className="space-y-2.5 text-base text-foreground">
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.local.motte")}</span>
                             </li>
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.local.chambery")}</span>
                             </li>
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.local.aix")}</span>
                             </li>
                           </ul>
                         </CardContent>
                       </Card>
 
-                      <Card className="border border-border shadow-lg hover:shadow-xl transition-shadow">
-                        <CardHeader className="p-5 bg-muted/30">
+                      <Card className="border border-white/10 bg-white/[0.02] rounded-2xl hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300">
+                        <CardHeader className="p-5 bg-white/[0.03] border-b border-white/5">
                           <CardTitle className="flex items-center gap-2 text-lg font-bold">
-                            <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
+                            <MapPin className="h-5 w-5 text-gold flex-shrink-0" />
                             {t("zonesContact.zones.region.title")}
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="p-5">
                           <ul className="space-y-2.5 text-base text-foreground">
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.region.savoie")}</span>
                             </li>
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.region.tarentaise")}</span>
                             </li>
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.region.hauteTarentaise")}</span>
                             </li>
                           </ul>
                         </CardContent>
                       </Card>
 
-                      <Card className="border border-border shadow-lg hover:shadow-xl transition-shadow">
-                        <CardHeader className="p-5 bg-muted/30">
+                      <Card className="border border-white/10 bg-white/[0.02] rounded-2xl hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300">
+                        <CardHeader className="p-5 bg-white/[0.03] border-b border-white/5">
                           <CardTitle className="flex items-center gap-2 text-lg font-bold">
-                            <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
+                            <MapPin className="h-5 w-5 text-gold flex-shrink-0" />
                             {t("zonesContact.zones.longDistance.title")}
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="p-5">
                           <ul className="space-y-2.5 text-base text-foreground">
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.longDistance.lyon")}</span>
                             </li>
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.longDistance.grenoble")}</span>
                             </li>
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.longDistance.france")}</span>
                             </li>
                             <li className="flex items-center gap-2.5">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-gold flex-shrink-0" />
                               <span>{t("zonesContact.zones.longDistance.suisse")}</span>
                             </li>
                           </ul>
@@ -549,8 +556,8 @@ export default function ZonesContactPage() {
                   </div>
 
                   {/* Informations supplémentaires */}
-                  <Card className="border border-primary/30 bg-primary/5 shadow-md">
-                    <CardHeader className="p-5 border-b border-primary/20">
+                  <Card className="border border-white/10 bg-white/[0.03] rounded-2xl shadow-md">
+                    <CardHeader className="p-5 border-b border-gold/20">
                       <CardTitle className="text-base font-bold text-foreground">
                         {t("zonesContact.usefulInfo")}
                       </CardTitle>
@@ -558,26 +565,26 @@ export default function ZonesContactPage() {
                     <CardContent className="p-5 space-y-4">
                       <div>
                         <h3 className="text-sm font-bold text-foreground mb-1.5 flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-primary" />
+                          <Calendar className="h-4 w-4 text-gold" />
                           {t("zonesContact.reservation.dateTime")}
                         </h3>
                         <p className="text-xs text-muted-foreground leading-relaxed">{t("zonesContact.reservation.dateTimeDesc")}</p>
                       </div>
                       <div>
                         <h3 className="text-sm font-bold text-foreground mb-1.5 flex items-center gap-2">
-                          <Users className="h-4 w-4 text-primary" />
+                          <Users className="h-4 w-4 text-gold" />
                           {t("zonesContact.reservation.passengers")}
                         </h3>
                         <p className="text-xs text-muted-foreground leading-relaxed">{t("zonesContact.reservation.passengersDesc")}</p>
                       </div>
                       <div>
                         <h3 className="text-sm font-bold text-foreground mb-1.5 flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-primary" />
+                          <CheckCircle className="h-4 w-4 text-gold" />
                           {t("zonesContact.reservation.special")}
                         </h3>
                         <p className="text-xs text-muted-foreground leading-relaxed">{t("zonesContact.reservation.seat")}</p>
                       </div>
-                      <div className="pt-3 border-t border-primary/20">
+                      <div className="pt-3 border-t border-gold/20">
                         <p className="text-xs text-muted-foreground font-semibold text-center">{t("zonesContact.reservation.service")}</p>
                       </div>
                     </CardContent>
