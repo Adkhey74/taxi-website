@@ -140,6 +140,14 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Tailwind v4 a retiré cursor: pointer de son preflight : sans cette règle, aucun bouton ne se
+     signale comme cliquable. En couche base, une classe utilitaire (cursor-not-allowed…) garde la main. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  label[for] {
+    cursor: pointer;
+  }
   
   /* Custom scrollbar */
   ::-webkit-scrollbar {
